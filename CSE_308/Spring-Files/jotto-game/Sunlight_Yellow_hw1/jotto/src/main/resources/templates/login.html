@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+		<title>Login</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.css">
+		<script src="/js/jquery.js"></script>
+		<script src="http://localhost:8080/gamejs"></script>
+		<script src="http://localhost:8080/loginjs"></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/js/foundation.js'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/js/plugins/foundation.core.js'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/js/plugins/foundation.reveal.js'></script>
+	</head>
+	<style>
+		body {
+			background: #FCFCFC;
+		}
+		.main_wrapper{
+			width:100%;
+			margin-left:auto;
+			margin-right:auto;
+			margin-top:100px;
+		}
+		.login_box {
+			margin-top:0px;
+			/*background: whitesmoke;*/
+			padding:20px;
+			border-color:gainsboro;
+			border-width:2px;
+			/*border-style:solid;*/
+			border-radius:4px;
+		}
+	</style>
+	<body>
+	<div class='main_wrapper'>
+		<br/>
+		<div class='row'>
+			<div class='small-5 columns'>
+				<div class="container">
+					<div class='row'>
+						<div class='small-12 columns' style='font-size:25px; text-align:center'>
+							Jotto | The Boring Game <br/>
+							<span id='info' style='font-size:20px; color:grey; position:relative; top:10px;'>
+						Welcome back
+					</span>
+						</div>
+						<div class='small-12 columns'>
+							<div class='login_box'>
+								<label for="uname"><b>Username</b></label>
+								<input id="username" type="text" placeholder="Enter Username" name="uname" required>
+
+								<label for="psw"><b>Password</b></label>
+								<input id="password" type="password" placeholder="Enter Password" name="psw" required>
+
+								<button onclick="loginUser()" id='main_button' type="button" class='button small success expand radius' style=''>Login</button>
+							</div>
+						</div>
+						<div class='small-12 columns' style='text-align:center'>
+							<button id='secondary_button' class='button secondary radius tiny' onclick='toggle_state()'>Sign up</button><br/>
+							<span style='font-size:12px; color:lightgrey; position:relative; top:-10px'>Sunlight Yellow © 2019 </span>
+						</div>
+					</div>
+				</div>
+
+				<div id = "result">
+
+				</div>
+			</div>
+			<div class='small-7 columns'>
+				<div class='row' style=''>
+					<div class='small-12 columns'>
+						<div id='help_wrapper' style='display:block'>
+							<div class='small-12 columns'>
+								<div class="panel radius">
+									<h6 style='font-size:14px; font-weight:bold'>🤖 Jotto Bot: </h6>
+									<p style='font-size:14px'> Welcome! 😍 I am excited you are here to play with me.</p>
+								</div>
+							</div>
+							<div class='small-12 columns'>
+								<div class="panel radius">
+									<h6 style='font-size:14px; font-weight:bold'>🤖 Jotto Bot: </h6>
+									<p style='font-size:14px'>🙉 If you already have an account, please login to play.</p>
+								</div>
+							</div>
+							<div class='small-12 columns'>
+								<div class="panel radius">
+									<h6 style='font-size:14px; font-weight:bold'>🤖 Jotto Bot: </h6>
+									<p style='font-size:14px'>Maybe you are new ? 🤔 A new friend? Click Sign up to register! Just
+									enter a username and a password. Don't worry I won't spy on your keyboards 🕵</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</body>
+	<script src = "https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src = "../../../../../front-end/login.js"></script>
+	<script>
+       $( document ).ready(function() {
+           let params = (new URL(document.location)).searchParams;
+           state = parseInt(params.get("state"));
+           toggle_state();
+       });
+       var state = 0;
+       function toggle_state() {
+           if(state == 0) {
+               $('#main_button').text('Sign up');
+               $('#secondary_button').text('Login');
+               $('#info').text('Register Below');
+           }else {
+               $('#main_button').text('Login');
+               $('#secondary_button').text('Sign up');
+               $('#info').text('Welcome Back');
+           }
+           state = state == 0 ? 1 : 0;
+       }	
+       delete_cookie();
+	</script>
+	
+</html>

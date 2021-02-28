@@ -1,0 +1,119 @@
+<main-nav></main-nav>
+<br/><br/><br/>
+<div class='row' id='current_comic'> <!-- initially: style="display: none" -->
+  <div class='small-12 columns'>
+    <div class='row'>
+      <div class='small-6 columns'>
+        <p style='font-size:40px; position:relative; left:0px;'>{{ currentSeries.comicSeriesName }} <span style='font-size:16px; color:darkgray'>Last Updated 5 days ago</span></p>
+      </div>
+      <div class='small-2 columns right'>
+        <p onclick='show_all()' style='font-size:25px; position:relative; top:20px; left:50px'>
+          <a style="color:black;" routerLink="/dashboard" routerLinkActive="active"> View All</a>
+        </p>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='small-12 columns'>
+        <div class='small-3 columns title' >
+          <span *ngFor="let number of [1,2,3,4, 5]">
+             <i *ngIf="currentSeries.score >= number" class='fi-star'></i>
+          </span>
+          <span style='font-size:20px'>&nbsp; {{ getFormattedScore(currentSeries.score)}}&nbsp;Rating</span>
+        </div>
+        <div class='small-3 columns title'style='font-size:20px'><i class='fi-torso purple'></i> {{ currentSeries.followers }} followers</div>
+        <div class='small-3 columns title'style='font-size:20px'><i class='fi-heart purple'></i> {{ currentSeries.likes }} likes</div>
+        <div class='small-3 columns title' style='font-size:20px' ><i class='fi-book purple'></i> {{ seriesChapters.length }} Chapters</div>
+      </div>
+      <div class='small-12 columns'>
+        <div class='small-3 columns title' style='font-size:20px'><i class='fi-folder purple'></i> {{ currentSeries.genre }} Genre</div>
+      </div>
+    </div>
+    <br/>
+    <p style='font-size:40px; position:relative; left:0px;'>Chapters</p>
+    <div class='small-12 columns'>
+      <div class='row' style='padding:50px; background:white'>
+        <div class='small-12 columns'>
+          <div class="row_comic" style='width:100%; position:relative; left:0px;'>
+            <div class="column_comic">
+              <div (click)="createComicChapter()" routerLink='/editor' class='comic_banner no_shadow' style="background:black">     </div>
+                <span class='title' style='font-size:22px; position:relative; left:30px; top:-220px; color:black'><a routerLink='/editor'>Create New Chapter</a></span><br/>
+            </div>
+
+            <div *ngFor="let chapter of seriesChapters" class="column_comic" style='margin:0px'>
+              <div class='comic_banner no_shadow'  [ngStyle]="{'background': 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + currentSeries.thumbnail + ') no-repeat center center / cover'}" routerLink='/editor/{{chapter._id}}'></div>
+                <span class='title' style='position:relative; left:30px; top:-220px; font-size:18px; color:white'>{{ chapter.chapterTitle }}</span><br/>
+                <span class='title label tiny success radius' style='font-size:12px; left:30px; top:-220px; color:white'><i class='fi-heart'></i> {{ chapter.likes }}</span><br/>
+                <p *ngIf="chapter.published == true" class='title label tiny success radius' style='position:relative; left:30px; top:-220px; font-size:12px; color:white'>Published</p>
+                <p *ngIf="chapter.published != true" class='title label tiny black radius' style='position:relative; left:30px; top:-220px; font-size:12px; color:white'>Draft</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
+  <div class='small-12 columns'>
+    <div style='margin-top:40px'>
+      <p style='font-size:40px; position:relative; left:0px;'>Settings</p>
+      <div class='row' style='padding:50px; background:white'>
+        <div class='small-12 columns'>
+          <form (ngSubmit)="updatePic()">
+          <div class='row' style='width:80%; margin-left:auto; margin-right:auto; '>
+            <p style='font-size:20px; font-weight:bold'>Cover Picture </p>
+            <div class='small-12 columns'>
+              <input style='padding:0px; position:relative; left:-16px; font-size:20px; box-shadow: 0px; box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.0);  border-style:none; border-bottom-style:solid;'
+                   type="file" class="form-control" accept="image/*" (change)="onSelectFile($event)" placeholder='Enter New Display Name'>
+            </div>
+
+          </div>
+          <div style='text-align:center'>
+            <button type="submit" id='login_btn' class='button small black publish' style='font-size:20px'>Update Thumbnail</button>
+          </div>
+          </form>
+          <div data-alert class="alert-box success radius" id='image-alert' style="margin:0px; display:none">
+            This is a success alert with a radius.
+            <a class="close">&times;</a>
+          </div>
+          <br/>
+          <div class='row' style='width:80%; margin-left:auto; margin-right:auto; '>
+            <p style='font-size:20px; font-weight:bold'>Genre </p>
+            <div class='small-12 columns'>
+              <select style='padding:0px; position:relative; left:-16px; font-size:20px; box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.0);  border-style:none; border-bottom-style:solid;'>
+                <option value="volvo">Action</option>
+                <option value="saab">Fantasy</option>
+                <option value="mercedes">Comedy</option>
+                <option value="audi">Drama</option>
+                <option value="audi">Sports</option>
+                <option value="audi">Horror</option>
+              </select>
+            </div>
+          </div>
+
+          <br/>
+          <div class='row' style='width:80%; margin-left:auto; margin-right:auto; '>
+            <p style='font-size:20px; font-weight:bold'>About </p>
+            <div class='small-12 columns'>
+              <textarea style='padding:0px; position:relative; min-height:100px; left:-16px; font-size:20px; box-shadow: 0px; box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.0);  border-style:none; border-bottom-style:solid;'
+                     value='' placeholder='Enter About'></textarea>
+            </div>
+          </div>
+
+          <br/>
+          <div style='text-align:center'>
+            <button class='button small black publish' style='font-size:20px'>Update Details</button>
+          </div>
+          <div data-alert class="alert-box success radius" id='details-alert' style="margin:0px; display:none">
+            This is a success alert with a radius.
+            <a class="close">&times;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br/><br/>

@@ -1,0 +1,5 @@
+[1,2,3][0]
+2**3
+4**2
+[1,2,"yooo", 56][2] + " what good"
+True or False

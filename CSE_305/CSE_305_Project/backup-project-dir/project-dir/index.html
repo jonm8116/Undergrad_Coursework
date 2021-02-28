@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html ng-app="appname">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Zen Travels</title>
+    <link rel="stylesheet" href="css/bulma.css">
+<!--    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>-->
+<!--	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>-->
+	<script src="scripts/angular/angular.min.js"></script>
+	<script src="scripts/angular/front-back.js"></script>
+    <link rel="stylesheet" href="css/ionicons/css/ionicons.css">
+    <link rel="stylesheet" href="css/ionicons/css/ionicons.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+  <script src="appname.js"></script>
+	<style type="text/css">
+/*   RIGHT SIDE WHITE SPACE   */
+
+		#left-column{
+			background-color: hsl(348, 100%, 61%);
+			color: white;
+      z-index: 1;
+		}
+		#full-container{
+			height: 100%
+		}
+		#outer-container{
+			height: 100%;
+      width: 100%;
+      display: run-in;
+      margin: 0;
+			background-color: #8D99AE;
+			color: white;
+		}
+    #wrapper-1{
+      height: 100%;
+      background-color: #8D99AE;
+      margin: 0;
+      position: relative;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
+    }
+		#main-content{
+
+			height: 450px;
+			overflow-y: scroll;
+			overflow-x:hidden;
+		}
+		#navbar-top{
+			background-color: #8D99AE;
+		}
+		.hero-foot{
+			text-align: center;
+		}
+		#desc-box{
+			top: -47%;
+		}
+		#src-box{
+			top: -25%;
+		}
+		#travel-types{
+			top: -120%;
+		}
+    .columns{
+      width: 105%;
+    }
+    #menu-items{
+      text-align: center;
+      padding-bottom: 10%;
+    }
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+    div::-webkit-scrollbar {
+        display: none;
+    }
+
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    }
+    #go-button{
+      top: -30%;
+    }
+    #second-banner{
+      z-index: 1000;
+      position: relative;
+      background-image:url("/imgs/flight-sunset2.jpg");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+
+    #second-section{
+      z-index: 1000;
+      position: relative;
+      background-color: red;
+    }
+    #top-navbar{
+      z-index: 100000;
+    }
+	</style>
+  </head>
+  <body>
+    <!--   NAVBAR GOES BELOW    -->
+          <nav id="top-navbar" class="navbar is-dark">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="index.html">
+            <!-- <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28"> -->
+            <i class="icon ion-model-s"></i>
+          </a>
+          <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+
+        <div id="navbarExampleTransparentExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item" href="index.html">
+              Home
+            </a>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="">
+                Trips
+              </a>
+              <div class="navbar-dropdown is-boxed">
+                <a class="navbar-item" href="/documentation/overview/start/">
+                  Flights
+                </a>
+                <a class="navbar-item" href="https://bulma.io/documentation/modifiers/syntax/">
+                  Cruises
+                </a>
+                <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
+                  Car rentals
+                </a>
+                <!-- <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
+                  Form
+                </a>
+                <hr class="navbar-divider">
+                <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
+                  Elements
+                </a>
+                <a class="navbar-item is-active" href="https://bulma.io/documentation/components/breadcrumb/">
+                  Components
+                </a> -->
+              </div>
+            </div>
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="field is-grouped">
+                <p class="control">
+                  <a class="bd-tw-button button" href="./signup.html">
+                    <span class="icon">
+                      <i class="icon ion-log-in"></i>
+                    </span>
+                    <span>
+                      Sign in
+                    </span>
+                  </a>
+                </p>
+                <p class="control">
+                  <a class="button is-primary" href="./addAccount.html">
+                    <span class="icon">
+                      <i class="icon ion-edit"></i>
+                    </span>
+                    <span>Create account</span>
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    <!--  NAVBAR ENDS -->
+    <!-- FIRST BANNER -->
+    <section id="second-banner" class="hero is-medium is-primary is-bold">
+      <div class="hero-body">
+        <div style="text-align: center;" class="container">
+          <h1 class="title">
+            Primary bold title
+          </h1>
+          <h2 class="subtitle">
+            Primary bold subtitle
+          </h2>
+        </div>
+      </div>
+      <!--  BOTTOM NAVBAR  -->
+      <!-- <nav class="breadcrumb has-bullet-separator" aria-label="breadcrumbs">
+        <ul>
+        <li><a href="#">Bulma</a></li>
+        <li><a href="#">Documentation</a></li>
+        <li><a href="#">Components</a></li>
+        <li class="is-active"><a href="#" aria-current="page">Breadcrumb</a></li>
+        </ul>
+      </nav> -->
+    </section>
+
+
+
+    <!--   NAVBAR GOES ABOVE    -->
+    <div ng-controller="controller" id="wrapper-1" class="is-fluid">
+    	<div id="outer-container" class="container hero">
+            <h1 class="title">
+              Zen Travels
+            </h1>
+            <p class="subtitle">
+              <i>Decide on your perfect vacation destination</i>!
+
+            </p>
+      	<div id="full-container" class="columns is-mobile">
+      		<div id="left-column" class="column hero is-one-fifth is-fullheight">
+
+      			<h4 class="subtitle is-4">Plan your Trip</h4>
+
+      			<input id="src-box" class="input is-rounded" type="text" placeholder="Source Location">
+      			<input id="desc-box" class="input is-rounded" type="text" placeholder="Destination Location">
+      			<!--	TRAVEL TYPE	-->
+            <a id="go-button" class="button is-link is-small">Link</a>
+
+      			<!-- <div id="travel-types">
+      				<a id="flight-button" class="button">
+      					<span class="icon is-small">
+      					  <i class="fas fa-bold"></i>
+      					</span>
+      				</a>
+      			</div> -->
+      			<!--	TRAVEL TYPE	-->
+      		</div>
+          <!-- MAIN CONTENT - DISPLAY TRIPS	-->
+      		<div ng-init="data=['trip1','trip2','trip3']" id="main-content" class="column">
+            <div ng-repeat="n in [].constructor(100) track by $index" class ="columns is-fullwidth">
+        			<div class="columns is-mobile is-fullwidth">
+
+        				<div id="menu-items" ng-repeat="item in post" class="column is-fullwidth">
+        				Room Shambles
+                {{item.Purpose}}
+        				</div>
+        			</div>
+            </div>
+      		</div>
+    	</div>
+
+			<!-- testing query function -->
+<!--
+			<div ng-app="frontbackQuery" ng-controller="queryController">
+				<p>Click Me!</p>
+				 <pre>{{testOut}}</pre>
+			</div>
+-->
+
+
+      <!--  NEXT CONTAINER   -->
+    </div>
+
+    <section id="second-section" class="hero is-primary is-medium">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Medium title
+          </h1>
+          <h2 class="subtitle">
+            Medium subtitle
+          </h2>
+        </div>
+      </div>
+    </section>
+  </body>
+
+</html>

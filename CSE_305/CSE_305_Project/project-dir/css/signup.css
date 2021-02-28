@@ -1,0 +1,97 @@
+/*   RIGHT SIDE WHITE SPACE   */
+		#left-column{
+			background-color: hsl(348, 100%, 61%);
+			color: white;
+      z-index: 1;
+      text-align: center;
+		}
+		#full-container{
+			height: 100%;
+      margin: auto;
+      width: 90%;
+		}
+		#outer-container{
+			height: 100%;
+      width: 100%;
+      display: run-in;
+      margin: 0;
+			background-color: #8D99AE;
+			color: white;
+		}
+    #wrapper-1{
+      height: 100%;
+      background-color: #8D99AE;
+      margin: 0;
+      position: relative;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
+      padding-top: 5%;
+      padding-left: 37%;
+    }
+		#main-content{
+
+			height: 450px;
+			overflow-y: scroll;
+			overflow-x:hidden;
+		}
+		#navbar-top{
+			background-color: #8D99AE;
+		}
+		.hero-foot{
+			text-align: center;
+		}
+		#desc-box{
+			top: -47%;
+		}
+		#src-box{
+			top: -25%;
+		}
+		#travel-types{
+			top: -120%;
+		}
+    .columns{
+      width: 105%;
+    }
+    #menu-items{
+      text-align: center;
+      padding-bottom: 10%;
+    }
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+    div::-webkit-scrollbar {
+        display: none;
+    }
+
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    }
+    #main-sign-up{
+      height: 40%;
+      width: 40%;
+      background-color: hsl(348, 100%, 61%);
+      padding-left: 4%;
+      padding-right: 4%;
+      border-radius: 10px;
+    }
+    html, body{
+      height: 100%;
+    }
+    #sign-in-text{
+      background-color: #8D99AE;
+      text-align: center;
+      padding-top: 4%;
+      font-size: 20pt;
+      color: white;
+    }
+    #sign-in-button{
+      padding-left: 35%;
+			padding-bottom: 10%;
+    }

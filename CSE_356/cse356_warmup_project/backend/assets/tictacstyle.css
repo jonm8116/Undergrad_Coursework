@@ -1,0 +1,16 @@
+#wrapper{
+	text-align: center;
+	background-color: blue;
+}
+.vertical{
+	border-left: 5px solid black;
+	border-right: 5px solid black;
+}
+.horizontal{
+	border-bottom: 5px solid black;
+	border-top: 5px solid black;
+}
+td{
+	width: 100px;
+	height: 100px;
+}

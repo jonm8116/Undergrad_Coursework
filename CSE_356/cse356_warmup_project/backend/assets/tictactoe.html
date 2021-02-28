@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tic Tac Toe</title>
+	<style type="text/css">
+		#wrapper{
+			text-align: center;
+		}
+		.vertical{
+			border-left: 5px solid black;
+			border-right: 5px solid black;
+		}
+		.horizontal{
+			border-bottom: 5px solid black;
+			border-top: 5px solid black;
+		}
+		td{
+			width: 100px;
+			height: 100px;
+		}
+
+	</style>
+	<script>
+		var grid = [' ',' ',' ',' ',' ',' ',' ',' ',' '];
+		
+		function testAdd(){
+			console.log("inside testAdd");
+			var xhr = new XMLHttpRequest();
+			var url = "/adduser";
+			xhr.open("POST", url, true);
+			
+			//Finished request
+			xhr.onreadystatechange = function() {
+				if (this.readyState == XMLHttpRequest.DONE) {
+					console.log(JSON.parse(xhr.responseText));
+					var response = JSON.parse(xhr.responseText);
+				}
+			}	
+		
+
+			xhr.setRequestHeader("Content-Type", "application/json");
+			xhr.send(JSON.stringify({"username": "zoro", "password": "satonryu"}));
+
+		}
+
+		function sendGrid(val) {
+			grid[parseInt(val.id)] = "X";
+			val.innerHTML = "<span style='font-size: 60pt; text-align: center;'>X</span>";			
+	
+			var xhr = new XMLHttpRequest();
+			var url = "http://130.245.170.135/ttt/play";
+			xhr.open("POST", url, true);
+			
+			//Finished request
+			xhr.onreadystatechange = function() {
+				if (this.readyState == XMLHttpRequest.DONE) {
+					console.log(JSON.parse(xhr.responseText));
+					var response = JSON.parse(xhr.responseText);
+					for(var i=0; i<response.grid.length; i++) {
+						if(response.grid[i] == 'O') {
+							console.log(i.toString());
+							var elem = document.getElementById(i.toString());
+							elem.innerHTML = "<span style='font-size: 60pt; text-align: center;'>O</span>";			
+						}
+					}
+				}
+			}	
+		
+
+			xhr.setRequestHeader("Content-Type", "application/json");
+			xhr.send(JSON.stringify({"grid": JSON.stringify(grid)}));
+			
+		}
+	</script>
+</head>
+<body>
+<table>
+	<tr>
+		<td onclick="sendGrid(this)" id="0"></td>
+		<td onclick="sendGrid(this)" id="1" class="vertical"></td>
+		<td onclick="sendGrid(this)" id="2"></td>
+	</tr>
+	<tr>
+		<td onclick="sendGrid(this)" id="3" class="horizontal"></td>
+		<td onclick="sendGrid(this)" id="4" class="horizontal vertical"></td>
+		<td onclick="sendGrid(this)" id="5" class="horizontal"></td>
+	</tr>
+	<tr>
+		<td onclick="sendGrid(this)" id="6"></td>
+		<td onclick="sendGrid(this)" id="7" class="vertical"></td>
+		<td onclick="sendGrid(this)" id="8"></td>
+	</tr>
+</table>
+
+<div id="testdiv">
+	<h1>Test REST /ADDUSER</h1>
+	<button onclick="testAdd()">ADD USER</button>
+</div>
+
+</body>
+</html>

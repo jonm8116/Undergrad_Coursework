@@ -1,0 +1,27 @@
+<div class="container">
+<form class="container" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+	<div style='width:100%; margin-left:auto; margin-right:auto;  background:white; padding:40px;'>
+
+		<div class='row' style='width:80%; margin-left:auto; margin-right:auto; '>
+			<p style='font-size:20px; font-weight:bold'>Username *</p>
+			<div class='small-12 columns'>
+				<input formControlName="username" style='padding:0px; position:relative; left:-16px; font-size:20px; box-shadow: 0px; box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.0);  border-style:none; border-bottom-style:solid;'
+						 type='text' required placeholder='Enter Username'>
+			</div>
+		</div>
+
+		<br/>
+		<div class='row' style='width:80%; margin-left:auto; margin-right:auto; '>
+			<p style='font-size:20px; font-weight:bold'>Password *</p>
+			<div class='small-12 columns'>
+				<input formControlName="password" style='padding:0px; position:relative; left:-16px; font-size:20px; box-shadow: 0px; box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.0);  border-style:none; border-bottom-style:solid;'
+						 type='password' required placeholder='Enter Password'>
+			</div>
+		</div>
+
+		<div style='text-align:center'>
+			<button type='submit' id='login_btn' class='btn btn-primary' style='font-size:20px'>Sign In</button>
+		</div>
+	</div>
+</form>
+</div>

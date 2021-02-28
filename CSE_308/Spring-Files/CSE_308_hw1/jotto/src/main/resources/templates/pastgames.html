@@ -1,0 +1,97 @@
+<html>
+   <head>
+      <head>
+         <meta charset="UTF-8">
+         <title>Past Games</title>
+         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.css">
+      </head>
+   </head>
+   <style>
+   .main_wrapper{
+      width:60%;
+      margin-left:auto;
+      margin-right:auto;
+   }
+
+   .char_button{
+      margin:3px;
+      border-radius:4px;
+   }
+
+   #guess_history{
+      height:374px;
+      overflow-y:scroll;
+      background-color:black;
+      color:green;
+      padding:10px;
+      border-radius:3px;
+      border-width:1px;
+      border-style:solid;
+      border-color:darkslategray;
+   }
+
+   .guess_history_p{
+      margin:2px;
+      font-size:12px;
+   }
+   .guess_history_b{
+      margin:2px;
+      font-size:12px;
+   }
+   .title{
+      font-size:13px;
+   }
+   .info{
+      text-align:right;
+      font-size:14px;
+   }
+   </style>
+   <body>
+   <!-- load table below  -->
+   <div class='main_wrapper'>
+	    <br/>
+	    <div class='row'>
+	    	<h2>Past Games</h2>
+	        <div class='small-12 columns'>
+		        <div class="panel radius">
+		              
+		        </div>
+	         </div>
+        </div>
+	</div>
+   
+   </body>
+   <script src = "https://unpkg.com/axios/dist/axios.min.js"></script>
+   <script>
+   console.log(document.cookie);	//username=jotaro
+   var username = document.cookie.split("=")[1];
+   console.log(username);
+   function getGames(){
+	   axios.get('http://localhost:8080/users/username/'+username)
+		.then(function(response){
+			console.log(response);
+		})
+		.catch(function(error){
+			console.log(error);
+		});
+		
+	}
+   getGames();
+   
+   function loadGames(){
+	   var classList = document.getElementById('class-list');
+	    var currentYear = 0;
+	    for(i=0; i<courses.courses.length; i++){
+	        if(courses.courses[i].year != currentYear){
+	            currentYear = courses.courses[i].year;
+	            var h3 = document.createElement('h3');
+	            h3.appendChild(document.createTextNode(courses.courses[i].year));
+	            classList.appendChild(h3);
+	        }
+	        var li = document.createElement('li');
+	        li.appendChild(document.createTextNode(courses.courses[i].title));
+	        classList.appendChild(li);
+	    }
+   }
+   </script>
+   </html>

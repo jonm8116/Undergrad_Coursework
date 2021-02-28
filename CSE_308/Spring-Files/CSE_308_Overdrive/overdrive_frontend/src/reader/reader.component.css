@@ -1,0 +1,57 @@
+.comic_img {
+	margin:40px;
+}
+
+.user_profile {
+	vertical-align: middle;
+	width: 50px;
+	height: 50px;
+	border-radius: 4px;
+	border-style:solid;
+	border-color:lavender;
+	border-width:1px;
+}
+
+.user_name {
+	padding:0px;
+	margin:0px;
+}
+
+.user_comment {
+	font-weight:lighter;
+}
+
+.date {
+	color:lightgray;
+	font-size:13px;
+	position:relative;
+	top:-18px;
+	font-weight:lighter;
+}
+
+.comment-box {
+	position:relative;
+	font-size:14px;
+}
+
+.user-data {
+	position:relative;
+	left:-20px;
+}
+
+.comments_wrapper {
+	background-color: white;
+}
+
+.total_comments {
+	font-size: 14px;
+	color: lightgray;
+	font-weight: lighter;
+}
+
+.user-comment-box {
+	position:relative;
+	top:-10px;
+	height:80px;
+	resize: none;
+}

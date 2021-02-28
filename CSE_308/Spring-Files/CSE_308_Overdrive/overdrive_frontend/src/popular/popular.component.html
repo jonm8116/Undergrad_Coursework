@@ -1,0 +1,274 @@
+<main-nav></main-nav>
+<div class='weekly_nav' style='background-color:white; border-bottom-style:solid; border-width:.6px; border-color:rgb(219, 219, 219); margin-top:0px; margin-left:auto; margin-right:auto; border-top: 1px solid #eaeaea;'>
+	<div class='row'>
+		<div class='small-12 columns small-offset-0' style='height:50px'>
+			<dl class="sub-nav">
+				<dd onclick='select_option_popular(this)' class="pop_btn active"><a (click)="scroll(action_section)">ALL</a></dd>
+				<dd onclick='select_option_popular(this)' class="pop_btn"><a (click)="scroll(action_section)">ACTION</a></dd>
+				<dd onclick='select_option_popular(this)' class="pop_btn"><a (click)="scroll(fantasy_section)">FANTASY</a></dd>
+				<dd onclick='select_option_popular(this)' class="pop_btn"><a (click)="scroll(drama_section)">DRAMA</a></dd>
+				<dd onclick='select_option_popular(this)' class="pop_btn"><a (click)="scroll(comedy_section)">COMEDY</a></dd>
+				<dd onclick='select_option_popular(this)' class="pop_btn"><a (click)="scroll(sports_section)">SPORTS</a></dd>
+				<dd onclick='select_option_popular(this)' class="pop_btn"><a (click)="scroll(horror_section)">HORROR</a></dd>
+			</dl>
+		</div>
+	</div>
+</div>
+
+<div style='padding:60px 60px 60px 100px;'>
+
+	<div #action_section>
+		<p style='font-size:40px; position:relative; left:0px;'>Most Popular in Action</p>
+		<div class="row_comic" style='width:100%; position:relative; left:0px;'>
+			<div class='small-12 columns' *ngFor="let comic of popularAction; let i = index">
+				<div class='row banner' [ngStyle]="{'background-image': 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + comic.thumbnail + ')'}">
+					<div>
+					<div class='small-3 columns'>
+						<div class=''>
+							<button class='button small success' style='font-size:40px;'>{{i + 1}}</button>
+						</div>
+					</div>
+					<div class='small-6 columns' style='background-color:white; color:black; padding:20px; border-radius:0px 5px 5px 0px'>
+						<span class='label tiny success radius'>Action</span>
+						<h1>{{ comic.comicSeriesName }}</h1>
+						<h4>{{ comic.author }}</h4>
+						{{ comic.description.substring(0,40) }}
+						<br/> <br/>
+						<button (click)="selectSeries(comic)" routerLink='/series' class='button success expand radius'><a>View Series</a></button>
+					</div>
+					</div>
+				</div>
+				<br/>
+			</div>
+			<div class='small-8 columns' *ngIf='popularAction.length == 0'>
+				<div class='alert-box expand secondary' style='font-size:18px'>Ops, looks like we don't yet have any action comics. Be the first to create one!</div><button style='font-size:18px; display:inline-block' class='button small radius black'>Create</button>
+			</div>
+			<br/>
+		</div>
+	</div>
+
+	<hr/>
+
+	<br/>
+			<!-- --------------------- -->
+
+			<!-- <br/>
+			<div class='row banner' style='background-image:url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwi2sbSyrv0VI9aj4ITnPLsKBWqywzk0xDOelz1_ewwFYl_P_gng")'>
+				<div class='small-3 columns'>
+					<div class=''>
+						<button class='button small success' style='font-size:40px;'>2</button>
+					</div>
+				</div>
+				<div class='small-6 columns' style='background-color:white; color:black; padding:20px; border-radius:0px 5px 5px 0px'>
+					<span class='label tiny success radius'>Comedy</span>
+					<h1>JoJo!</h1>
+					<h4>artvegas</h4>
+					Naruto is a superhero manga series written and illustrated by Kōhei Horikoshi. It has been serialized in Weekly Overdrive Comics since July 2014, and 20 volumes have been collected in tankōbon format.
+					<br/><br/>
+					<button class='button success expand radius'><a href='/series.html'>View Series</a></button>
+				</div>
+			</div>
+		</div>
+	</div> -->
+
+	<div #fantasy_section>
+		<p style='font-size:40px; position:relative; left:0px;'>Most Popular in Fantasy</p>
+		<div class="row_comic" style='width:100%; position:relative; left:0px;'>
+			<div class='small-12 columns' *ngFor="let comic of popularFantasy; let i = index">
+				<div class='row banner' [ngStyle]="{'background-image': 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + comic.thumbnail + ')'}">
+					<div>
+					<div class='small-3 columns'>
+						<div class=''>
+							<button class='button small success' style='font-size:40px;'>{{i + 1}}</button>
+						</div>
+					</div>
+					<div class='small-6 columns' style='background-color:white; color:black; padding:20px; border-radius:0px 5px 5px 0px'>
+						<span class='label tiny success radius' style='font-size:12px'>Fantasy</span>
+						<div class='title' style='position:relative; display:inline-block; left:5px; top:0px;'>
+							<span *ngIf='comic.score == 0' style='font-size:12px; margin-left:2px; color:white'>Not yet rated</span>
+							<span *ngFor="let number of [1,2,3,4, 5]">
+							<span *ngIf="comic.score >= number" class="fa fa-star" style='font-size:12px; margin-left:2px; color:#7161EF'>
+							</span>
+						</span>
+						</div>
+						<h1>{{ comic.comicSeriesName }}</h1>
+						<h4>{{ comic.author }}</h4>
+						{{ comic.description.substring(0,40) }}
+						<br/> <br/>
+						<button (click)="selectSeries(comic)" class='button success expand radius'><a routerLink='/series'>View Series</a></button>
+					</div>
+					</div>
+				</div>
+				<br/>
+			</div>
+			<div class='small-8 columns' *ngIf='popularFantasy.length == 0'>
+				<div class='alert-box expand secondary' style='font-size:18px'>Ops, looks like we don't yet have any fantasy comics. Be the first to create one!</div><button style='font-size:18px; display:inline-block' class='button small radius black'>Create</button>
+			</div>
+			<br/>
+		</div>
+	</div>
+
+	<hr/>
+
+	<br/>
+
+	<div #drama_section>
+		<p style='font-size:40px; position:relative; left:0px;'>Most Popular in Drama</p>
+		<div class="row_comic" style='width:100%; position:relative; left:0px;'>
+			<div class='small-12 columns' *ngFor="let comic of popularDrama; let i = index">
+				<div class='row banner'[ngStyle]="{'background-image': 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + comic.thumbnail + ')'}">
+					<div>
+					<div class='small-3 columns'>
+						<div class=''>
+							<button class='button small success' style='font-size:40px;'>{{i +  1}}</button>
+						</div>
+					</div>
+					<div class='small-6 columns' style='background-color:white; color:black; padding:20px; border-radius:0px 5px 5px 0px'>
+						<span class='label tiny success radius' style='font-size:12px'>Drama</span>
+						<div class='title' style='position:relative; display:inline-block; left:5px; top:0px;'>
+							<span *ngIf='comic.score == 0' style='font-size:12px; margin-left:2px; color:white'>Not yet rated</span>
+							<span *ngFor="let number of [1,2,3,4, 5]">
+							<span *ngIf="comic.score >= number" class="fa fa-star" style='font-size:12px; margin-left:2px; color:#7161EF'>
+							</span>
+						</span>
+						</div>
+						<h1>{{ comic.comicSeriesName }}</h1>
+						<h4>{{ comic.author }}</h4>
+						{{ comic.description.substring(0,40) }}
+						<br/> <br/>
+						<button (click)="selectSeries(comic)" class='button success expand radius'><a routerLink='/series'>View Series</a></button>
+					</div>
+					</div>
+				</div>
+				<br/>
+			</div>
+			<div class='small-8 columns' *ngIf='popularDrama.length == 0'>
+				<div class='alert-box expand secondary' style='font-size:18px'>Ops, looks like we don't yet have any drama comics. Be the first to create one!</div><button style='font-size:18px; display:inline-block' class='button small radius black'>Create</button>
+			</div>
+			<br/>
+		</div>
+	</div>
+
+	<hr/>
+
+	<br/>
+
+	<div #comedy_section>
+		<p style='font-size:40px; position:relative; left:0px;'>Most Popular in Comedy</p>
+		<div class="row_comic" style='width:100%; position:relative; left:0px;'>
+			<div class='small-12 columns' *ngFor="let comic of popularComedy; let i = index">
+				<div class='row banner'[ngStyle]="{'background-image': 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + comic.thumbnail + ')'}">
+					<div>
+					<div class='small-3 columns'>
+						<div class=''>
+							<button class='button small success' style='font-size:40px;'>{{i + 1}}</button>
+						</div>
+					</div>
+					<div class='small-6 columns' style='background-color:white; color:black; padding:20px; border-radius:0px 5px 5px 0px'>
+						<span class='label tiny success radius' style='font-size:12px'>Comedy</span>
+						<div class='title' style='position:relative; display:inline-block; left:5px; top:0px;'>
+							<span *ngIf='comic.score == 0' style='font-size:12px; margin-left:2px; color:white'>Not yet rated</span>
+							<span *ngFor="let number of [1,2,3,4, 5]">
+							<span *ngIf="comic.score >= number" class="fa fa-star" style='font-size:12px; margin-left:2px; color:#7161EF'>
+							</span>
+						</span>
+						</div>
+						<h1>{{ comic.comicSeriesName }}</h1>
+						<h4>{{ comic.author }}</h4>
+						{{ comic.description.substring(0,40) }}
+						<br/> <br/>
+						<button (click)="selectSeries(comic)" class='button success expand radius'><a routerLink='/series'>View Series</a></button>
+					</div>
+					</div>
+				</div>
+				<br/>
+			</div>
+			<div class='small-8 columns' *ngIf='popularComedy.length == 0'>
+				<div class='alert-box expand secondary' style='font-size:18px'>Ops, looks like we don't yet have any comedy comics. Be the first to create one!</div><button style='font-size:18px; display:inline-block' class='button small radius black'>Create</button>
+			</div>
+			<br/>
+		</div>
+	</div>
+
+	<hr/>
+
+	<br/>
+
+	<div #sports_section>
+		<p style='font-size:40px; position:relative; left:0px;'>Most Popular in Sports</p>
+		<div class="row_comic" style='width:100%; position:relative; left:0px;'>
+			<div class='small-12 columns' *ngFor="let comic of popularSports; let i = index">
+				<div class='row banner'[ngStyle]="{'background-image': 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + comic.thumbnail + ')'}">
+					<div>
+					<div class='small-3 columns'>
+						<div class=''>
+							<button class='button small success' style='font-size:40px;'>{{i + 1}}</button>
+						</div>
+					</div>
+					<div class='small-6 columns' style='background-color:white; color:black; padding:20px; border-radius:0px 5px 5px 0px'>
+						<span class='label tiny success radius' style='font-size:12px'>Sports</span>
+						<div class='title' style='position:relative; display:inline-block; left:5px; top:0px;'>
+							<span *ngIf='comic.score == 0' style='font-size:12px; margin-left:2px; color:white'>Not yet rated</span>
+							<span *ngFor="let number of [1,2,3,4, 5]">
+							<span *ngIf="comic.score >= number" class="fa fa-star" style='font-size:12px; margin-left:2px; color:#7161EF'>
+							</span>
+						</span>
+						</div>
+						<h1>{{ comic.comicSeriesName }}</h1>
+						<h4>{{ comic.author }}</h4>
+						{{ comic.description.substring(0,40) }}
+						<br/> <br/>
+						<button (click)="selectSeries(comic)" class='button success expand radius'><a routerLink='/series'>View Series</a></button>
+					</div>
+					</div>
+				</div>
+				<br/>
+			</div>
+			<div class='small-8 columns' *ngIf='popularSports.length == 0'>
+				<div class='alert-box expand secondary' style='font-size:18px'>Ops, looks like we don't yet have any sports comics. Be the first to create one!</div><button style='font-size:18px; display:inline-block' class='button small radius black'>Create</button>
+			</div>
+			<br/>
+		</div>
+	</div>
+
+	<hr/>
+
+	<br/>
+
+	<div #horror_section>
+		<p style='font-size:40px; position:relative; left:0px;'>Most Popular in Horror</p>
+		<div class="row_comic" style='width:100%; position:relative; left:0px;'>
+			<div class='small-12 columns' *ngFor="let comic of popularHorror; let i = index">
+				<div class='row banner'[ngStyle]="{'background-image': 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + comic.thumbnail + ')'}">
+					<div>
+					<div class='small-3 columns'>
+						<div class=''>
+							<button class='button small success' style='font-size:40px;'>{{i + 1}}</button>
+						</div>
+					</div>
+					<div class='small-6 columns' style='background-color:white; color:black; padding:20px; border-radius:0px 5px 5px 0px'>
+						<span class='label tiny success radius' style='font-size:12px'>Horror</span>
+						<div class='title' style='position:relative; display:inline-block; left:5px; top:0px;'>
+							<span *ngIf='comic.score == 0' style='font-size:12px; margin-left:2px; color:white'>Not yet rated</span>
+							<span *ngFor="let number of [1,2,3,4, 5]">
+							<span *ngIf="comic.score >= number" class="fa fa-star" style='font-size:12px; margin-left:2px; color:#7161EF'>
+							</span>
+						</span>
+						</div>
+						<h1>{{ comic.comicSeriesName }}</h1>
+						<h4>{{ comic.author }}</h4>
+						{{ comic.description.substring(0,40) }}
+						<br/> <br/>
+						<button (click)="selectSeries(comic)" class='button success expand radius'><a routerLink='/series'>View Series</a></button>
+					</div>
+					</div>
+				</div>
+				<br/>
+			</div>
+			<div class='small-8 columns' *ngIf='popularHorror.length == 0'>
+				<div class='alert-box expand secondary' style='font-size:18px'>Ops, looks like we don't yet have any horror comics. Be the first to create one!</div><button style='font-size:18px; display:inline-block' class='button small radius black'>Create</button>
+			</div>
+			<br/>
+		</div>
+	</div>
+</div>

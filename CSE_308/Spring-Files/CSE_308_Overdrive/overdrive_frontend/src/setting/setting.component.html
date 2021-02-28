@@ -1,0 +1,108 @@
+<main-nav></main-nav>
+
+<br/>
+
+<div>
+	<p style='font-size:40px; position:relative; left:156px;'>User Settings </p>
+	<form [formGroup]="userPasswordForm" (ngSubmit)="updateUserPassword(userPasswordForm.value)">
+	<div class='row'>
+		<p style='font-size:30px; position:relative; left:0px;'>Change Password</p>
+		<div style='width:100%; margin-left:auto; margin-right:auto;  background:white; padding:40px;'>
+			<div class='row' style='width:80%; margin-left:auto; margin-right:auto; '>
+				<p style='font-size:20px;'>New Password *</p>
+				<div class='small-12 columns'>
+					<input formControlName="password" style='padding:0px; position:relative; left:-10px; font-size:20px; box-shadow: 0px; box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.0);  border-style:none; border-bottom-style:solid;'
+							 type='text' placeholder='Enter New Password'>
+				</div>
+			</div>
+			<br/>
+			<div class='row' style='width:80%; margin-left:auto; margin-right:auto; '>
+				<p style='font-size:20px;'>Re-type New Password *</p>
+				<div class='small-12 columns'>
+					<input formControlName="secondPassword" style='padding:0px; position:relative; left:-10px; font-size:20px; box-shadow: 0px; box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.0);  border-style:none; border-bottom-style:solid;'
+							 type='text' placeholder='Enter New Password'>
+				</div>
+			</div>
+			<div style='text-align:center'>
+				<button class='button small black publish' style='font-size:20px'>Update Password</button>
+			</div>
+		</div>
+		<div data-alert class="alert-box success " id='password-alert' style="margin:0px; display:none">
+			This is a success alert with a radius.
+			<a class="close">&times;</a>
+		</div>
+	</div>
+	</form>
+	<br/>
+	<form [formGroup]="userDisplayNameForm" (ngSubmit)="updateDisplayName(userDisplayNameForm.value)">
+	<div class='row'>
+		<p style='font-size:30px; position:relative; left:0px;'>Change Display Name</p>
+		<div style='width:100%; margin-left:auto; margin-right:auto;  background:white; padding:40px;'>
+			<div class='row' style='width:80%; margin-left:auto; margin-right:auto; '>
+				<p style='font-size:20px;'>New Display Name *</p>
+				<div class='small-12 columns'>
+					<input formControlName="username" style='padding:0px; position:relative; left:-10px; font-size:20px; box-shadow: 0px; box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.0);  border-style:none; border-bottom-style:solid;'
+							 type='text' placeholder='Enter New Display Name'>
+				</div>
+			</div>
+			<br/>
+			<div style='text-align:center'>
+				<button id='login_btn' class='button small black publish' style='font-size:20px'>Update Display Name</button>
+			</div>
+		</div>
+		<div data-alert  class="alert-box success " id='username-alert' style="margin:0px; display:none">
+			This is a success alert with a radius.
+			<a class="close">&times;</a>
+		</div>
+	</div>
+	</form>
+
+	<br/>
+	<form [formGroup]= "userBioForm" (ngSubmit)="updateBio(userBioForm.value)">
+	<div class='row'>
+		<p style='font-size:30px; position:relative; left:0px;'>Change Profile Bio</p>
+		<div style='width:100%; margin-left:auto; margin-right:auto;  background:white; padding:40px;'>
+			<div class='row' style='width:80%; margin-left:auto; margin-right:auto; '>
+				<p style='font-size:20px;'>New Profile Bio *</p>
+				<div class='small-12 columns'>
+						<textarea formControlName="bio" style='padding:0px; position:relative; min-height:100px; left:-10px; font-size:20px; box-shadow: 0px; box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.0);  border-style:none; border-bottom-style:solid;'
+									 value='' id='bio-input' placeholder='Current Bio will be displayed here'></textarea>
+				</div>
+			</div>
+			<div style='text-align:center'>
+				<button class='button small black publish' style='font-size:20px'>Update Profile Bio</button>
+			</div>
+		</div>
+		<div data-alert class="alert-box success " id='bio-alert' style="margin:0px; display:none">
+			This is a success alert with a radius.
+			<a class="close">&times;</a>
+		</div>
+	</div>
+	</form>
+
+	<br/>
+	<form (ngSubmit)="updatePic()">
+	<div class='row'>
+		<p style='font-size:30px; position:relative; left:0px;'>Change Profile Picture</p>
+		<div style='width:100%; margin-left:auto; margin-right:auto;  background:white; padding:40px;'>
+			<div class='row' style='width:80%; margin-left:auto; margin-right:auto; '>
+				<p style='font-size:20px;'>Add New Profile Picture *</p>
+				<div class='small-12 columns'>
+					<input style='padding:0px; position:relative; left:-10px; font-size:20px; box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.0);  border-style:none; border-bottom-style:solid;'
+							 type="file" class="form-control" accept="image/*" (change)="onSelectFile($event)" placeholder='Enter New Display Name'>
+				</div>
+			</div>
+			<br/>
+			<div style='text-align:center'>
+				<button type="submit" class='button small black publish' style='font-size:20px'>Update Profile Picture</button>
+			</div>
+		</div>
+		<div data-alert class="alert-box success " id='image-alert' style="margin:0px; display:none">
+			This is a success alert with a radius.
+			<a class="close">&times;</a>
+		</div>
+	</div>
+	</form>
+
+	<br/>
+</div>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>Jotto - The Boring Game</title>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.css">
+  <script src="http://localhost:8080/gamejs"></script>
+<!--   <script src="http://localhost:8080/gamerecordsjs"></script> -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/js/foundation.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/js/plugins/foundation.core.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/js/plugins/foundation.reveal.js'></script>
+</head>
+<style>
+  body {
+    background: #FCFCFC;
+  }
+  .main_wrapper{
+    width:60%;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .char_button{
+    margin:3px;
+    border-radius:4px;
+  }
+  #guess_history, #comp_guess_history{
+    height:188px;
+    overflow-y:scroll;
+    background-color:black;
+    color:white;
+    padding:10px;
+    border-radius:3px 3px 0px 0px;
+    border-width:1px;
+    border-style:solid;
+    border-color:darkslategray;
+  }
+  #comp_guess_history {
+    border-radius:0px 0px 3px 3px;
+  }
+  .guess_history_p{
+    margin:2px;
+    font-size:12px;
+  }
+  .guess_history_b{
+    margin:2px;
+    font-size:12px;
+  }
+  .title{
+    font-size:13px;
+  }
+  .info{
+    text-align:right;
+    font-size:14px;
+  }
+  .button-group > li > .button {
+    margin:5px;
+    border-style:none;
+    box-shadow:none;
+    border-left:none;
+    border-radius:3px;
+    width:110px;
+    font-size:12px;
+  }
+</style>
+<body>
+<div class='main_wrapper'>
+  <br/>
+  <div class='row'>
+    <div class='small-3 columns'>
+      Jotto | The Boring Game
+    </div>
+    <div class='small-9 columns' style=''>
+      <button style='float:right;' class='button tiny expanded radius secondary' value='http://localhost:8080/'  onclick='go_to(this)'>Logout</button>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='small-12 columns'>
+      <button class='small button expand radius primary' onclick='start_new_game()'>Start new game</button>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='small-12 columns'>
+      <div class="panel radius">
+        <h6 style='font-size:14px; font-weight:bold'>🤖 Jotto Bot: </h6>
+        <p style='font-size:14px'> <span id="username-tag">Artvegas</span>this is your user profile 😎. You can browser through your past games. Click on a game to 👀 the game history in detail.
+          📗 A green word indiciates you won that game and a 📕 word means you lost.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='small-12 columns'>
+      <p style='font-size:14px;'>Overall Achievements &nbsp; 👑</p>
+      <div class='row'>
+        <div class='small-4 columns'>
+          <li class='small button secondary radius expand'><span id='total_wins'>12</span> Wins</li>
+        </div>
+        <div class='small-4 columns'>
+          <li class='small button secondary radius expand'><span id='total_lost'>12</span> Lost</li>
+        </div>
+        <div class='small-4 columns'>
+          <li class='small button secondary radius expand'><span id='total_played'>12</span> Played</li>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='small-12 columns'>
+      <div class='row collaspe'>
+        <div class='small-4 columns'>
+          <p style='font-size:14px;'>Previous Game Histories &nbsp; 📔</p>
+          <ul id='game_list' class="button-group" style='display:none; overflow-y: scroll; max-height:307px;'>
+          </ul>
+          <li disabled id='no_games' class='button small expand secondary'>No games found</li>
+        </div>
+        <div class='small-8 columns'>
+          <p style='font-size:14px;'>Game Details &nbsp; 📈
+            <span id='game_date' style='display:none; font-size:14px; color:darkgray; float:right'>Played on Janguary 16th, 2018</span>
+          </p>
+          <li  id='no_game_selected' disabled class='button small expand secondary'>No game selected</li>
+          <div class='row'>
+            <div class='small-6 columns'>
+              <button id='game_user_word' style='display:none' class='small expand radius button'>User Secret Word: </button>
+            </div>
+            <div class='small-6 columns'>
+              <button id='game_comp_word' style='display:none' class='small expand radius button'>Bot Secret Word: </button>
+            </div>
+          </div>
+          <div id='game_guess_history_list' style='display:none'>
+            <div class='row'>
+              <div class='small-6 columns'>
+                <p style='font-size:14px;'>Your guesses</p>
+                <div id='user_guesss_list' style='overflow-y:scroll; height:200px'>
+                  <!--<li class='small button secondary radius expand'>-->
+                    <!--Apple | 2-->
+                  <!--</li>-->
+                  <!--<li class='small button secondary radius expand'>-->
+                    <!--Apple | 2-->
+                  <!--</li>-->
+                  <!--<li class='small button secondary radius expand'>-->
+                    <!--Apple | 2-->
+                  <!--</li>-->
+                  <!--<li class='small button success radius expand'>-->
+                    <!--Apple-->
+                  <!--</li>-->
+                </div>
+              </div>
+              <div class='small-6 columns'>
+                <p style='font-size:14px;'>Bot's guesses</p>
+                <div id='bot_guesss_list' style='overflow-y:scroll; height:200px'>
+                  <!--<li class='small button secondary radius expand'>-->
+                    <!--Apple | 2-->
+                  <!--</li>-->
+                  <!--<li class='small button secondary radius expand'>-->
+                    <!--Apple | 2-->
+                  <!--</li>-->
+                  <!--<li class='small button secondary radius expand'>-->
+                    <!--Apple | 2-->
+                  <!--</li>-->
+                  <!--<li class='small button success radius expand'>-->
+                    <!--Apple-->
+                  <!--</li>-->
+                </div>
+              </div>
+          </div>
+          </div>
+          <br/>
+        </div>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='small-12 columns' style='text-align:center;'>
+        <span style='font-size:12px; color:lightgrey; position:relative; top:-10px'>Sunlight Yellow © 2019 </span>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>
+</body>
+<script src = "https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+
+ 
+	
+// 	.catch(function(error){
+// 		console.log(error);
+// 	});
+	
+	function loadGames(callback){
+		var username = document.cookie.split("=")[2];
+		//make get request call
+		var wins = 0;
+		var lost = 0;
+		var total = 0;
+		//Get html elements
+		var winsTag = document.getElementById("total_wins");
+		var lostTag = document.getElementById("total_lost");
+		var totalPlayed = document.getElementById("total_played");
+		var recordsTag = document.getElementById("game_guess_history_list");
+		
+//		var game2 = {
+//		        word: 'LOSTED',
+//		        won: false,
+//		        date_created: 'today',
+//		        user_list: [{data:'apple', points:'2'}, {data:'pencil', points:'4'}],
+//		        comp_list: [{data:'orange', points:'2'}, {data:'babies', points:'4'}],
+	//
+//		    };
+		
+		axios.get('http://localhost:8080/username/'+username)
+		.then(function(response){
+			var wordVal;
+			var wonVal;
+			var date_created;
+			var objList = [];
+		
+			for(var i=0; i<response.data.length; i++){
+				//console.log(JSON.parse(response.data[i].playerGuess));
+				//for each guess array
+				var playerList = [];
+				var cpuList = [];
+				for (var j=0; j<response.data[i].playerGuess.length; j++){
+					var guess = {
+							data : response.data[i].playerGuess[j],
+							points : response.data[i].playerScore[j]
+					};
+					console.log(guess);
+					playerList.push(guess);
+					
+					var guess = {
+							data : response.data[i].cpuGuess[j],
+							points : response.data[i].cpuScore[j]
+					};
+					cpuList.push(guess);
+					//playerGuess.push(JSON.parse(response.data[i].playerGuess[j]));
+				}
+				
+				//user_list: [{data:'apple', points:'2'}, {data:'pencil', points:'4'}]
+             console.log(response.data[i]);
+				if(response.data[i].result){
+					wins = wins + 1;
+					var game = {
+						user_word: response.data[i].userSecretWord,
+                   comp_word: response.data[i].cpuSecretWord,
+						won: true,
+						date_created: response.data[i].date,
+						user_list: playerList,
+						comp_list: cpuList
+					};
+					objList.push(game);
+				} else{
+					lost = lost + 1;
+					var game = {
+                   user_word: response.data[i].userSecretWord,
+                   comp_word: response.data[i].cpuSecretWord,
+							won: false,
+							date_created: response.data[i].date,
+							user_list: playerList,
+							comp_list: cpuList
+					};
+					objList.push(game);
+				}
+				total = total + 1;
+			}
+			winsTag.innerHTML = wins;
+			lostTag.innerHTML = lost;
+			totalPlayed.innerHTML = total;
+			callback(objList);
+//			return objList;
+
+		})
+		.catch(function(error){
+			console.log(error);
+		});
+	}
+	
+
+	loadGames(function(games){
+		console.log("games json");
+		console.log(games);
+		for(var i=0; i<games.length; i++){
+			create_game_tab(games[i]);
+		}
+	})
+	
+	document.getElementById("username-tag").innerHTML = document.cookie.split("=")[2] + ", ";
+</script>
+
+</html>

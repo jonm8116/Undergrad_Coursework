@@ -1,0 +1,48 @@
+<main-nav></main-nav>
+
+<br/>
+<div>
+	<form class="container" [formGroup]="comicForm" (ngSubmit)="onSubmit(comicForm.value)">
+		<div class='row'>
+			<p style='font-size:40px; position:relative; left:0px;'>Create New Comic</p>
+			<div style='width:100%; margin-left:auto; margin-right:auto;  background:white; padding:40px;'>
+				<div class='row' style='width:80%; margin-left:auto; margin-right:auto; '>
+					<p style='font-size:20px;'>Comic Name *</p>
+					<div class='small-12 columns'>
+						<input formControlName="comicSeriesName" style='padding:0px; position:relative; left:-6px; font-size:20px; box-shadow: 0px; box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.0);  border-style:none; border-bottom-style:solid;'
+								 type='text' placeholder='Enter Comic Name'>
+					</div>
+				</div>
+
+				<br/>
+				<div class='row' style='width:80%; margin-left:auto; margin-right:auto; '>
+					<p style='font-size:20px; font-weight:bold'>Genre *</p>
+					<div class='small-12 columns'>
+						<select formControlName="genre" style='padding:0px; left:-4px; position:relative;
+						font-size:20px; box-shadow:
+						inset 0 0px 0px rgba(0, 0, 0, 0.0);  border-style:none;
+						border-bottom-style:solid;'>
+							<option *ngFor="let genre of genreOptions"
+							[value]="genre" value="volvo">{{ genre }}</option>
+						</select>
+					</div>
+				</div>
+
+				<br/>
+				<div class='row' style='width:80%; margin-left:auto; margin-right:auto; '>
+					<p style='font-size:20px; font-weight:bold'>Description *</p>
+					<div class='small-12 columns'>
+							<textarea formControlName="description" style='padding:0px; position:relative; min-height:100px; left:-6px; font-size:20px; box-shadow: 0px; box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.0);  border-style:none; border-bottom-style:solid;'
+										 value='' placeholder='Enter About'></textarea>
+					</div>
+				</div>
+
+				<br/>
+				<div style='text-align:center'>
+					<button id='login_btn' class='button small black publish' style='font-size:20px'>Create Comic</button>
+				</div>
+			</div>
+		</div>
+	</form>
+	<br/>
+</div>

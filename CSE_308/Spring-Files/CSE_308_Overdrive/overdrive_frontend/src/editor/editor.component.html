@@ -1,0 +1,113 @@
+<main-nav></main-nav>
+
+<br/>
+<input id='chap_id_hidden' value='{{chapId}}' style="display:none" hidden>
+<button id='load_btn' style='display:none' onclick='getChapterPagesJson()'></button>
+<div id='current_page_data'>
+	<span style='display:none' id='chap_id'></span>
+	<p style='text-align: center'>Chapter Title: <input id='chap_title' value='{{currentChapter.chapterTitle}}' placeholder='Title goes here'> <button style='margin-left:20px;' class='tiny button radius secondary'>Back To Dashboard</button><button style='margin-left:20px;' id='publish_btn' class='tiny button radius success'>Publish</button></p>
+	<div id='page_wrapper' class='row'>
+		<div class='small-1 columns' style='margin-right:30px'>
+		<button class='small page-editor secondary button'>Page</button>
+		</div>
+		<!--<div class='small-1 columns'>-->
+			<!--<button id='page_1' onclick='selectPage(this)' class='small page-editor secondary button'>1</button>-->
+		<!--</div>-->
+		<!--<div class='small-1 columns left'>-->
+			<!--<button onclick='selectPage(this)' class='small page-editor secondary button'>2</button>-->
+		<!--</div>-->
+		<!--<div class='small-1 columns left'>-->
+			<!--<button onclick='selectPage(this)' class='small page-editor secondary button'>3</button>-->
+		<!--</div>-->
+		<!--<div class='small-1 columns left'>-->
+			<!--<button onclick='selectPage(this)' class='small page-editor secondary button'>4</button>-->
+		<!--</div>-->
+
+		<!--<div class='small-1 columns left'>-->
+			<!--<button onclick='selectPage(this)' class='small page-editor secondary button'>5</button>-->
+		<!--</div>-->
+		<!--<div class='small-1 columns left'>-->
+			<!--<button onclick='selectPage(this)' class='small page-editor secondary button'>6</button>-->
+		<!--</div>-->
+
+		<!--<div class='small-1 columns left'>-->
+			<!--<button onclick='selectPage(this)' class='small page-editor secondary button'>7</button>-->
+		<!--</div>-->
+		<!--<div class='small-1 columns left'>-->
+			<!--<button onclick='selectPage(this)' class='small page-editor secondary button'>8</button>-->
+		<!--</div>-->
+
+		<!--<div class='small-1 columns left'>-->
+			<!--<button onclick='selectPage(this)' class='small page-editor secondary button'>9</button>-->
+		<!--</div>-->
+	</div>
+</div>
+<div data-alert id='alert-box' class="alert-box success " style="margin:0px; display:none">
+	This is a success alert with a radius.
+	<a class="close">&times;</a>
+</div>
+<div style='background-color:white; margin-top:0px; height:50px; position:relative; top:0px; border-color:rgb(219, 219, 219); border-style:solid; border-width:1px;'>
+	<dl class="sub-nav" style='padding:4px; position:relative;'>
+		<!--<dt>Tools:</dt>-->
+		<dd><a id='button-add-image' onclick='toggle_img_nav()'>Add Image</a></dd>
+		<dd><a id='button-choose-layout'onclick='toggle_layout()'>Choose Layout</a></dd>
+		<dd><a onclick='createNewPage()'>Add Page</a></dd>
+		<dd><a onclick='delete_page()'>Delete Page</a></dd>
+		<!--<dd><a id='button-scale-image'><i class='fi-plus'></i> Image</a></dd>-->
+		<!--<dd><a id='button-descale-image'><i class='fi-minus'></i> Image</a></dd>-->
+		<dd><a id='button-increase-width'><i class='fi-plus'></i> Width</a></dd>
+		<dd><a id='button-decrease-width'><i class='fi-minus'></i> Width</a></dd>
+		<dd><a id='button-increase-height'><i class='fi-plus'></i> Height</a></dd>
+		<dd><a id='button-decrease-height'><i class='fi-minus'></i> Height</a></dd>
+		<dd><a id='button-delete'>Delete</a></dd>
+		<dd class="hide-for-small-only"><a id='button-save'>Save</a></dd>
+	</dl>
+</div>
+
+<!-- panel tool bar -->
+<div id='panel_nav' style='background-color:white; display:none; margin-top:0px; position:relative; top:0px; border-color:rgb(219, 219, 219); border-style:solid; border-width:1px;'>
+	<dl class="sub-nav" style='padding:10px; position:relative;'>
+		<!--<dt>Tools:</dt>-->
+		<dd>
+			<img width="100px" onclick='selectPanel(1)' src='./assets/panel_2.png'/>
+		</dd>
+		<dd>
+			<img width="100px" onclick='selectPanel(0)' src='./assets/panel_1.png'/>
+		</dd>
+		<dd>
+			<img width="100px" onclick='selectPanel(2)' src='./assets/panel_3.png'/>
+		</dd>
+	</dl>
+</div>
+
+
+<!-- image tool bar -->
+<div id='image_nav' style='background-color:white; display:none; height:400px; overflow-y:scroll; margin-top:0px; position:relative; top:0px; border-color:rgb(219, 219, 219); border-style:solid; border-width:1px;'>
+	<dl class="sub-nav" style='padding:10px; position:relative;'>
+		<form (ngSubmit)="updatePic($event)" #picForm="ngForm">
+		<dd>
+			<input style='padding:0px; position:relative; left:0px; font-size:16px; box-shadow: 0px; box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.0);  border-style:none;'
+					 type="file" id='image-upload' class="form-control" accept="image/*" (change)="onSelectFile($event)">
+			<button type="submit" class='small button radius black'>Upload</button>
+		</dd>
+		</form>
+	</dl>
+	<br/>
+
+	<div class='row_comic' style='padding:10px; position:relative;'>
+		<div *ngFor='let image of editorPics' class='column_comic'>
+			<!--<img width="100%" onclick='addImageToCanvas(this)' src='./src/assets/rose.jpg'>-->
+			<img width="100%" onclick='addImageAsPanelBackground(this)' src='{{image}}'>
+			<!--<img width="100%" onclick='addImageAsPanelBackground(this)' src='https://pixel.nymag.com/imgs/fashion/daily/2018/08/17/magazine/tessa-thompson-1.w570.h712.jpg'>-->
+			<!--<img width="100%" onclick='addImageAsPanelBackground(this)' src="https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2018/10/Untitled-design-9-796x417.png">-->
+			<!--<img width="100%" onclick='addImageAsPanelBackground(this)' src='https://pixel.nymag.com/imgs/fashion/daily/2018/08/17/magazine/tessa-thompson-1.w570.h712.jpg'>-->
+			<!--<img width="100%" onclick='addImageAsPanelBackground(this)' src="https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2018/10/Untitled-design-9-796x417.png">-->
+		</div>
+
+	</div>
+</div>
+<input style="display: none;" type="text" id="chapter-id" />
+
+
+<div class="my-drawing">
+</div>

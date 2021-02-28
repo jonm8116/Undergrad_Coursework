@@ -1,0 +1,83 @@
+1)	QUESTION 1
+1.
+
+2. 
+I read the man pages for cal and ncal and I also used the site 
+https://explainshell.com/ to help with understanding some of the flags.
+i) ncal -e 2019
+ii) cal -d 2017-12 -A 7
+iii) ncal -w -d 2018-1 -A 3
+
+3. i) file1.txt created with "touch file1.txt"
+	  file2.txt created using cat and redirection "cat > file2.txt"
+	  Then pressed the CTRL-D to write no contents to the file
+	ii) wget -O googleindex.html https://google.com 
+	
+4. Directory: /home/Jon/Mathai_Jonathan_110320715
+	I created my files within my first name and last name folder.
+	The directories would be the same 
+	
+	
+2) 	QUESTION 2
+1.
+	Command to make directory: sudo mkdir
+	Command to create file: sudo vim filename 
+	Command used: stat -c %A filename
+	Subdirectory: drwxr-xr-x 
+	File: -rw-r--r--
+	iv) A subdirectory with permissions rw-r—- is able to read and write itself.
+	And then files in the same group can read from it.
+	A file with permissions rwxrw-r– can read, write and execute itself. Files in the
+	same group can read and write. While files outside the group can only read from
+	the file.
+2.
+	ii) Command to copy file: sudo cp /home/blank.txt /home/337/
+	iii) Command to remove file: sudo rm /home/blank.txt
+	iv) Command to create new directory: sudo mkdir newdir 
+	
+3. 
+I reviewed the lecture slides and used the 
+site explainshell to help read up on chmod documentation.
+
+
+3) QUESTION 3 
+1. 
+The sed command is used to perform text transformations which 
+could come from an input stream. However, the command doesn't print anythin
+because of the -n flag.
+2.
+head -17 input.txt | tail -1
+
+3.
+
+
+4.
+
+
+5.
+Multiple commands
+command: 	32 18 7 * * echo "" >> /home/update.txt 
+			32 18 14 * * echo "" >> /home/update.txt 
+			32 18 21 * * echo "" >> /home/update.txt 
+			32 18 28 * * echo "" >> /home/update.txt 
+6.
+find . -type f -size +2000c
+
+7.
+Command: ls | grep .gz | wc -l 
+i) I first navigated to the directory /usr/share/man/man1 and
+then used the command above in order to count the number of 
+files that were in the file. There are 771 files in the directory with a 
+.gz extension.
+ii) Command used: ls -l | wc -l 
+					ls -l | grep "\->" | wc -l
+I had used the first command in order to count the total number of files
+in the directory. Then I used the bottom command to get the total number of
+symbolic links. There was 171 symbolic links and 772 total files. So there is 
+601 non symbolic link files.
+
+8. cat /usr/share/dict/words 
+-c bytes
+-m chars
+-l lines
+-w words

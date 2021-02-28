@@ -1,0 +1,80 @@
+<main-nav></main-nav>
+<div class='weekly_nav' style='background-color:white; border-bottom-style:solid; border-width:.6px; border-color:rgb(219, 219, 219); margin-top:0px; margin-left:auto; margin-right:auto; border-top: 1px solid #eaeaea;'>
+	<div class='row'>
+		<div class='small-12 columns small-offset-0' style='height:50px'>
+			<dl class="sub-nav">
+				<dd onclick='select_option_popular(this)' class="pop_btn active"><a >ALL</a></dd>
+				<dd onclick='select_option_popular(this)' class="pop_btn"><a >ACTION/FANTASY</a></dd>
+				<dd onclick='select_option_popular(this)' class="pop_btn"><a >DRAMA</a></dd>
+				<dd onclick='select_option_popular(this)' class="pop_btn"><a >COMEDY</a></dd>
+				<dd onclick='select_option_popular(this)' class="pop_btn"><a >SPORTS</a></dd>
+				<dd onclick='select_option_popular(this)' class="pop_btn"><a >HORROR</a></dd>
+			</dl>
+		</div>
+	</div>
+</div>
+
+<!--<div class='row collapse' style='overflow-x: scroll; height:400px'>-->
+<!--<div class='small-4 columns banner' style='width:250px; margin:20px; height:350px;'>-->
+<!--</div>-->
+<!--<div class='small-12 columns' style='width:250px; margin:20px; height:350px;'>-->
+<!--</div>-->
+
+
+<!--</div>-->
+
+<!-- <div class='new_serise_wrapper' style='background: #191919; height:auto; '>
+	<p class='discover_rec_tile'>RECOMMENDED TITLES</p>
+
+	<div style='max-height:400px; overflow-x:scroll; '>
+		<div class="row_comic" style='width:100%; position:relative; left:128px;  overflow-y:hidden; overflow-x: scroll;'>
+			<div class="column_comic">
+				<div class='comic_banner_2'>
+					<span class='title' style='font-size:26px; color:black'>Naruto</span><br/>
+					<span class='title' style='font-size:16px; color:black'>artvegas</span><br/>
+					<span class='title label tiny success radius' style='font-size:12px; color:white'><i class='fi-heart'></i> 100</span><br/>
+					<p class='title label tiny success radius' style='position:relative; top:0px; font-size:12px; color:white'>Comedy</p>
+				</div>
+			</div>
+			<div class="column_comic">
+				<div class='comic_banner_2' style="background-image:url('https://i.ytimg.com/vi/45KSweu1lpg/maxresdefault.jpg')">
+					<span class='title' style='font-size:26px; color:black'>Bleach</span><br/>
+					<span class='title' style='font-size:16px; color:black'>artvegas</span><br/>
+					<span class='title label tiny success radius' style='font-size:12px; color:white'><i class='fi-heart'></i>  1.M</span><br/>
+					<p class='title label tiny success radius' style='position:relative; top:0px; font-size:12px; color:white'>Action, Romance</p>
+				</div>
+			</div>
+			<div class="column_comic">
+				<div class='comic_banner_2' style="background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7Lzo0IZm2I-KSUus7bm3p9LA0mbakS51o_ffl2GmvBBxnjJFk') ">
+					<span class='title' style='font-size:26px; color:black'>Adventure Time</span><br/>
+					<span class='title' style='font-size:16px; color:black'>artvegas</span><br/>
+					<span class='title label tiny success radius' style='font-size:12px; color:white'><i class='fi-heart'></i>  1.2</span><br/>
+					<p class='title label tiny success radius' style='position:relative; top:0px; font-size:12px; color:white'>Action, Comedy</p>
+				</div>
+			</div>
+			<div class="column_comic">
+				<div class='comic_banner_2' style="background-image:url('https://media.entertainmentearth.com/assets/images/dedf7df39ed6426f877137fe45b1e8eflg.jpg')">
+					<span class='title' style='font-size:26px; color:black'>Spongebob</span><br/>
+					<span class='title' style='font-size:16px; color:black'>artvegas</span><br/>
+					<span class='title label tiny success radius' style='font-size:12px; color:white'><i class='fi-heart'></i>  100M </span><br/>
+					<p class='title label tiny success radius' style='position:relative; top:0px; font-size:12px; color:white'>Life, Comedy</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div> -->
+
+<div class='comics' style='padding:40px;'>
+	<p style='font-size:40px; position:relative; left:128px;'>Weekly Hot</p>
+	<div class="row_comic" style='width:80%; position:relative; left:128px;'>
+		<div *ngFor="let comic of discoverComics" class="column_comic">
+			<div class='comic_banner' [ngStyle]="{'background-image': 'url(' + comic.thumbnail + ')'}">
+				<span class='title' style='font-size:22px; color:black'>{{ comic.comicSeriesName }}</span><br/>
+				<span class='title label tiny success radius' style='font-size:12px; color:white'><i class='fi-heart'></i> {{ comic.score }}</span><br/>
+				<p class='title label tiny success radius' style='position:relative; top:111px; font-size:12px; color:white'>{{ comic.genre }}</p>
+			</div>
+		</div>
+
+	</div>
+</div>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Twotter</title>
+        <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+		<link href="https://getbootstrap.com/docs/4.0/examples/blog/blog.css" rel="stylesheet">
+		<meta charset="UTF-8">
+		
+		<style type="text/css">
+			body{
+				background-color: #e6ecf0;
+			}
+			.navbar{
+				background-color: #fff !important;
+			}
+			.pro-pic{
+				height: 200px !important;
+				width: 200px;
+				margin-left:7%;
+				margin-top:-9%;
+				z-index: 1 !important;
+			}
+			.profile-bio{
+				margin-left:-25%;
+				width: 90%;
+			}
+			.second-navbar{
+				margin-top:-2.25%;
+				z-index: -1 !important;
+			}
+			.second-navbar-list{
+				margin-left: 25%;
+			}
+			.banner{
+				background-color: #1DA1F2 !important;
+			}
+			.navbar-items{
+				color: #66757f;
+				font-size: 10pt;
+				padding-right: 2% !important;
+			}
+			.content{
+				margin-left:12%;
+				margin-top:2.5%;
+			}
+			.tweet-card{
+				margin-top:-15%;
+			}
+			.tweet-img img{
+				height: 50px !important;
+				width: 50px !important;
+				margin-top: 10%;
+				display: inline-block !important;
+			}
+			.tweet-content{
+				
+			}
+			.tweet-username{
+				float: right;
+				display: inline-block !important;
+			}
+			
+		</style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		  </button>
+		  <a class="navbar-brand" href="#">Navbar</a>
+
+		  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+			  <li class="nav-item active">
+				<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="#">Link</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+			  </li>
+			</ul>
+			<form class="form-inline my-2 my-lg-0">
+			  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+			  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>
+		  </div>
+		</nav>
+	
+		<div class="banner jumbotron jumbotron-fluid">
+		  <div class="container">
+			<h1 class="display-4">Fluid jumbotron</h1>
+			<p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+		  </div>
+		</div>
+		
+		<!--	twitter navbar bootstrap	-->
+		
+		<nav class="second-navbar navbar navbar-expand-lg navbar-light bg-light">
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		  </button>
+		  
+		  <a class="navbar-brand" href="#">TwOtter</a>
+
+		  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+			<ul class="second-navbar-list navbar-nav mr-auto mt-2 mt-lg-0">
+			  <li class="nav-item active">
+				<a class="nav-link" href="#"> 
+					<span class="navbar-items">
+						<strong>Tweets</strong><br/>
+						100
+					</span>
+				<span class="sr-only">(current)</span></a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="#">
+				<span class="navbar-items">
+						<strong>Following</strong><br/>
+						100
+				</span>
+				</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
+				<span class="navbar-items">
+						<strong>Followers</strong><br/>
+						100
+					</span>
+				</a>
+			  </li>
+			</ul>
+			
+		  </div>
+		</nav>
+		
+		
+		  <img src ="https://muchadoabouthaikyuu.files.wordpress.com/2016/02/hinatashouyou.jpg"
+		  class ="pro-pic rounded-circle" />
+		
+		<div class="content container">
+		  <div class="row">
+			<!-- put user bio here -->
+			<div class="col">
+				<div class="profile-bio">
+					Hi my name is hinata. I play middle blocker for 
+					the Karasuno high school volleyball team. 
+					Our team is on the way to play at nationals in Japan. 
+					Wish us luck.
+					yo <p>&#x1F42E</p>
+				</div>
+			</div>
+			<!-- put user's activity feed here. Follow this for main feed too -->
+			<div class="col-6">
+				<div class="row">
+					<div class="tweet-card">
+						<div class="card" style="width: 18rem;">
+						<div class="tweet-img">
+							<img src ="https://muchadoabouthaikyuu.files.wordpress.com/2016/02/hinatashouyou.jpg"
+							class ="pro-pic rounded-circle" />
+						</div>
+						<div class="tweet-username">
+							Hinata
+						</div>
+						
+						  <div class="tweet-content card-body">
+							<h5 class="card-title"></h5>
+							<p class="card-text">Yo the volleyball match with Seijoh was lit.
+								#seijohwastough #nextkarasunoace
+							</p>
+							<a href="#" class="btn btn-primary">Go somewhere</a>
+						  </div>
+						</div>
+					</div>
+				</div>
+				<br><br><br><br><br>
+				<div class="row">
+					<div class="tweet-card">
+						<div class="card" style="width: 18rem;">
+						<div class="tweet-img">
+							<img src ="https://muchadoabouthaikyuu.files.wordpress.com/2016/02/hinatashouyou.jpg"
+							class ="pro-pic rounded-circle" />
+						</div>
+						<div class="tweet-username">
+							Hinata
+						</div>
+						
+						  <div class="tweet-content card-body">
+							<h5 class="card-title"></h5>
+							<p class="card-text">Yo the volleyball match with Seijoh was lit.
+								#seijohwastough #nextkarasunoace
+							</p>
+							<a href="#" class="btn btn-primary">Go somewhere</a>
+						  </div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- put other content on right? -->
+			<div class="col">
+			  3 of 3
+			</div>
+		  </div>
+		</div>
+		
+    </body>
+</html>

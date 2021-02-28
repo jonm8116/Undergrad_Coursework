@@ -1,0 +1,26 @@
+SignupComponent ::ng-deep {
+  height: 100% !important;
+}
+#div2 {
+  border: 1px solid black;
+  height: 100%;
+}
+#div1 {
+  border: 1px solid black !important;
+  height: 100%;
+  background-color: #99eebb;
+}
+.inner-banner{
+  padding-top:20%;
+  padding-left:35%;
+}
+.line-item{
+  padding-bottom: 10%;
+}
+.line-item1{
+  padding-bottom:5%;
+}
+.wrapper{
+  height: 100% !important;
+
+}

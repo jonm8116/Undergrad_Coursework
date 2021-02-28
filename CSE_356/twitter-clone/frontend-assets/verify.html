@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Twotter</title>
+        <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+		<link href="https://getbootstrap.com/docs/4.0/examples/blog/blog.css" rel="stylesheet">
+		<meta charset="UTF-8">
+		<script src="login.js"></script>
+		
+		<style type="text/css">
+			body{
+				background-color: #e6ecf0;
+			}
+			.navbar{
+				background-color: #fff !important;
+			}
+			.pro-pic{
+				height: 200px !important;
+				width: 200px;
+				margin-left:7%;
+				margin-top:-9%;
+				z-index: 1 !important;
+			}
+			.second-navbar{
+				margin-top:-2.25%;
+				z-index: -1 !important;
+			}
+			.login-navbar{
+				
+			}
+			.second-navbar-list{
+				margin-left: 25%;
+			}
+			.login-navbar-list{
+				margin-left: 17%;
+			}
+			.banner{
+				background-color: #1DA1F2 !important;
+			}
+			.navbar-items{
+				color: #66757f;
+				font-size: 10pt;
+				padding-right: 2% !important;
+			}
+			.login-navbar-items{
+				color: #66757f;
+				font-size: 10pt;
+				padding-right: 2% !important;
+			}
+			.content{
+				margin-left:12%;
+				margin-top:2.5%;
+			}
+			.tweet-card{
+				margin-top:-15%;
+			}
+			.tweet-img img{
+				height: 50px !important;
+				width: 50px !important;
+				margin-top: 10%;
+				display: inline-block !important;
+			}
+			.tweet-content{
+				width: 100% !important;
+				height: 100% !important;
+			}
+			.tweet-username{
+				float: right;
+				display: inline-block !important;
+			}
+			.card-login{
+				margin-top:5%;
+				margin-left: -20%;
+				width: 120% !important;
+				height: 120% !important;
+			}
+			.login-btn{
+				border-radius: 15px;
+			}
+			.twotter-logo{
+				height: 5% !important;
+				width: 5% !important;
+			}
+		</style>
+    </head>
+    <body>
+		<!--	twitter header navbar 	-->
+		
+		<nav class="login-navbar navbar navbar-expand-lg navbar-light bg-light">
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		  </button>
+		  
+		  <a class="navbar-brand" href="#">Twotter</a>
+
+		  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+			<ul class="login-navbar-list navbar-nav mr-auto mt-2 mt-lg-0">
+			  <li class="nav-item active">
+				<a class="nav-link" href="#"> 
+					<span class="login-navbar-items">
+						<strong>Home</strong><br/>
+					</span>
+				<span class="sr-only">(current)</span></a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="#">
+				<span class="login-navbar-items">
+						<strong>About</strong><br/>
+				</span>
+				</a>
+			  </li>
+			  
+			</ul>
+			
+		  </div>
+		</nav>
+		
+		<div class="content container">
+		  <div class="row">
+			<!-- put user bio here -->
+			<div class="col">
+			</div>
+			<!-- put user's activity feed here. Follow this for main feed too -->
+			<div class="col-6">
+				<div class="card-login">
+					<div class="w-100 card" style="width: 18rem;">
+					
+					  <div class="tweet-content card-body">
+						<h5 class="card-title"></h5>
+						<p class="card-text">
+						
+						<form>
+							<span>
+								<img src="https://images.emojiterra.com/twitter/v12/512px/1f9a6.png" 
+								class="twotter-logo"
+								/>
+								Please verify your account<br/>
+								A verification key has been sent to your email
+							</span><br/><br/>
+						  <div class="form-group">
+							<input type="text" class="form-control" id="key" aria-describedby="emailHelp" placeholder="Please enter your key">
+						  </div>
+						 
+						  <button onclick="" type="button" class="login-btn btn btn-primary">Submit</button>
+						</form>
+						
+						
+						</p>
+					  </div>
+					</div>
+				</div>
+			</div>
+			<!-- put other content on right? -->
+			<div class="col">
+			
+			</div>
+		  </div>
+		</div>
+		
+    </body>
+</html>

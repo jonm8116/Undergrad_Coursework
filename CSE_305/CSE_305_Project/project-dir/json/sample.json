@@ -1,0 +1,53 @@
+{
+  "post": [
+    {
+      "GroupID": 120,
+      "Size": 2234,
+      "FlightID": 1123,
+      "Purpose": "luffy",
+      "CruiseID": 432
+    },
+    {
+      "GroupID": 11234,
+      "Size": 2443,
+      "FlightID": 1543,
+      "Purpose": "marco",
+      "CruiseID": ""
+    },
+    {
+      "GroupID": 89394,
+      "Size": 20239,
+      "FlightID": 19409,
+      "Purpose": "zoro",
+      "CruiseID": ""
+    },
+    {
+      "GroupID": 89394,
+      "Size": 20239,
+      "FlightID": 19409,
+      "Purpose": "akainu",
+      "CruiseID": ""
+    },
+    {
+      "GroupID": 89394,
+      "Size": 20239,
+      "FlightID": 19409,
+      "Purpose": "coby",
+      "CruiseID": ""
+    },
+    {
+      "GroupID": 89394,
+      "Size": 20239,
+      "FlightID": 19409,
+      "Purpose": "kizaru",
+      "CruiseID": ""
+    },
+    {
+      "GroupID": 89394,
+      "Size": 20239,
+      "FlightID": 19409,
+      "Purpose": "whitebeard",
+      "CruiseID": ""
+    }
+  ]
+}

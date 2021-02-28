@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html ng-app="appname"> <!-- origin: submitapp -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zen Travels</title>
+  <link rel="stylesheet" href="css/bulma.css">
+  <link rel="stylesheet" href="css/ionicons/css/ionicons.css">
+  <link rel="stylesheet" href="css/ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="css/addAccount.css">
+  <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="addUser.js"></script>
+  <style type="text/css">
+  /*   RIGHT SIDE WHITE SPACE   */
+  </style>
+</head>
+<body>
+  <!--   NAVBAR GOES BELOW    -->
+  <nav id="top-navbar" class="navbar is-dark">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="index.html">
+        <!-- <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28"> -->
+        <i class="icon ion-model-s"></i>
+      </a>
+      <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div id="navbarExampleTransparentExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="index.html">
+          Home
+        </a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a id="userprofile" class="navbar-link" href="">
+            Trips
+          </a>
+          <div class="navbar-dropdown is-boxed">
+            <a class="navbar-item" href="flight.html">
+              Flights
+            </a>
+            <a class="navbar-item" href="./cruises.html">
+              Cruises
+            </a>
+            <a class="navbar-item" href="./cars.html">
+              Car rentals
+            </a>
+    </div>
+  </div>
+</div>
+
+<div class="navbar-end">
+  <div class="navbar-item">
+    <div class="field is-grouped">
+      <p class="control">
+        <a ng-click="checklogin()" class="bd-tw-button button" href="./signup.html">
+          <span class="icon">
+            <i class="icon ion-log-in"></i>
+          </span>
+          <span id="sign-in-out-button">
+            Sign in
+          </span>
+        </a>
+      </p>
+      <p class="control">
+        <a class="button is-primary" href="">
+          <span class="icon">
+            <i class="icon ion-edit"></i>
+          </span>
+          <span>Create account</span>
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
+</div>
+</nav>
+<!--   NAVBAR GOES ABOVE    -->
+
+<!--  SIGN IN TEXT  -->
+<div id="sign-in-text">
+  <span class="icon has-text-success">
+    <i style="font-size: 2.5em;" class="icon ion-android-bicycle"></i>
+  </span>
+  <h1>Create your account today</h1>
+</div>
+
+<!--  SIGN IN TEXT ABOVE -->
+<!--    SIGN IN DIV COMPONENT    -->
+<div id="wrapper-1" class="is-fluid" ng-controller="submitController">
+  <form name="submitform" class="control" ng-submit="submitUser()" >
+    <div id="main-sign-up">
+
+      <!-- NAME -->
+
+      <div class="field">
+        <label class="label">Name</label>
+        <div class="control">
+          <input class="input" type="text" ng-model="passenger.name" name="name" placeholder="Text input">
+        </div>
+      </div>
+
+      <!-- USERNAME -->
+
+      <div class="field">
+        <label class="label">Username</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input is-success" type="text" ng-model="passenger.username" name="username" placeholder="Text input" value="">
+          <span class="icon is-small is-left">
+            <i class="fas fa-user"></i>
+          </span>
+          <span class="icon is-small is-right">
+            <i class="fas fa-check"></i>
+          </span>
+        </div>
+        <p class="help is-success"></p>
+      </div>
+
+      <!-- GENDER -->
+
+      <div class="field">
+        <label class="label">Gender</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input is-danger" type="text" ng-model="passenger.gender" name="gender" placeholder="Gender" value="">
+          <span class="icon is-small is-left">
+            <i class="icon ion-male"></i>
+          </span>
+        </div>
+        <p class="help is-danger"></p>
+      </div>
+
+      <!-- AGE -->
+
+      <div class="field">
+        <label class="label">Age</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input is-danger" type="text" ng-model="passenger.age" name="age" placeholder="Age" value="">
+          <span class="icon is-small is-left">
+            <i class="icon ion-android-time"></i>
+          </span>
+        </div>
+        <p class="help is-danger"></p>
+      </div>
+
+      <!-- PASSWORD -->
+
+      <div class="field">
+        <label class="label">Password</label>
+        <div class="control has-icons-left has-icons-right">
+          <input type="password" class="input is-danger" ng-model="passenger.password" name="password" placeholder="" value="">
+          <span class="icon is-small is-left">
+            <i class="icon ion-android-lock"></i>
+          </span>
+        </div>
+        <p class="help is-danger"></p>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <label class="checkbox">
+            <input type="checkbox">
+            I agree to the <a href="#">terms and conditions</a>
+          </label>
+            <!--  SUBMIT BUTTON -->
+              <div class="field is-grouped">
+              <div class="control"><!--ng-init="count=0" -->
+                <button type="submit" id="submitButton" class="button is-link">Submit</button>
+              </div>
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+</form>
+</div>
+</body>
+
+</html>

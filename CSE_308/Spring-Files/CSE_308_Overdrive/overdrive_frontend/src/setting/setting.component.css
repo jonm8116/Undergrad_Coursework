@@ -1,0 +1,23 @@
+.sub-nav dt.active a, .sub-nav dd.active a, .sub-nav li.active a {
+	padding: 16px;
+	height: 40px;
+	text-align: center;
+	background: #7161EF;
+	border-radius:0px;
+}
+
+sub-nav li a {
+	line-height: 10;
+}
+
+dd a:hover {
+	padding: 16px;
+	height: 40px;
+	text-align: center;
+	background: #7161EF;
+	border-radius:0px;
+}
+
+.sub-nav dd a:hover {
+	color:white;
+}

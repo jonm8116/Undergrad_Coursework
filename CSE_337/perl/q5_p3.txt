@@ -1,0 +1,34 @@
+Part 1:
+
+Three strings that match:
+"2F"
+"3.0F"
+"-22F"
+Three strings that don't match:
+"23"
+"0.4"
+"22f"
+
+Part 2:
+
+Three strings that match:
+"s/1"
+"s/#1"
+"one/J/ig"
+
+Three strings that don't match:
+"##Jan"
+"#111January"
+"2January"
+
+Part 3:
+
+Three strings that match:
+"2 ."
+".2 ."
+"2 .."
+
+Three strings that don't match:
+"222"
+"jj.22"
+"??.j"

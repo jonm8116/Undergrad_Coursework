@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html ng-app="reviewapp">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zen Travels</title>
+  <link rel="stylesheet" href="css/bulma.css">
+  <script src="scripts/angular/angular.min.js"></script>
+  <script src="scripts/angular/front-back.js"></script>
+  <link rel="stylesheet" href="css/ionicons/css/ionicons.css">
+  <link rel="stylesheet" href="css/ionicons/css/ionicons.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+  <script src="review.js"></script>
+  <style type="text/css">
+  /*   RIGHT SIDE WHITE SPACE   */
+
+  #full-container{
+    height: 100%
+  }
+
+  #wrapper-1{
+    height: 100%;
+    background-color: #8D99AE;
+    margin: 0;
+    position: relative;
+    padding: 0;
+    width: 100%;
+    /* overflow-x: hidden; */
+  }
+  #navbar-top{
+    background-color: #8D99AE;
+  }
+  .hero-foot{
+    text-align: center;
+  }
+
+  .columns{
+    width: 105%;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+  div::-webkit-scrollbar {
+    display: none;
+  }
+
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+  }
+  #go-button{
+    top: -30%;
+  }
+  #second-banner{
+    z-index: 1000;
+    position: relative;
+    background-image:url("/imgs/map-laptop.jpg");
+    border: 3px solid #FFFFFF;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  #second-section{
+    z-index: 1000;
+    position: relative;
+    background-color: red;
+  }
+  #top-navbar{
+    z-index: 100000;
+  }
+  #card-content{
+    width: 40%;
+    padding-left:13%;
+    float: left;
+    display: inline;
+  }
+  </style>
+</head>
+<body>
+  <!--   NAVBAR GOES BELOW    -->
+  <nav id="top-navbar" class="navbar is-dark">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="index.html">
+        <i class="ion-ios-home-outline"></i>
+      </a>
+      <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div id="navbarExampleTransparentExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="index.html">
+          Home
+        </a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="">
+            Trips
+          </a>
+          <div class="navbar-dropdown is-boxed">
+            <a class="navbar-item" href="flight.html">
+              Flights
+            </a>
+            <a class="navbar-item" href="cruises.html">
+              Cruises
+            </a>
+            <a class="navbar-item" href="cars.html">
+              Car rentals
+            </a>
+          </div>
+        </div>
+        <a class="navbar-item" href="userProfile.html">
+          User
+        </a>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <p class="control">
+              <a  ng-click="checklogin()" class="bd-tw-button button" href="./signup.html">
+                <span class="icon">
+                  <i class="icon ion-log-in"></i>
+                </span>
+                <span id="sign-in-out-button">
+                  Sign in
+                </span>
+              </a>
+            </p>
+            <p class="control">
+              <a class="button is-primary" href="./addAccount.html">
+                <span class="icon">
+                  <i class="icon ion-edit"></i>
+                </span>
+                <span id="userprofile">Create account</span>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!--  NAVBAR ENDS -->
+  <!-- FIRST BANNER -->
+  <section id="second-banner" class="hero is-medium is-primary is-bold">
+    <div class="hero-body">
+      <div style="text-align: center;" class="container">
+        <h1 style="color:red;" class="title">
+          Welcome to Zen Travels!
+        </h1>
+        <h2 style="color:red;" class="subtitle">
+          Decide on your perfect vacation destination!
+        </h2>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!--   NAVBAR GOES ABOVE    -->
+  <div ng-controller="getreviewController" id="second-section" class="is-fluid">
+    <h1 class="title">
+      Reviews
+    </h1>
+    <div id="second-section" ng-repeat="item in post" class="column">
+      <section id="second-section" class="hero is-primary is-medium">
+        <div id="card-content" class="card">
+          <div class="card-content">
+            <div class="content">
+              <br> User   : {{item.ReviewID}}
+              <br> Rating : {{item.Rating}} / 5
+              <br> Review : {{item.DetailedReview}}
+            </div>
+          </div>
+        </div>
+        <div style="float: right; display: inline;" id="quote-text">
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

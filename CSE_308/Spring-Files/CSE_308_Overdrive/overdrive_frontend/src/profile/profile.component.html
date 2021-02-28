@@ -1,0 +1,103 @@
+<main-nav></main-nav>
+
+<br/>
+
+<div style="display:none;" id='user_not_found'>
+	<br/>
+	<p style='font-size:40px; text-align: center'>User Not Found </p>
+	<p style='font-size:100px; text-align: center'><i class='fi-torsos-all'></i> </p>
+</div>
+<div id='user_profile_wrapper' style='display:block'>
+
+	<div class='comics content' style='padding:40px;'>
+		<div class='row'>
+			<div class='small-4 columns'>
+				<p *ngIf="currentUser" style='font-size:40px;'>
+					{{currentUser.username}}
+					<button class='small black radius button'><a routerLink='/setting'>Edit Profile</a></button>
+				</p>
+				<div class='comic_banner' [ngStyle]="{'background-image': 'url(' + currentUser.profilePic + ')'}">
+			  </div>
+			</div>
+			<div class='small-8 columns' style='position:relative; top:10px'>
+				<button class='user_data small success radius button'><span class='user_info'>{{ userTotalFollows }} following</span></button>
+				<button class='user_data small success radius button'><span class='user_info'>{{ userTotalFollowers }} followers</span></button>
+				<button class='user_data small success radius button'><span class='user_info'>{{ userTotalLikes }} likes</span></button>
+				<button class='user_data ssmall success radius button'><span class='user_info'>{{ userTotalComics }} comics</span></button>
+				<p *ngIf="currentUser" style='font-size:16px; position:relative; top:30px'>
+					{{ currentUser.bio }}
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class='weekly_nav header' id='genre_nav' style='background-color:white; border-bottom-style:solid; border-width:.6px; border-color:rgb(219, 219, 219); margin-top:0px; margin-left:auto; margin-right:auto; border-top: 1px solid #eaeaea;'>
+		<div class='row' style='margin-top:-7px;'>
+			<div class='small-12 columns small-offset-3	' style='height:41px'>
+				<dl class="sub-nav">
+					<dd onclick='select_option_popular(this)' class="pop_btn active"><a (click)="scroll(following_section)">FOLLOWING</a></dd>
+					<dd onclick='select_option_popular(this)' class="pop_btn"><a (click)="scroll(comics_section)">COMICS</a></dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+
+<div #following_section  class='comics content' style='padding:40px;'>
+	<p style='font-size:40px; position:relative; left:128px;'>Following</p>
+	<div class="row_comic" style='width:80%; position:relative; left:128px;'>
+		<div *ngFor="let comic of followedSeries" class="column_comic" onclick='select_comic()'>
+			<div (click)="selectSeries(comic);" routerLink="/series" routerLinkActive="active" class='comic_banner'
+				  [ngStyle]="{'background': 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + comic.thumbnail + ') no-repeat center center / cover'}"></div>
+			<span class='title' style='font-size:18px; position:relative; left:30px; top:-220px; color:white'>{{ comic.comicSeriesName }}</span><br/>
+			<div class='title label tiny success radius' style='position:relative; left:30px; top:-220px;'>
+				<span *ngIf='comic.score == 0' style='font-size:12px; margin-left:2px; color:white'>Not yet rated</span>
+				<span *ngFor="let number of [1,2,3,4, 5]">
+					<span *ngIf="comic.score >= number" class="fa fa-star" style='font-size:12px; margin-left:2px; color:white'>
+					</span>
+				</span>
+			</div>
+			<br/>
+			<div class='description'style='position:relative; left:30px; top:-212px;'>
+				{{comic.author}}
+				<hr style='margin-top:6px; margin-bottom:6px;'/>
+				{{comic.description}}
+			</div>
+			<br/>
+			<p class='title label tiny success radius' style='position:relative; left:30px; top:-230px; font-size:12px; color:white'>{{ comic.genre }}</p>
+		</div>
+		<div *ngIf='followedSeries.length == 0'>
+			<div class='alert-box expand secondary' style='font-size:18px'>Currently following no series</div>
+		</div>
+	</div>
+</div>
+
+<div #comics_section></div>
+<div class='comics' style='padding:40px;'>
+	<p style='font-size:40px; position:relative; left:128px;'>Comics</p>
+	<div class="row_comic" style='width:80%; position:relative; left:128px;'>
+		<div *ngFor="let comic of createdSeries" class="column_comic" onclick='select_comic()'>
+			<div (click)="selectSeries(comic);" routerLink="/series" routerLinkActive="active" class='comic_banner'
+				  [ngStyle]="{'background': 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + comic.thumbnail + ') no-repeat center center / cover'}"></div>
+			<span class='title' style='font-size:18px; position:relative; left:30px; top:-220px; color:white'>{{ comic.comicSeriesName }}</span><br/>
+			<div class='title label tiny success radius' style='position:relative; left:30px; top:-220px;'>
+				<span *ngIf='comic.score == 0' style='font-size:12px; margin-left:2px; color:white'>Not yet rated</span>
+				<span *ngFor="let number of [1,2,3,4, 5]">
+					<span *ngIf="comic.score >= number" class="fa fa-star" style='font-size:12px; margin-left:2px; color:white'>
+					</span>
+				</span>
+			</div>
+			<br/>
+			<div class='description'style='position:relative; left:30px; top:-212px;'>
+				{{comic.author}}
+				<hr style='margin-top:6px; margin-bottom:6px;'/>
+				{{comic.description}}
+			</div>
+			<br/>
+			<p class='title label tiny success radius' style='position:relative; left:30px; top:-230px; font-size:12px; color:white'>{{ comic.genre }}</p>
+		</div>
+		<div *ngIf='createdSeries.length == 0'>
+			<div class='alert-box expand secondary' style='font-size:18px'>User has not created any series yet</div>
+		</div>
+	</div>
+
+</div>

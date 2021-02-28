@@ -1,0 +1,13 @@
+Things not working:
+like
+comment
+publish, therefore reading (existing things can be read)
+properly saving imgurl
+change series settings
+	-thumbnail
+	-release date
+	-genre
+	-description
+set user profile picture
+save action of follow button
+

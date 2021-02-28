@@ -1,0 +1,67 @@
+<main-nav></main-nav>
+<div class='weekly_nav'  *ngIf="notFound != true"  style='background-color:white; border-bottom-style:solid; border-width:.6px; border-color:rgb(219, 219, 219); margin-top:0px; margin-left:auto; margin-right:auto; border-top: 1px solid #eaeaea;'>
+	<div class='row' style='height:50px;'>
+		<div class='small-5 columns left small-offset-0' style=''>
+			<dl class="sub-nav" style='margin-left:auto; margin-right:auto'>
+				<dd  class="pop_btn "><a>{{chapter.seriesTitle}} : {{chapter.chapterTitle}}</a></dd>
+			</dl>
+		</div>
+		<div class='small-6 columns left small-offset-0' style=''>
+			<dl class="sub-nav" style='margin-left:auto; margin-right:auto'>
+				<dd  class="pop_btn " routerLink='/reader/{{seriesId}}/{{prevChap}}' (click)='callGetChapterPrev()'><a>Back</a></dd>
+				<dd  class="pop_btn "><a>#{{nextChap - 1}}</a></dd>
+				<dd  class="pop_btn " routerLink='/reader/{{seriesId}}/{{nextChap}}' (click)='callGetChapterNext()'><a>Next</a></dd>
+			</dl>
+		</div>
+	</div>
+</div>
+
+<!--<div class='comment_box small-1 columns'>-->
+<!--<img class='user_profile' src='./src/assets/rose.jpg'>-->
+<!--</div>-->
+<!--<div class='user-data small-12 columns'>-->
+<!--<p class='user_name' >Artvegas</p>-->
+<!--</div>-->
+<div class='row'>
+	<div class='small-12 columns'>
+		<div class='comic_wrapper' *ngIf="notFound == true" style='text-align: center'>
+			<br/><br/>
+			<br/><br/>
+			<p style='font-size:18px'>This chapter does not exists or may have not been released.</p>
+		</div>
+	</div>
+</div>
+
+<div class='comic_wrapper' *ngIf="notFound != true"  style='text-align: center'>
+	<div  *ngFor="let chapImage of chapter.imgUrls">
+		<img class='comic_img' src='../{{chapImage}}'>
+	</div>
+</div>
+
+
+
+<div *ngIf="notFound != true" style='background-color:white; padding:30px;'>
+
+	<div class='row'>
+		<form [formGroup]="editComment" (ngSubmit)="postComment(editComment.value);">
+			<p style='font-weight:bold; font-size:24px; display:inline-block; margin-right:10px;'>Comments <span class='total_comments'>{{comments.length}}</span></p>
+			<p style="display:inline-block; float: right;"><span id='like_text'>Like</span> &nbsp;
+				<i #heartTag id='heartTag' (click)="callLikeChapter(heartTag)" style="font-size:20pt; color: #e0e0e0;" class="fi-heart"></i>
+			</p>
+			<textarea formControlName="comment" class='user-comment-box' id='comment-box' type='text'></textarea>
+			<button class='button success expand' type="submit" style='position:relative; top:-26px'>Comment</button>
+			<!--<span style='position:relative; top:-40px; color:lightgrey; font-size:14px; float:right'>0/500</span>-->
+		</form>
+	</div>
+
+
+
+	<div  *ngFor='let comment of comments' class='comments_wrapper row' style='margin-left:auto; margin-right:auto;'>
+		<div class='comment-box small-12 columns'>
+			<p class='user_name' >{{comment.username}}</p>
+			<p class='user_comment'>{{comment.comment}}</p>
+			<p class='date'>{{ comment.date.substring(0,10) }} &nbsp; {{ comment.date.substring(14, 19) }} </p>
+		</div>
+	</div>
+
+</div>

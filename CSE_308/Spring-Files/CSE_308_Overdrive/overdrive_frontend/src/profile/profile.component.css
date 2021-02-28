@@ -1,0 +1,12 @@
+.sub-nav dt.active a, .sub-nav dd.active a, .sub-nav li.active a {
+	padding: 20px;
+	height: 40px;
+	font-size: 16px;
+	text-align: center;
+	background: #7161EF;
+	border-radius:0px;
+}
+
+.user_data {
+	margin:5px;
+}

@@ -1,0 +1,20 @@
+---
+- hosts: hw1
+  tasks:
+    - name: Install nginx
+      apt: pkg=nginx
+      notify:
+        - start nginx
+      become: yes
+    - name: Clone hw1 repo
+      git:
+        repo: 'https://bitbucket.org/JonathanMathai219/cse356_hw1.git'
+        dest: /var/www/html/cse356_hw1
+      become: yes
+    - name: move hw1 folder to html directory
+      command: mv /var/www/html/cse356_hw1/hw0.html /var/www/html
+      become: yes 
+
+  handlers:
+    - name: start nginx
+      service: name=nginx state=started

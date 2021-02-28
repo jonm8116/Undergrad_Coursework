@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html ng-app="appname">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zen Travels</title>
+  <link rel="stylesheet" href="css/bulma.css">
+  <script src="scripts/angular/angular.min.js"></script>
+  <script src="scripts/angular/front-back.js"></script>
+  <link rel="stylesheet" href="css/ionicons/css/ionicons.css">
+  <link rel="stylesheet" href="css/ionicons/css/ionicons.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+  <script src="appname.js"></script>
+  <style type="text/css">
+
+  #third-banner{
+    height: 100%;
+    background-color: #79D8E1;
+    margin: 1;
+    position: relative;
+    width: 100%;
+    overflow-x: hidden;
+    text-align: center;
+    padding-bottom: 2%;
+  }
+
+  .columns{
+    width: 100%;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+  div::-webkit-scrollbar {
+    display: none;
+  }
+
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+  }
+
+  #second-banner{
+    z-index: 1000;
+    position: relative;
+    background-image:url("/imgs/airplane_wing.jpg");
+    border: 3px solid #FFFFFF;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  #top-navbar{
+    z-index: 1000000;
+  }
+
+  #body{
+    background-color: #8D99AE;
+  }
+  .card{
+    width: 60%;
+	  margin: 0 auto;
+  }
+  #card-containter{
+    padding-bottom: 4%;
+  }
+  </style>
+</head>
+
+
+<body>
+  <!--   NAVBAR   -->
+  <nav id="top-navbar" class="navbar is-dark">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="index.html">
+        <i class="ion-android-plane"></i>
+      </a>
+      <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div id="navbarExampleTransparentExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="index.html">
+          Home
+        </a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="">
+            Trips
+          </a>
+          <div class="navbar-dropdown is-boxed">
+            <a class="navbar-item" href="flight.html">
+              Flights
+            </a>
+            <a class="navbar-item" href="cruises.html">
+              Cruises
+            </a>
+            <a class="navbar-item" href="cars.html">
+              Car rentals
+            </a>
+          </div>
+        </div>
+        <a class="navbar-item" href="userProfile.html">
+          User
+        </a>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <p class="control">
+              <a ng-click="checklogin()" class="bd-tw-button button" href="./signup.html">
+                <span class="icon">
+                  <i class="icon ion-log-in"></i>
+                </span>
+                <span id="sign-in-out-button">
+                  Sign in
+                </span>
+              </a>
+            </p>
+            <p class="control">
+              <a class="button is-primary" href="./addAccount.html">
+                <span class="icon">
+                  <i class="icon ion-edit"></i>
+                </span>
+                <span id="userprofile">Create account</span>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!--  NAVBAR ENDS -->
+  <!-- FIRST BANNER -->
+  <section id="second-banner" class="hero is-medium is-primary is-bold">
+    <div class="hero-body">
+      <div style="text-align: center;" class="container">
+        <h1 class="title">
+          Flights
+        </h1>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SECOND BANNER -->
+  <section id="third-banner" class="hero is-medium is-bold">
+    <div ng-controller="controller" id="third-banner" class="is-fluid">
+      <div id="third-banner" ng-repeat="item in post" class="column">
+        <div class="card">
+          <div class="card-content">
+            <div class="content">
+              <br>{{item.Airline}} Airlines {{item.FlightID}}
+              <br>{{item.originCity}} , {{item.originState}} ---> {{item.destCity}} , {{item.destState}}
+              <br>Fare: ${{item.Fare}} USD
+              <br>{{item.Category}}
+            </div>
+          </div>
+          <a id="group-link-tag" href="grouping.html?travelID={{item.FlightID}}&type=flight">
+            <button ng-click="bookTrip()" type="book"   id="bookButton"   class="button is-link">Book</button>
+          </a>
+          <a href="addReview.html">
+            <button type="review" id="reviewButton" class="button is-link">Review</button>
+          </a>
+        </div>
+	  </div>
+	</div>
+      </section>
+    </body>

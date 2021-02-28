@@ -1,0 +1,3891 @@
+Created by PLY version 3.9 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> block
+Rule 1     block -> LBRACE inblock RBRACE
+Rule 2     block -> LBRACE RBRACE
+Rule 3     inblock -> smt inblock
+Rule 4     inblock -> block inblock
+Rule 5     inblock -> smt
+Rule 6     inblock -> block
+Rule 7     smt -> print_smt
+Rule 8     smt -> assign
+Rule 9     smt -> boolean
+Rule 10    print_smt -> PRINT LPAREN expression RPAREN SEMI
+Rule 11    print_smt -> PRINT LPAREN VAR RPAREN SEMI
+Rule 12    expression -> expression PLUS expression
+Rule 13    expression -> expression MINUS expression
+Rule 14    expression -> expression TIMES expression
+Rule 15    expression -> expression DIVIDE expression
+Rule 16    expression -> expression GREATER expression
+Rule 17    expression -> expression LESS expression
+Rule 18    expression -> expression MOD expression
+Rule 19    expression -> expression EXPONENT expression
+Rule 20    expression -> expression GREATEQ expression
+Rule 21    expression -> expression LESSEQ expression
+Rule 22    expression -> expression AND expression
+Rule 23    expression -> expression OR expression
+Rule 24    expression -> expression EQUALS expression
+Rule 25    expression -> expression IN expression
+Rule 26    expression -> expression NOTEQUALTO expression
+Rule 27    expression -> expression FLOORDIVIDE expression
+Rule 28    expression -> factor
+Rule 29    factor -> NUMBER
+Rule 30    expression -> boolean
+Rule 31    boolean -> TRUE
+Rule 32    boolean -> FALSE
+Rule 33    word -> STR
+Rule 34    expression -> word
+Rule 35    expression -> LPAREN expression RPAREN
+Rule 36    array -> LSQUARE list RSQUARE
+Rule 37    list -> element COMMA list
+Rule 38    list -> element list
+Rule 39    list -> element
+Rule 40    element -> expression
+Rule 41    index -> array LSQUARE expression RSQUARE
+Rule 42    expression -> index
+Rule 43    assign -> VAR VARASSIGN expression SEMI
+Rule 44    expression -> variable
+Rule 45    variable -> VAR
+Rule 46    assign -> VAR VARASSIGN array SEMI
+Rule 47    listeval -> VAR LSQUARE expression RSQUARE
+Rule 48    expression -> listeval
+Rule 49    ifsmt -> IF LPAREN expression RPAREN block
+Rule 50    ifelsesmt -> IF LPAREN expression RPAREN block ELSE block
+Rule 51    smt -> ifelsesmt
+Rule 52    smt -> ifsmt
+Rule 53    whilesmt -> WHILE LPAREN expression RPAREN block
+Rule 54    smt -> whilesmt
+
+Terminals, with rules where they appear
+
+AND                  : 22
+COMMA                : 37
+DIVIDE               : 15
+ELSE                 : 50
+EQUALS               : 24
+EXPONENT             : 19
+FALSE                : 32
+FLOORDIVIDE          : 27
+GREATEQ              : 20
+GREATER              : 16
+IF                   : 49 50
+IN                   : 25
+LBRACE               : 1 2
+LESS                 : 17
+LESSEQ               : 21
+LPAREN               : 10 11 35 49 50 53
+LSQUARE              : 36 41 47
+MINUS                : 13
+MOD                  : 18
+NOTEQUALTO           : 26
+NUMBER               : 29
+OR                   : 23
+PLUS                 : 12
+PRINT                : 10 11
+RBRACE               : 1 2
+RPAREN               : 10 11 35 49 50 53
+RSQUARE              : 36 41 47
+SEMI                 : 10 11 43 46
+STR                  : 33
+TIMES                : 14
+TRUE                 : 31
+VAR                  : 11 43 45 46 47
+VARASSIGN            : 43 46
+WHILE                : 53
+error                : 
+
+Nonterminals, with rules where they appear
+
+array                : 41 46
+assign               : 8
+block                : 4 6 49 50 50 53 0
+boolean              : 9 30
+element              : 37 38 39
+expression           : 10 12 12 13 13 14 14 15 15 16 16 17 17 18 18 19 19 20 20 21 21 22 22 23 23 24 24 25 25 26 26 27 27 35 40 41 43 47 49 50 53
+factor               : 28
+ifelsesmt            : 51
+ifsmt                : 52
+inblock              : 1 3 4
+index                : 42
+list                 : 36 37 38
+listeval             : 48
+print_smt            : 7
+smt                  : 3 5
+variable             : 44
+whilesmt             : 54
+word                 : 34
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . block
+    (1) block -> . LBRACE inblock RBRACE
+    (2) block -> . LBRACE RBRACE
+
+    LBRACE          shift and go to state 1
+
+    block                          shift and go to state 2
+
+state 1
+
+    (1) block -> LBRACE . inblock RBRACE
+    (2) block -> LBRACE . RBRACE
+    (3) inblock -> . smt inblock
+    (4) inblock -> . block inblock
+    (5) inblock -> . smt
+    (6) inblock -> . block
+    (7) smt -> . print_smt
+    (8) smt -> . assign
+    (9) smt -> . boolean
+    (51) smt -> . ifelsesmt
+    (52) smt -> . ifsmt
+    (54) smt -> . whilesmt
+    (1) block -> . LBRACE inblock RBRACE
+    (2) block -> . LBRACE RBRACE
+    (10) print_smt -> . PRINT LPAREN expression RPAREN SEMI
+    (11) print_smt -> . PRINT LPAREN VAR RPAREN SEMI
+    (43) assign -> . VAR VARASSIGN expression SEMI
+    (46) assign -> . VAR VARASSIGN array SEMI
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (50) ifelsesmt -> . IF LPAREN expression RPAREN block ELSE block
+    (49) ifsmt -> . IF LPAREN expression RPAREN block
+    (53) whilesmt -> . WHILE LPAREN expression RPAREN block
+
+    RBRACE          shift and go to state 17
+    LBRACE          shift and go to state 1
+    PRINT           shift and go to state 6
+    VAR             shift and go to state 12
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    IF              shift and go to state 16
+    WHILE           shift and go to state 15
+
+    ifelsesmt                      shift and go to state 9
+    assign                         shift and go to state 10
+    block                          shift and go to state 14
+    inblock                        shift and go to state 3
+    print_smt                      shift and go to state 4
+    smt                            shift and go to state 11
+    whilesmt                       shift and go to state 13
+    ifsmt                          shift and go to state 8
+    boolean                        shift and go to state 7
+
+state 2
+
+    (0) S' -> block .
+
+
+
+state 3
+
+    (1) block -> LBRACE inblock . RBRACE
+
+    RBRACE          shift and go to state 19
+
+
+state 4
+
+    (7) smt -> print_smt .
+
+    LBRACE          reduce using rule 7 (smt -> print_smt .)
+    PRINT           reduce using rule 7 (smt -> print_smt .)
+    VAR             reduce using rule 7 (smt -> print_smt .)
+    TRUE            reduce using rule 7 (smt -> print_smt .)
+    FALSE           reduce using rule 7 (smt -> print_smt .)
+    IF              reduce using rule 7 (smt -> print_smt .)
+    WHILE           reduce using rule 7 (smt -> print_smt .)
+    RBRACE          reduce using rule 7 (smt -> print_smt .)
+
+
+state 5
+
+    (32) boolean -> FALSE .
+
+    PLUS            reduce using rule 32 (boolean -> FALSE .)
+    MINUS           reduce using rule 32 (boolean -> FALSE .)
+    TIMES           reduce using rule 32 (boolean -> FALSE .)
+    DIVIDE          reduce using rule 32 (boolean -> FALSE .)
+    GREATER         reduce using rule 32 (boolean -> FALSE .)
+    LESS            reduce using rule 32 (boolean -> FALSE .)
+    MOD             reduce using rule 32 (boolean -> FALSE .)
+    EXPONENT        reduce using rule 32 (boolean -> FALSE .)
+    GREATEQ         reduce using rule 32 (boolean -> FALSE .)
+    LESSEQ          reduce using rule 32 (boolean -> FALSE .)
+    AND             reduce using rule 32 (boolean -> FALSE .)
+    OR              reduce using rule 32 (boolean -> FALSE .)
+    EQUALS          reduce using rule 32 (boolean -> FALSE .)
+    IN              reduce using rule 32 (boolean -> FALSE .)
+    NOTEQUALTO      reduce using rule 32 (boolean -> FALSE .)
+    FLOORDIVIDE     reduce using rule 32 (boolean -> FALSE .)
+    RPAREN          reduce using rule 32 (boolean -> FALSE .)
+    SEMI            reduce using rule 32 (boolean -> FALSE .)
+    COMMA           reduce using rule 32 (boolean -> FALSE .)
+    LPAREN          reduce using rule 32 (boolean -> FALSE .)
+    NUMBER          reduce using rule 32 (boolean -> FALSE .)
+    TRUE            reduce using rule 32 (boolean -> FALSE .)
+    FALSE           reduce using rule 32 (boolean -> FALSE .)
+    STR             reduce using rule 32 (boolean -> FALSE .)
+    VAR             reduce using rule 32 (boolean -> FALSE .)
+    LSQUARE         reduce using rule 32 (boolean -> FALSE .)
+    RSQUARE         reduce using rule 32 (boolean -> FALSE .)
+    LBRACE          reduce using rule 32 (boolean -> FALSE .)
+    PRINT           reduce using rule 32 (boolean -> FALSE .)
+    IF              reduce using rule 32 (boolean -> FALSE .)
+    WHILE           reduce using rule 32 (boolean -> FALSE .)
+    RBRACE          reduce using rule 32 (boolean -> FALSE .)
+
+
+state 6
+
+    (10) print_smt -> PRINT . LPAREN expression RPAREN SEMI
+    (11) print_smt -> PRINT . LPAREN VAR RPAREN SEMI
+
+    LPAREN          shift and go to state 20
+
+
+state 7
+
+    (9) smt -> boolean .
+
+    LBRACE          reduce using rule 9 (smt -> boolean .)
+    PRINT           reduce using rule 9 (smt -> boolean .)
+    VAR             reduce using rule 9 (smt -> boolean .)
+    TRUE            reduce using rule 9 (smt -> boolean .)
+    FALSE           reduce using rule 9 (smt -> boolean .)
+    IF              reduce using rule 9 (smt -> boolean .)
+    WHILE           reduce using rule 9 (smt -> boolean .)
+    RBRACE          reduce using rule 9 (smt -> boolean .)
+
+
+state 8
+
+    (52) smt -> ifsmt .
+
+    LBRACE          reduce using rule 52 (smt -> ifsmt .)
+    PRINT           reduce using rule 52 (smt -> ifsmt .)
+    VAR             reduce using rule 52 (smt -> ifsmt .)
+    TRUE            reduce using rule 52 (smt -> ifsmt .)
+    FALSE           reduce using rule 52 (smt -> ifsmt .)
+    IF              reduce using rule 52 (smt -> ifsmt .)
+    WHILE           reduce using rule 52 (smt -> ifsmt .)
+    RBRACE          reduce using rule 52 (smt -> ifsmt .)
+
+
+state 9
+
+    (51) smt -> ifelsesmt .
+
+    LBRACE          reduce using rule 51 (smt -> ifelsesmt .)
+    PRINT           reduce using rule 51 (smt -> ifelsesmt .)
+    VAR             reduce using rule 51 (smt -> ifelsesmt .)
+    TRUE            reduce using rule 51 (smt -> ifelsesmt .)
+    FALSE           reduce using rule 51 (smt -> ifelsesmt .)
+    IF              reduce using rule 51 (smt -> ifelsesmt .)
+    WHILE           reduce using rule 51 (smt -> ifelsesmt .)
+    RBRACE          reduce using rule 51 (smt -> ifelsesmt .)
+
+
+state 10
+
+    (8) smt -> assign .
+
+    LBRACE          reduce using rule 8 (smt -> assign .)
+    PRINT           reduce using rule 8 (smt -> assign .)
+    VAR             reduce using rule 8 (smt -> assign .)
+    TRUE            reduce using rule 8 (smt -> assign .)
+    FALSE           reduce using rule 8 (smt -> assign .)
+    IF              reduce using rule 8 (smt -> assign .)
+    WHILE           reduce using rule 8 (smt -> assign .)
+    RBRACE          reduce using rule 8 (smt -> assign .)
+
+
+state 11
+
+    (3) inblock -> smt . inblock
+    (5) inblock -> smt .
+    (3) inblock -> . smt inblock
+    (4) inblock -> . block inblock
+    (5) inblock -> . smt
+    (6) inblock -> . block
+    (7) smt -> . print_smt
+    (8) smt -> . assign
+    (9) smt -> . boolean
+    (51) smt -> . ifelsesmt
+    (52) smt -> . ifsmt
+    (54) smt -> . whilesmt
+    (1) block -> . LBRACE inblock RBRACE
+    (2) block -> . LBRACE RBRACE
+    (10) print_smt -> . PRINT LPAREN expression RPAREN SEMI
+    (11) print_smt -> . PRINT LPAREN VAR RPAREN SEMI
+    (43) assign -> . VAR VARASSIGN expression SEMI
+    (46) assign -> . VAR VARASSIGN array SEMI
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (50) ifelsesmt -> . IF LPAREN expression RPAREN block ELSE block
+    (49) ifsmt -> . IF LPAREN expression RPAREN block
+    (53) whilesmt -> . WHILE LPAREN expression RPAREN block
+
+    RBRACE          reduce using rule 5 (inblock -> smt .)
+    LBRACE          shift and go to state 1
+    PRINT           shift and go to state 6
+    VAR             shift and go to state 12
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    IF              shift and go to state 16
+    WHILE           shift and go to state 15
+
+    ifelsesmt                      shift and go to state 9
+    assign                         shift and go to state 10
+    block                          shift and go to state 14
+    inblock                        shift and go to state 21
+    print_smt                      shift and go to state 4
+    smt                            shift and go to state 11
+    whilesmt                       shift and go to state 13
+    ifsmt                          shift and go to state 8
+    boolean                        shift and go to state 7
+
+state 12
+
+    (43) assign -> VAR . VARASSIGN expression SEMI
+    (46) assign -> VAR . VARASSIGN array SEMI
+
+    VARASSIGN       shift and go to state 22
+
+
+state 13
+
+    (54) smt -> whilesmt .
+
+    LBRACE          reduce using rule 54 (smt -> whilesmt .)
+    PRINT           reduce using rule 54 (smt -> whilesmt .)
+    VAR             reduce using rule 54 (smt -> whilesmt .)
+    TRUE            reduce using rule 54 (smt -> whilesmt .)
+    FALSE           reduce using rule 54 (smt -> whilesmt .)
+    IF              reduce using rule 54 (smt -> whilesmt .)
+    WHILE           reduce using rule 54 (smt -> whilesmt .)
+    RBRACE          reduce using rule 54 (smt -> whilesmt .)
+
+
+state 14
+
+    (4) inblock -> block . inblock
+    (6) inblock -> block .
+    (3) inblock -> . smt inblock
+    (4) inblock -> . block inblock
+    (5) inblock -> . smt
+    (6) inblock -> . block
+    (7) smt -> . print_smt
+    (8) smt -> . assign
+    (9) smt -> . boolean
+    (51) smt -> . ifelsesmt
+    (52) smt -> . ifsmt
+    (54) smt -> . whilesmt
+    (1) block -> . LBRACE inblock RBRACE
+    (2) block -> . LBRACE RBRACE
+    (10) print_smt -> . PRINT LPAREN expression RPAREN SEMI
+    (11) print_smt -> . PRINT LPAREN VAR RPAREN SEMI
+    (43) assign -> . VAR VARASSIGN expression SEMI
+    (46) assign -> . VAR VARASSIGN array SEMI
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (50) ifelsesmt -> . IF LPAREN expression RPAREN block ELSE block
+    (49) ifsmt -> . IF LPAREN expression RPAREN block
+    (53) whilesmt -> . WHILE LPAREN expression RPAREN block
+
+    RBRACE          reduce using rule 6 (inblock -> block .)
+    LBRACE          shift and go to state 1
+    PRINT           shift and go to state 6
+    VAR             shift and go to state 12
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    IF              shift and go to state 16
+    WHILE           shift and go to state 15
+
+    ifelsesmt                      shift and go to state 9
+    assign                         shift and go to state 10
+    block                          shift and go to state 14
+    inblock                        shift and go to state 23
+    print_smt                      shift and go to state 4
+    smt                            shift and go to state 11
+    whilesmt                       shift and go to state 13
+    ifsmt                          shift and go to state 8
+    boolean                        shift and go to state 7
+
+state 15
+
+    (53) whilesmt -> WHILE . LPAREN expression RPAREN block
+
+    LPAREN          shift and go to state 24
+
+
+state 16
+
+    (50) ifelsesmt -> IF . LPAREN expression RPAREN block ELSE block
+    (49) ifsmt -> IF . LPAREN expression RPAREN block
+
+    LPAREN          shift and go to state 25
+
+
+state 17
+
+    (2) block -> LBRACE RBRACE .
+
+    LBRACE          reduce using rule 2 (block -> LBRACE RBRACE .)
+    PRINT           reduce using rule 2 (block -> LBRACE RBRACE .)
+    VAR             reduce using rule 2 (block -> LBRACE RBRACE .)
+    TRUE            reduce using rule 2 (block -> LBRACE RBRACE .)
+    FALSE           reduce using rule 2 (block -> LBRACE RBRACE .)
+    IF              reduce using rule 2 (block -> LBRACE RBRACE .)
+    WHILE           reduce using rule 2 (block -> LBRACE RBRACE .)
+    RBRACE          reduce using rule 2 (block -> LBRACE RBRACE .)
+    ELSE            reduce using rule 2 (block -> LBRACE RBRACE .)
+    $end            reduce using rule 2 (block -> LBRACE RBRACE .)
+
+
+state 18
+
+    (31) boolean -> TRUE .
+
+    PLUS            reduce using rule 31 (boolean -> TRUE .)
+    MINUS           reduce using rule 31 (boolean -> TRUE .)
+    TIMES           reduce using rule 31 (boolean -> TRUE .)
+    DIVIDE          reduce using rule 31 (boolean -> TRUE .)
+    GREATER         reduce using rule 31 (boolean -> TRUE .)
+    LESS            reduce using rule 31 (boolean -> TRUE .)
+    MOD             reduce using rule 31 (boolean -> TRUE .)
+    EXPONENT        reduce using rule 31 (boolean -> TRUE .)
+    GREATEQ         reduce using rule 31 (boolean -> TRUE .)
+    LESSEQ          reduce using rule 31 (boolean -> TRUE .)
+    AND             reduce using rule 31 (boolean -> TRUE .)
+    OR              reduce using rule 31 (boolean -> TRUE .)
+    EQUALS          reduce using rule 31 (boolean -> TRUE .)
+    IN              reduce using rule 31 (boolean -> TRUE .)
+    NOTEQUALTO      reduce using rule 31 (boolean -> TRUE .)
+    FLOORDIVIDE     reduce using rule 31 (boolean -> TRUE .)
+    RPAREN          reduce using rule 31 (boolean -> TRUE .)
+    SEMI            reduce using rule 31 (boolean -> TRUE .)
+    COMMA           reduce using rule 31 (boolean -> TRUE .)
+    LPAREN          reduce using rule 31 (boolean -> TRUE .)
+    NUMBER          reduce using rule 31 (boolean -> TRUE .)
+    TRUE            reduce using rule 31 (boolean -> TRUE .)
+    FALSE           reduce using rule 31 (boolean -> TRUE .)
+    STR             reduce using rule 31 (boolean -> TRUE .)
+    VAR             reduce using rule 31 (boolean -> TRUE .)
+    LSQUARE         reduce using rule 31 (boolean -> TRUE .)
+    RSQUARE         reduce using rule 31 (boolean -> TRUE .)
+    LBRACE          reduce using rule 31 (boolean -> TRUE .)
+    PRINT           reduce using rule 31 (boolean -> TRUE .)
+    IF              reduce using rule 31 (boolean -> TRUE .)
+    WHILE           reduce using rule 31 (boolean -> TRUE .)
+    RBRACE          reduce using rule 31 (boolean -> TRUE .)
+
+
+state 19
+
+    (1) block -> LBRACE inblock RBRACE .
+
+    LBRACE          reduce using rule 1 (block -> LBRACE inblock RBRACE .)
+    PRINT           reduce using rule 1 (block -> LBRACE inblock RBRACE .)
+    VAR             reduce using rule 1 (block -> LBRACE inblock RBRACE .)
+    TRUE            reduce using rule 1 (block -> LBRACE inblock RBRACE .)
+    FALSE           reduce using rule 1 (block -> LBRACE inblock RBRACE .)
+    IF              reduce using rule 1 (block -> LBRACE inblock RBRACE .)
+    WHILE           reduce using rule 1 (block -> LBRACE inblock RBRACE .)
+    RBRACE          reduce using rule 1 (block -> LBRACE inblock RBRACE .)
+    ELSE            reduce using rule 1 (block -> LBRACE inblock RBRACE .)
+    $end            reduce using rule 1 (block -> LBRACE inblock RBRACE .)
+
+
+state 20
+
+    (10) print_smt -> PRINT LPAREN . expression RPAREN SEMI
+    (11) print_smt -> PRINT LPAREN . VAR RPAREN SEMI
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    VAR             shift and go to state 28
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    array                          shift and go to state 30
+    index                          shift and go to state 35
+    boolean                        shift and go to state 29
+    variable                       shift and go to state 26
+    expression                     shift and go to state 31
+    word                           shift and go to state 37
+
+state 21
+
+    (3) inblock -> smt inblock .
+
+    RBRACE          reduce using rule 3 (inblock -> smt inblock .)
+
+
+state 22
+
+    (43) assign -> VAR VARASSIGN . expression SEMI
+    (46) assign -> VAR VARASSIGN . array SEMI
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (36) array -> . LSQUARE list RSQUARE
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+
+    LPAREN          shift and go to state 36
+    LSQUARE         shift and go to state 27
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    index                          shift and go to state 35
+    boolean                        shift and go to state 29
+    expression                     shift and go to state 41
+    variable                       shift and go to state 26
+    array                          shift and go to state 40
+    word                           shift and go to state 37
+
+state 23
+
+    (4) inblock -> block inblock .
+
+    RBRACE          reduce using rule 4 (inblock -> block inblock .)
+
+
+state 24
+
+    (53) whilesmt -> WHILE LPAREN . expression RPAREN block
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    array                          shift and go to state 30
+    boolean                        shift and go to state 29
+    variable                       shift and go to state 26
+    index                          shift and go to state 35
+    expression                     shift and go to state 42
+    word                           shift and go to state 37
+
+state 25
+
+    (50) ifelsesmt -> IF LPAREN . expression RPAREN block ELSE block
+    (49) ifsmt -> IF LPAREN . expression RPAREN block
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    array                          shift and go to state 30
+    boolean                        shift and go to state 29
+    variable                       shift and go to state 26
+    index                          shift and go to state 35
+    expression                     shift and go to state 43
+    word                           shift and go to state 37
+
+state 26
+
+    (44) expression -> variable .
+
+    PLUS            reduce using rule 44 (expression -> variable .)
+    MINUS           reduce using rule 44 (expression -> variable .)
+    TIMES           reduce using rule 44 (expression -> variable .)
+    DIVIDE          reduce using rule 44 (expression -> variable .)
+    GREATER         reduce using rule 44 (expression -> variable .)
+    LESS            reduce using rule 44 (expression -> variable .)
+    MOD             reduce using rule 44 (expression -> variable .)
+    EXPONENT        reduce using rule 44 (expression -> variable .)
+    GREATEQ         reduce using rule 44 (expression -> variable .)
+    LESSEQ          reduce using rule 44 (expression -> variable .)
+    AND             reduce using rule 44 (expression -> variable .)
+    OR              reduce using rule 44 (expression -> variable .)
+    EQUALS          reduce using rule 44 (expression -> variable .)
+    IN              reduce using rule 44 (expression -> variable .)
+    NOTEQUALTO      reduce using rule 44 (expression -> variable .)
+    FLOORDIVIDE     reduce using rule 44 (expression -> variable .)
+    RPAREN          reduce using rule 44 (expression -> variable .)
+    SEMI            reduce using rule 44 (expression -> variable .)
+    COMMA           reduce using rule 44 (expression -> variable .)
+    LPAREN          reduce using rule 44 (expression -> variable .)
+    NUMBER          reduce using rule 44 (expression -> variable .)
+    TRUE            reduce using rule 44 (expression -> variable .)
+    FALSE           reduce using rule 44 (expression -> variable .)
+    STR             reduce using rule 44 (expression -> variable .)
+    VAR             reduce using rule 44 (expression -> variable .)
+    LSQUARE         reduce using rule 44 (expression -> variable .)
+    RSQUARE         reduce using rule 44 (expression -> variable .)
+
+
+state 27
+
+    (36) array -> LSQUARE . list RSQUARE
+    (37) list -> . element COMMA list
+    (38) list -> . element list
+    (39) list -> . element
+    (40) element -> . expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    array                          shift and go to state 30
+    list                           shift and go to state 45
+    boolean                        shift and go to state 29
+    variable                       shift and go to state 26
+    index                          shift and go to state 35
+    element                        shift and go to state 46
+    word                           shift and go to state 37
+    expression                     shift and go to state 44
+
+state 28
+
+    (11) print_smt -> PRINT LPAREN VAR . RPAREN SEMI
+    (45) variable -> VAR .
+    (47) listeval -> VAR . LSQUARE expression RSQUARE
+
+    RPAREN          reduce using rule 45 (variable -> VAR .)
+    PLUS            reduce using rule 45 (variable -> VAR .)
+    MINUS           reduce using rule 45 (variable -> VAR .)
+    TIMES           reduce using rule 45 (variable -> VAR .)
+    DIVIDE          reduce using rule 45 (variable -> VAR .)
+    GREATER         reduce using rule 45 (variable -> VAR .)
+    LESS            reduce using rule 45 (variable -> VAR .)
+    MOD             reduce using rule 45 (variable -> VAR .)
+    EXPONENT        reduce using rule 45 (variable -> VAR .)
+    GREATEQ         reduce using rule 45 (variable -> VAR .)
+    LESSEQ          reduce using rule 45 (variable -> VAR .)
+    AND             reduce using rule 45 (variable -> VAR .)
+    OR              reduce using rule 45 (variable -> VAR .)
+    EQUALS          reduce using rule 45 (variable -> VAR .)
+    IN              reduce using rule 45 (variable -> VAR .)
+    NOTEQUALTO      reduce using rule 45 (variable -> VAR .)
+    FLOORDIVIDE     reduce using rule 45 (variable -> VAR .)
+    LSQUARE         shift and go to state 48
+
+  ! RPAREN          [ shift and go to state 47 ]
+
+
+state 29
+
+    (30) expression -> boolean .
+
+    PLUS            reduce using rule 30 (expression -> boolean .)
+    MINUS           reduce using rule 30 (expression -> boolean .)
+    TIMES           reduce using rule 30 (expression -> boolean .)
+    DIVIDE          reduce using rule 30 (expression -> boolean .)
+    GREATER         reduce using rule 30 (expression -> boolean .)
+    LESS            reduce using rule 30 (expression -> boolean .)
+    MOD             reduce using rule 30 (expression -> boolean .)
+    EXPONENT        reduce using rule 30 (expression -> boolean .)
+    GREATEQ         reduce using rule 30 (expression -> boolean .)
+    LESSEQ          reduce using rule 30 (expression -> boolean .)
+    AND             reduce using rule 30 (expression -> boolean .)
+    OR              reduce using rule 30 (expression -> boolean .)
+    EQUALS          reduce using rule 30 (expression -> boolean .)
+    IN              reduce using rule 30 (expression -> boolean .)
+    NOTEQUALTO      reduce using rule 30 (expression -> boolean .)
+    FLOORDIVIDE     reduce using rule 30 (expression -> boolean .)
+    RPAREN          reduce using rule 30 (expression -> boolean .)
+    SEMI            reduce using rule 30 (expression -> boolean .)
+    COMMA           reduce using rule 30 (expression -> boolean .)
+    LPAREN          reduce using rule 30 (expression -> boolean .)
+    NUMBER          reduce using rule 30 (expression -> boolean .)
+    TRUE            reduce using rule 30 (expression -> boolean .)
+    FALSE           reduce using rule 30 (expression -> boolean .)
+    STR             reduce using rule 30 (expression -> boolean .)
+    VAR             reduce using rule 30 (expression -> boolean .)
+    LSQUARE         reduce using rule 30 (expression -> boolean .)
+    RSQUARE         reduce using rule 30 (expression -> boolean .)
+
+
+state 30
+
+    (41) index -> array . LSQUARE expression RSQUARE
+
+    LSQUARE         shift and go to state 49
+
+
+state 31
+
+    (10) print_smt -> PRINT LPAREN expression . RPAREN SEMI
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+    (16) expression -> expression . GREATER expression
+    (17) expression -> expression . LESS expression
+    (18) expression -> expression . MOD expression
+    (19) expression -> expression . EXPONENT expression
+    (20) expression -> expression . GREATEQ expression
+    (21) expression -> expression . LESSEQ expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . EQUALS expression
+    (25) expression -> expression . IN expression
+    (26) expression -> expression . NOTEQUALTO expression
+    (27) expression -> expression . FLOORDIVIDE expression
+
+    RPAREN          shift and go to state 53
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 54
+    TIMES           shift and go to state 61
+    DIVIDE          shift and go to state 66
+    GREATER         shift and go to state 55
+    LESS            shift and go to state 57
+    MOD             shift and go to state 65
+    EXPONENT        shift and go to state 58
+    GREATEQ         shift and go to state 51
+    LESSEQ          shift and go to state 64
+    AND             shift and go to state 60
+    OR              shift and go to state 52
+    EQUALS          shift and go to state 56
+    IN              shift and go to state 63
+    NOTEQUALTO      shift and go to state 50
+    FLOORDIVIDE     shift and go to state 59
+
+
+state 32
+
+    (28) expression -> factor .
+
+    PLUS            reduce using rule 28 (expression -> factor .)
+    MINUS           reduce using rule 28 (expression -> factor .)
+    TIMES           reduce using rule 28 (expression -> factor .)
+    DIVIDE          reduce using rule 28 (expression -> factor .)
+    GREATER         reduce using rule 28 (expression -> factor .)
+    LESS            reduce using rule 28 (expression -> factor .)
+    MOD             reduce using rule 28 (expression -> factor .)
+    EXPONENT        reduce using rule 28 (expression -> factor .)
+    GREATEQ         reduce using rule 28 (expression -> factor .)
+    LESSEQ          reduce using rule 28 (expression -> factor .)
+    AND             reduce using rule 28 (expression -> factor .)
+    OR              reduce using rule 28 (expression -> factor .)
+    EQUALS          reduce using rule 28 (expression -> factor .)
+    IN              reduce using rule 28 (expression -> factor .)
+    NOTEQUALTO      reduce using rule 28 (expression -> factor .)
+    FLOORDIVIDE     reduce using rule 28 (expression -> factor .)
+    RPAREN          reduce using rule 28 (expression -> factor .)
+    SEMI            reduce using rule 28 (expression -> factor .)
+    COMMA           reduce using rule 28 (expression -> factor .)
+    LPAREN          reduce using rule 28 (expression -> factor .)
+    NUMBER          reduce using rule 28 (expression -> factor .)
+    TRUE            reduce using rule 28 (expression -> factor .)
+    FALSE           reduce using rule 28 (expression -> factor .)
+    STR             reduce using rule 28 (expression -> factor .)
+    VAR             reduce using rule 28 (expression -> factor .)
+    LSQUARE         reduce using rule 28 (expression -> factor .)
+    RSQUARE         reduce using rule 28 (expression -> factor .)
+
+
+state 33
+
+    (48) expression -> listeval .
+
+    PLUS            reduce using rule 48 (expression -> listeval .)
+    MINUS           reduce using rule 48 (expression -> listeval .)
+    TIMES           reduce using rule 48 (expression -> listeval .)
+    DIVIDE          reduce using rule 48 (expression -> listeval .)
+    GREATER         reduce using rule 48 (expression -> listeval .)
+    LESS            reduce using rule 48 (expression -> listeval .)
+    MOD             reduce using rule 48 (expression -> listeval .)
+    EXPONENT        reduce using rule 48 (expression -> listeval .)
+    GREATEQ         reduce using rule 48 (expression -> listeval .)
+    LESSEQ          reduce using rule 48 (expression -> listeval .)
+    AND             reduce using rule 48 (expression -> listeval .)
+    OR              reduce using rule 48 (expression -> listeval .)
+    EQUALS          reduce using rule 48 (expression -> listeval .)
+    IN              reduce using rule 48 (expression -> listeval .)
+    NOTEQUALTO      reduce using rule 48 (expression -> listeval .)
+    FLOORDIVIDE     reduce using rule 48 (expression -> listeval .)
+    RPAREN          reduce using rule 48 (expression -> listeval .)
+    SEMI            reduce using rule 48 (expression -> listeval .)
+    COMMA           reduce using rule 48 (expression -> listeval .)
+    LPAREN          reduce using rule 48 (expression -> listeval .)
+    NUMBER          reduce using rule 48 (expression -> listeval .)
+    TRUE            reduce using rule 48 (expression -> listeval .)
+    FALSE           reduce using rule 48 (expression -> listeval .)
+    STR             reduce using rule 48 (expression -> listeval .)
+    VAR             reduce using rule 48 (expression -> listeval .)
+    LSQUARE         reduce using rule 48 (expression -> listeval .)
+    RSQUARE         reduce using rule 48 (expression -> listeval .)
+
+
+state 34
+
+    (33) word -> STR .
+
+    PLUS            reduce using rule 33 (word -> STR .)
+    MINUS           reduce using rule 33 (word -> STR .)
+    TIMES           reduce using rule 33 (word -> STR .)
+    DIVIDE          reduce using rule 33 (word -> STR .)
+    GREATER         reduce using rule 33 (word -> STR .)
+    LESS            reduce using rule 33 (word -> STR .)
+    MOD             reduce using rule 33 (word -> STR .)
+    EXPONENT        reduce using rule 33 (word -> STR .)
+    GREATEQ         reduce using rule 33 (word -> STR .)
+    LESSEQ          reduce using rule 33 (word -> STR .)
+    AND             reduce using rule 33 (word -> STR .)
+    OR              reduce using rule 33 (word -> STR .)
+    EQUALS          reduce using rule 33 (word -> STR .)
+    IN              reduce using rule 33 (word -> STR .)
+    NOTEQUALTO      reduce using rule 33 (word -> STR .)
+    FLOORDIVIDE     reduce using rule 33 (word -> STR .)
+    RPAREN          reduce using rule 33 (word -> STR .)
+    SEMI            reduce using rule 33 (word -> STR .)
+    COMMA           reduce using rule 33 (word -> STR .)
+    LPAREN          reduce using rule 33 (word -> STR .)
+    NUMBER          reduce using rule 33 (word -> STR .)
+    TRUE            reduce using rule 33 (word -> STR .)
+    FALSE           reduce using rule 33 (word -> STR .)
+    STR             reduce using rule 33 (word -> STR .)
+    VAR             reduce using rule 33 (word -> STR .)
+    LSQUARE         reduce using rule 33 (word -> STR .)
+    RSQUARE         reduce using rule 33 (word -> STR .)
+
+
+state 35
+
+    (42) expression -> index .
+
+    PLUS            reduce using rule 42 (expression -> index .)
+    MINUS           reduce using rule 42 (expression -> index .)
+    TIMES           reduce using rule 42 (expression -> index .)
+    DIVIDE          reduce using rule 42 (expression -> index .)
+    GREATER         reduce using rule 42 (expression -> index .)
+    LESS            reduce using rule 42 (expression -> index .)
+    MOD             reduce using rule 42 (expression -> index .)
+    EXPONENT        reduce using rule 42 (expression -> index .)
+    GREATEQ         reduce using rule 42 (expression -> index .)
+    LESSEQ          reduce using rule 42 (expression -> index .)
+    AND             reduce using rule 42 (expression -> index .)
+    OR              reduce using rule 42 (expression -> index .)
+    EQUALS          reduce using rule 42 (expression -> index .)
+    IN              reduce using rule 42 (expression -> index .)
+    NOTEQUALTO      reduce using rule 42 (expression -> index .)
+    FLOORDIVIDE     reduce using rule 42 (expression -> index .)
+    RPAREN          reduce using rule 42 (expression -> index .)
+    SEMI            reduce using rule 42 (expression -> index .)
+    COMMA           reduce using rule 42 (expression -> index .)
+    LPAREN          reduce using rule 42 (expression -> index .)
+    NUMBER          reduce using rule 42 (expression -> index .)
+    TRUE            reduce using rule 42 (expression -> index .)
+    FALSE           reduce using rule 42 (expression -> index .)
+    STR             reduce using rule 42 (expression -> index .)
+    VAR             reduce using rule 42 (expression -> index .)
+    LSQUARE         reduce using rule 42 (expression -> index .)
+    RSQUARE         reduce using rule 42 (expression -> index .)
+
+
+state 36
+
+    (35) expression -> LPAREN . expression RPAREN
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    array                          shift and go to state 30
+    index                          shift and go to state 35
+    boolean                        shift and go to state 29
+    variable                       shift and go to state 26
+    expression                     shift and go to state 67
+    word                           shift and go to state 37
+
+state 37
+
+    (34) expression -> word .
+
+    PLUS            reduce using rule 34 (expression -> word .)
+    MINUS           reduce using rule 34 (expression -> word .)
+    TIMES           reduce using rule 34 (expression -> word .)
+    DIVIDE          reduce using rule 34 (expression -> word .)
+    GREATER         reduce using rule 34 (expression -> word .)
+    LESS            reduce using rule 34 (expression -> word .)
+    MOD             reduce using rule 34 (expression -> word .)
+    EXPONENT        reduce using rule 34 (expression -> word .)
+    GREATEQ         reduce using rule 34 (expression -> word .)
+    LESSEQ          reduce using rule 34 (expression -> word .)
+    AND             reduce using rule 34 (expression -> word .)
+    OR              reduce using rule 34 (expression -> word .)
+    EQUALS          reduce using rule 34 (expression -> word .)
+    IN              reduce using rule 34 (expression -> word .)
+    NOTEQUALTO      reduce using rule 34 (expression -> word .)
+    FLOORDIVIDE     reduce using rule 34 (expression -> word .)
+    RPAREN          reduce using rule 34 (expression -> word .)
+    SEMI            reduce using rule 34 (expression -> word .)
+    COMMA           reduce using rule 34 (expression -> word .)
+    LPAREN          reduce using rule 34 (expression -> word .)
+    NUMBER          reduce using rule 34 (expression -> word .)
+    TRUE            reduce using rule 34 (expression -> word .)
+    FALSE           reduce using rule 34 (expression -> word .)
+    STR             reduce using rule 34 (expression -> word .)
+    VAR             reduce using rule 34 (expression -> word .)
+    LSQUARE         reduce using rule 34 (expression -> word .)
+    RSQUARE         reduce using rule 34 (expression -> word .)
+
+
+state 38
+
+    (29) factor -> NUMBER .
+
+    PLUS            reduce using rule 29 (factor -> NUMBER .)
+    MINUS           reduce using rule 29 (factor -> NUMBER .)
+    TIMES           reduce using rule 29 (factor -> NUMBER .)
+    DIVIDE          reduce using rule 29 (factor -> NUMBER .)
+    GREATER         reduce using rule 29 (factor -> NUMBER .)
+    LESS            reduce using rule 29 (factor -> NUMBER .)
+    MOD             reduce using rule 29 (factor -> NUMBER .)
+    EXPONENT        reduce using rule 29 (factor -> NUMBER .)
+    GREATEQ         reduce using rule 29 (factor -> NUMBER .)
+    LESSEQ          reduce using rule 29 (factor -> NUMBER .)
+    AND             reduce using rule 29 (factor -> NUMBER .)
+    OR              reduce using rule 29 (factor -> NUMBER .)
+    EQUALS          reduce using rule 29 (factor -> NUMBER .)
+    IN              reduce using rule 29 (factor -> NUMBER .)
+    NOTEQUALTO      reduce using rule 29 (factor -> NUMBER .)
+    FLOORDIVIDE     reduce using rule 29 (factor -> NUMBER .)
+    RPAREN          reduce using rule 29 (factor -> NUMBER .)
+    SEMI            reduce using rule 29 (factor -> NUMBER .)
+    COMMA           reduce using rule 29 (factor -> NUMBER .)
+    LPAREN          reduce using rule 29 (factor -> NUMBER .)
+    NUMBER          reduce using rule 29 (factor -> NUMBER .)
+    TRUE            reduce using rule 29 (factor -> NUMBER .)
+    FALSE           reduce using rule 29 (factor -> NUMBER .)
+    STR             reduce using rule 29 (factor -> NUMBER .)
+    VAR             reduce using rule 29 (factor -> NUMBER .)
+    LSQUARE         reduce using rule 29 (factor -> NUMBER .)
+    RSQUARE         reduce using rule 29 (factor -> NUMBER .)
+
+
+state 39
+
+    (45) variable -> VAR .
+    (47) listeval -> VAR . LSQUARE expression RSQUARE
+
+  ! shift/reduce conflict for LSQUARE resolved as shift
+    PLUS            reduce using rule 45 (variable -> VAR .)
+    MINUS           reduce using rule 45 (variable -> VAR .)
+    TIMES           reduce using rule 45 (variable -> VAR .)
+    DIVIDE          reduce using rule 45 (variable -> VAR .)
+    GREATER         reduce using rule 45 (variable -> VAR .)
+    LESS            reduce using rule 45 (variable -> VAR .)
+    MOD             reduce using rule 45 (variable -> VAR .)
+    EXPONENT        reduce using rule 45 (variable -> VAR .)
+    GREATEQ         reduce using rule 45 (variable -> VAR .)
+    LESSEQ          reduce using rule 45 (variable -> VAR .)
+    AND             reduce using rule 45 (variable -> VAR .)
+    OR              reduce using rule 45 (variable -> VAR .)
+    EQUALS          reduce using rule 45 (variable -> VAR .)
+    IN              reduce using rule 45 (variable -> VAR .)
+    NOTEQUALTO      reduce using rule 45 (variable -> VAR .)
+    FLOORDIVIDE     reduce using rule 45 (variable -> VAR .)
+    RPAREN          reduce using rule 45 (variable -> VAR .)
+    SEMI            reduce using rule 45 (variable -> VAR .)
+    COMMA           reduce using rule 45 (variable -> VAR .)
+    LPAREN          reduce using rule 45 (variable -> VAR .)
+    NUMBER          reduce using rule 45 (variable -> VAR .)
+    TRUE            reduce using rule 45 (variable -> VAR .)
+    FALSE           reduce using rule 45 (variable -> VAR .)
+    STR             reduce using rule 45 (variable -> VAR .)
+    VAR             reduce using rule 45 (variable -> VAR .)
+    RSQUARE         reduce using rule 45 (variable -> VAR .)
+    LSQUARE         shift and go to state 48
+
+  ! LSQUARE         [ reduce using rule 45 (variable -> VAR .) ]
+
+
+state 40
+
+    (46) assign -> VAR VARASSIGN array . SEMI
+    (41) index -> array . LSQUARE expression RSQUARE
+
+    SEMI            shift and go to state 68
+    LSQUARE         shift and go to state 49
+
+
+state 41
+
+    (43) assign -> VAR VARASSIGN expression . SEMI
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+    (16) expression -> expression . GREATER expression
+    (17) expression -> expression . LESS expression
+    (18) expression -> expression . MOD expression
+    (19) expression -> expression . EXPONENT expression
+    (20) expression -> expression . GREATEQ expression
+    (21) expression -> expression . LESSEQ expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . EQUALS expression
+    (25) expression -> expression . IN expression
+    (26) expression -> expression . NOTEQUALTO expression
+    (27) expression -> expression . FLOORDIVIDE expression
+
+    SEMI            shift and go to state 69
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 54
+    TIMES           shift and go to state 61
+    DIVIDE          shift and go to state 66
+    GREATER         shift and go to state 55
+    LESS            shift and go to state 57
+    MOD             shift and go to state 65
+    EXPONENT        shift and go to state 58
+    GREATEQ         shift and go to state 51
+    LESSEQ          shift and go to state 64
+    AND             shift and go to state 60
+    OR              shift and go to state 52
+    EQUALS          shift and go to state 56
+    IN              shift and go to state 63
+    NOTEQUALTO      shift and go to state 50
+    FLOORDIVIDE     shift and go to state 59
+
+
+state 42
+
+    (53) whilesmt -> WHILE LPAREN expression . RPAREN block
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+    (16) expression -> expression . GREATER expression
+    (17) expression -> expression . LESS expression
+    (18) expression -> expression . MOD expression
+    (19) expression -> expression . EXPONENT expression
+    (20) expression -> expression . GREATEQ expression
+    (21) expression -> expression . LESSEQ expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . EQUALS expression
+    (25) expression -> expression . IN expression
+    (26) expression -> expression . NOTEQUALTO expression
+    (27) expression -> expression . FLOORDIVIDE expression
+
+    RPAREN          shift and go to state 70
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 54
+    TIMES           shift and go to state 61
+    DIVIDE          shift and go to state 66
+    GREATER         shift and go to state 55
+    LESS            shift and go to state 57
+    MOD             shift and go to state 65
+    EXPONENT        shift and go to state 58
+    GREATEQ         shift and go to state 51
+    LESSEQ          shift and go to state 64
+    AND             shift and go to state 60
+    OR              shift and go to state 52
+    EQUALS          shift and go to state 56
+    IN              shift and go to state 63
+    NOTEQUALTO      shift and go to state 50
+    FLOORDIVIDE     shift and go to state 59
+
+
+state 43
+
+    (50) ifelsesmt -> IF LPAREN expression . RPAREN block ELSE block
+    (49) ifsmt -> IF LPAREN expression . RPAREN block
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+    (16) expression -> expression . GREATER expression
+    (17) expression -> expression . LESS expression
+    (18) expression -> expression . MOD expression
+    (19) expression -> expression . EXPONENT expression
+    (20) expression -> expression . GREATEQ expression
+    (21) expression -> expression . LESSEQ expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . EQUALS expression
+    (25) expression -> expression . IN expression
+    (26) expression -> expression . NOTEQUALTO expression
+    (27) expression -> expression . FLOORDIVIDE expression
+
+    RPAREN          shift and go to state 71
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 54
+    TIMES           shift and go to state 61
+    DIVIDE          shift and go to state 66
+    GREATER         shift and go to state 55
+    LESS            shift and go to state 57
+    MOD             shift and go to state 65
+    EXPONENT        shift and go to state 58
+    GREATEQ         shift and go to state 51
+    LESSEQ          shift and go to state 64
+    AND             shift and go to state 60
+    OR              shift and go to state 52
+    EQUALS          shift and go to state 56
+    IN              shift and go to state 63
+    NOTEQUALTO      shift and go to state 50
+    FLOORDIVIDE     shift and go to state 59
+
+
+state 44
+
+    (40) element -> expression .
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+    (16) expression -> expression . GREATER expression
+    (17) expression -> expression . LESS expression
+    (18) expression -> expression . MOD expression
+    (19) expression -> expression . EXPONENT expression
+    (20) expression -> expression . GREATEQ expression
+    (21) expression -> expression . LESSEQ expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . EQUALS expression
+    (25) expression -> expression . IN expression
+    (26) expression -> expression . NOTEQUALTO expression
+    (27) expression -> expression . FLOORDIVIDE expression
+
+    COMMA           reduce using rule 40 (element -> expression .)
+    LPAREN          reduce using rule 40 (element -> expression .)
+    NUMBER          reduce using rule 40 (element -> expression .)
+    TRUE            reduce using rule 40 (element -> expression .)
+    FALSE           reduce using rule 40 (element -> expression .)
+    STR             reduce using rule 40 (element -> expression .)
+    VAR             reduce using rule 40 (element -> expression .)
+    LSQUARE         reduce using rule 40 (element -> expression .)
+    RSQUARE         reduce using rule 40 (element -> expression .)
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 54
+    TIMES           shift and go to state 61
+    DIVIDE          shift and go to state 66
+    GREATER         shift and go to state 55
+    LESS            shift and go to state 57
+    MOD             shift and go to state 65
+    EXPONENT        shift and go to state 58
+    GREATEQ         shift and go to state 51
+    LESSEQ          shift and go to state 64
+    AND             shift and go to state 60
+    OR              shift and go to state 52
+    EQUALS          shift and go to state 56
+    IN              shift and go to state 63
+    NOTEQUALTO      shift and go to state 50
+    FLOORDIVIDE     shift and go to state 59
+
+
+state 45
+
+    (36) array -> LSQUARE list . RSQUARE
+
+    RSQUARE         shift and go to state 72
+
+
+state 46
+
+    (37) list -> element . COMMA list
+    (38) list -> element . list
+    (39) list -> element .
+    (37) list -> . element COMMA list
+    (38) list -> . element list
+    (39) list -> . element
+    (40) element -> . expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    COMMA           shift and go to state 73
+    RSQUARE         reduce using rule 39 (list -> element .)
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    array                          shift and go to state 30
+    list                           shift and go to state 74
+    boolean                        shift and go to state 29
+    variable                       shift and go to state 26
+    index                          shift and go to state 35
+    element                        shift and go to state 46
+    word                           shift and go to state 37
+    expression                     shift and go to state 44
+
+state 47
+
+    (11) print_smt -> PRINT LPAREN VAR RPAREN . SEMI
+
+    SEMI            shift and go to state 75
+
+
+state 48
+
+    (47) listeval -> VAR LSQUARE . expression RSQUARE
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    array                          shift and go to state 30
+    index                          shift and go to state 35
+    boolean                        shift and go to state 29
+    variable                       shift and go to state 26
+    expression                     shift and go to state 76
+    word                           shift and go to state 37
+
+state 49
+
+    (41) index -> array LSQUARE . expression RSQUARE
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    index                          shift and go to state 35
+    boolean                        shift and go to state 29
+    expression                     shift and go to state 77
+    variable                       shift and go to state 26
+    array                          shift and go to state 30
+    word                           shift and go to state 37
+
+state 50
+
+    (26) expression -> expression NOTEQUALTO . expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    array                          shift and go to state 30
+    index                          shift and go to state 35
+    boolean                        shift and go to state 29
+    variable                       shift and go to state 26
+    expression                     shift and go to state 78
+    word                           shift and go to state 37
+
+state 51
+
+    (20) expression -> expression GREATEQ . expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    array                          shift and go to state 30
+    index                          shift and go to state 35
+    boolean                        shift and go to state 29
+    variable                       shift and go to state 26
+    expression                     shift and go to state 79
+    word                           shift and go to state 37
+
+state 52
+
+    (23) expression -> expression OR . expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    array                          shift and go to state 30
+    index                          shift and go to state 35
+    boolean                        shift and go to state 29
+    variable                       shift and go to state 26
+    expression                     shift and go to state 80
+    word                           shift and go to state 37
+
+state 53
+
+    (10) print_smt -> PRINT LPAREN expression RPAREN . SEMI
+
+    SEMI            shift and go to state 81
+
+
+state 54
+
+    (13) expression -> expression MINUS . expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    array                          shift and go to state 30
+    index                          shift and go to state 35
+    boolean                        shift and go to state 29
+    variable                       shift and go to state 26
+    expression                     shift and go to state 82
+    word                           shift and go to state 37
+
+state 55
+
+    (16) expression -> expression GREATER . expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    array                          shift and go to state 30
+    index                          shift and go to state 35
+    boolean                        shift and go to state 29
+    variable                       shift and go to state 26
+    expression                     shift and go to state 83
+    word                           shift and go to state 37
+
+state 56
+
+    (24) expression -> expression EQUALS . expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    array                          shift and go to state 30
+    index                          shift and go to state 35
+    boolean                        shift and go to state 29
+    variable                       shift and go to state 26
+    expression                     shift and go to state 84
+    word                           shift and go to state 37
+
+state 57
+
+    (17) expression -> expression LESS . expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    array                          shift and go to state 30
+    index                          shift and go to state 35
+    boolean                        shift and go to state 29
+    variable                       shift and go to state 26
+    expression                     shift and go to state 85
+    word                           shift and go to state 37
+
+state 58
+
+    (19) expression -> expression EXPONENT . expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    array                          shift and go to state 30
+    index                          shift and go to state 35
+    boolean                        shift and go to state 29
+    variable                       shift and go to state 26
+    expression                     shift and go to state 86
+    word                           shift and go to state 37
+
+state 59
+
+    (27) expression -> expression FLOORDIVIDE . expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    array                          shift and go to state 30
+    index                          shift and go to state 35
+    boolean                        shift and go to state 29
+    variable                       shift and go to state 26
+    expression                     shift and go to state 87
+    word                           shift and go to state 37
+
+state 60
+
+    (22) expression -> expression AND . expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    array                          shift and go to state 30
+    index                          shift and go to state 35
+    boolean                        shift and go to state 29
+    variable                       shift and go to state 26
+    expression                     shift and go to state 88
+    word                           shift and go to state 37
+
+state 61
+
+    (14) expression -> expression TIMES . expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    array                          shift and go to state 30
+    index                          shift and go to state 35
+    boolean                        shift and go to state 29
+    variable                       shift and go to state 26
+    expression                     shift and go to state 89
+    word                           shift and go to state 37
+
+state 62
+
+    (12) expression -> expression PLUS . expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    array                          shift and go to state 30
+    index                          shift and go to state 35
+    boolean                        shift and go to state 29
+    variable                       shift and go to state 26
+    expression                     shift and go to state 90
+    word                           shift and go to state 37
+
+state 63
+
+    (25) expression -> expression IN . expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    array                          shift and go to state 30
+    index                          shift and go to state 35
+    boolean                        shift and go to state 29
+    variable                       shift and go to state 26
+    expression                     shift and go to state 91
+    word                           shift and go to state 37
+
+state 64
+
+    (21) expression -> expression LESSEQ . expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    array                          shift and go to state 30
+    index                          shift and go to state 35
+    boolean                        shift and go to state 29
+    variable                       shift and go to state 26
+    expression                     shift and go to state 92
+    word                           shift and go to state 37
+
+state 65
+
+    (18) expression -> expression MOD . expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    array                          shift and go to state 30
+    index                          shift and go to state 35
+    boolean                        shift and go to state 29
+    variable                       shift and go to state 26
+    expression                     shift and go to state 93
+    word                           shift and go to state 37
+
+state 66
+
+    (15) expression -> expression DIVIDE . expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    array                          shift and go to state 30
+    index                          shift and go to state 35
+    boolean                        shift and go to state 29
+    variable                       shift and go to state 26
+    expression                     shift and go to state 94
+    word                           shift and go to state 37
+
+state 67
+
+    (35) expression -> LPAREN expression . RPAREN
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+    (16) expression -> expression . GREATER expression
+    (17) expression -> expression . LESS expression
+    (18) expression -> expression . MOD expression
+    (19) expression -> expression . EXPONENT expression
+    (20) expression -> expression . GREATEQ expression
+    (21) expression -> expression . LESSEQ expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . EQUALS expression
+    (25) expression -> expression . IN expression
+    (26) expression -> expression . NOTEQUALTO expression
+    (27) expression -> expression . FLOORDIVIDE expression
+
+    RPAREN          shift and go to state 95
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 54
+    TIMES           shift and go to state 61
+    DIVIDE          shift and go to state 66
+    GREATER         shift and go to state 55
+    LESS            shift and go to state 57
+    MOD             shift and go to state 65
+    EXPONENT        shift and go to state 58
+    GREATEQ         shift and go to state 51
+    LESSEQ          shift and go to state 64
+    AND             shift and go to state 60
+    OR              shift and go to state 52
+    EQUALS          shift and go to state 56
+    IN              shift and go to state 63
+    NOTEQUALTO      shift and go to state 50
+    FLOORDIVIDE     shift and go to state 59
+
+
+state 68
+
+    (46) assign -> VAR VARASSIGN array SEMI .
+
+    LBRACE          reduce using rule 46 (assign -> VAR VARASSIGN array SEMI .)
+    PRINT           reduce using rule 46 (assign -> VAR VARASSIGN array SEMI .)
+    VAR             reduce using rule 46 (assign -> VAR VARASSIGN array SEMI .)
+    TRUE            reduce using rule 46 (assign -> VAR VARASSIGN array SEMI .)
+    FALSE           reduce using rule 46 (assign -> VAR VARASSIGN array SEMI .)
+    IF              reduce using rule 46 (assign -> VAR VARASSIGN array SEMI .)
+    WHILE           reduce using rule 46 (assign -> VAR VARASSIGN array SEMI .)
+    RBRACE          reduce using rule 46 (assign -> VAR VARASSIGN array SEMI .)
+
+
+state 69
+
+    (43) assign -> VAR VARASSIGN expression SEMI .
+
+    LBRACE          reduce using rule 43 (assign -> VAR VARASSIGN expression SEMI .)
+    PRINT           reduce using rule 43 (assign -> VAR VARASSIGN expression SEMI .)
+    VAR             reduce using rule 43 (assign -> VAR VARASSIGN expression SEMI .)
+    TRUE            reduce using rule 43 (assign -> VAR VARASSIGN expression SEMI .)
+    FALSE           reduce using rule 43 (assign -> VAR VARASSIGN expression SEMI .)
+    IF              reduce using rule 43 (assign -> VAR VARASSIGN expression SEMI .)
+    WHILE           reduce using rule 43 (assign -> VAR VARASSIGN expression SEMI .)
+    RBRACE          reduce using rule 43 (assign -> VAR VARASSIGN expression SEMI .)
+
+
+state 70
+
+    (53) whilesmt -> WHILE LPAREN expression RPAREN . block
+    (1) block -> . LBRACE inblock RBRACE
+    (2) block -> . LBRACE RBRACE
+
+    LBRACE          shift and go to state 1
+
+    block                          shift and go to state 96
+
+state 71
+
+    (50) ifelsesmt -> IF LPAREN expression RPAREN . block ELSE block
+    (49) ifsmt -> IF LPAREN expression RPAREN . block
+    (1) block -> . LBRACE inblock RBRACE
+    (2) block -> . LBRACE RBRACE
+
+    LBRACE          shift and go to state 1
+
+    block                          shift and go to state 97
+
+state 72
+
+    (36) array -> LSQUARE list RSQUARE .
+
+    LSQUARE         reduce using rule 36 (array -> LSQUARE list RSQUARE .)
+    SEMI            reduce using rule 36 (array -> LSQUARE list RSQUARE .)
+
+
+state 73
+
+    (37) list -> element COMMA . list
+    (37) list -> . element COMMA list
+    (38) list -> . element list
+    (39) list -> . element
+    (40) element -> . expression
+    (12) expression -> . expression PLUS expression
+    (13) expression -> . expression MINUS expression
+    (14) expression -> . expression TIMES expression
+    (15) expression -> . expression DIVIDE expression
+    (16) expression -> . expression GREATER expression
+    (17) expression -> . expression LESS expression
+    (18) expression -> . expression MOD expression
+    (19) expression -> . expression EXPONENT expression
+    (20) expression -> . expression GREATEQ expression
+    (21) expression -> . expression LESSEQ expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression EQUALS expression
+    (25) expression -> . expression IN expression
+    (26) expression -> . expression NOTEQUALTO expression
+    (27) expression -> . expression FLOORDIVIDE expression
+    (28) expression -> . factor
+    (30) expression -> . boolean
+    (34) expression -> . word
+    (35) expression -> . LPAREN expression RPAREN
+    (42) expression -> . index
+    (44) expression -> . variable
+    (48) expression -> . listeval
+    (29) factor -> . NUMBER
+    (31) boolean -> . TRUE
+    (32) boolean -> . FALSE
+    (33) word -> . STR
+    (41) index -> . array LSQUARE expression RSQUARE
+    (45) variable -> . VAR
+    (47) listeval -> . VAR LSQUARE expression RSQUARE
+    (36) array -> . LSQUARE list RSQUARE
+
+    LPAREN          shift and go to state 36
+    NUMBER          shift and go to state 38
+    TRUE            shift and go to state 18
+    FALSE           shift and go to state 5
+    STR             shift and go to state 34
+    VAR             shift and go to state 39
+    LSQUARE         shift and go to state 27
+
+    factor                         shift and go to state 32
+    listeval                       shift and go to state 33
+    array                          shift and go to state 30
+    list                           shift and go to state 98
+    boolean                        shift and go to state 29
+    variable                       shift and go to state 26
+    index                          shift and go to state 35
+    element                        shift and go to state 46
+    word                           shift and go to state 37
+    expression                     shift and go to state 44
+
+state 74
+
+    (38) list -> element list .
+
+    RSQUARE         reduce using rule 38 (list -> element list .)
+
+
+state 75
+
+    (11) print_smt -> PRINT LPAREN VAR RPAREN SEMI .
+
+    LBRACE          reduce using rule 11 (print_smt -> PRINT LPAREN VAR RPAREN SEMI .)
+    PRINT           reduce using rule 11 (print_smt -> PRINT LPAREN VAR RPAREN SEMI .)
+    VAR             reduce using rule 11 (print_smt -> PRINT LPAREN VAR RPAREN SEMI .)
+    TRUE            reduce using rule 11 (print_smt -> PRINT LPAREN VAR RPAREN SEMI .)
+    FALSE           reduce using rule 11 (print_smt -> PRINT LPAREN VAR RPAREN SEMI .)
+    IF              reduce using rule 11 (print_smt -> PRINT LPAREN VAR RPAREN SEMI .)
+    WHILE           reduce using rule 11 (print_smt -> PRINT LPAREN VAR RPAREN SEMI .)
+    RBRACE          reduce using rule 11 (print_smt -> PRINT LPAREN VAR RPAREN SEMI .)
+
+
+state 76
+
+    (47) listeval -> VAR LSQUARE expression . RSQUARE
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+    (16) expression -> expression . GREATER expression
+    (17) expression -> expression . LESS expression
+    (18) expression -> expression . MOD expression
+    (19) expression -> expression . EXPONENT expression
+    (20) expression -> expression . GREATEQ expression
+    (21) expression -> expression . LESSEQ expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . EQUALS expression
+    (25) expression -> expression . IN expression
+    (26) expression -> expression . NOTEQUALTO expression
+    (27) expression -> expression . FLOORDIVIDE expression
+
+    RSQUARE         shift and go to state 99
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 54
+    TIMES           shift and go to state 61
+    DIVIDE          shift and go to state 66
+    GREATER         shift and go to state 55
+    LESS            shift and go to state 57
+    MOD             shift and go to state 65
+    EXPONENT        shift and go to state 58
+    GREATEQ         shift and go to state 51
+    LESSEQ          shift and go to state 64
+    AND             shift and go to state 60
+    OR              shift and go to state 52
+    EQUALS          shift and go to state 56
+    IN              shift and go to state 63
+    NOTEQUALTO      shift and go to state 50
+    FLOORDIVIDE     shift and go to state 59
+
+
+state 77
+
+    (41) index -> array LSQUARE expression . RSQUARE
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+    (16) expression -> expression . GREATER expression
+    (17) expression -> expression . LESS expression
+    (18) expression -> expression . MOD expression
+    (19) expression -> expression . EXPONENT expression
+    (20) expression -> expression . GREATEQ expression
+    (21) expression -> expression . LESSEQ expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . EQUALS expression
+    (25) expression -> expression . IN expression
+    (26) expression -> expression . NOTEQUALTO expression
+    (27) expression -> expression . FLOORDIVIDE expression
+
+    RSQUARE         shift and go to state 100
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 54
+    TIMES           shift and go to state 61
+    DIVIDE          shift and go to state 66
+    GREATER         shift and go to state 55
+    LESS            shift and go to state 57
+    MOD             shift and go to state 65
+    EXPONENT        shift and go to state 58
+    GREATEQ         shift and go to state 51
+    LESSEQ          shift and go to state 64
+    AND             shift and go to state 60
+    OR              shift and go to state 52
+    EQUALS          shift and go to state 56
+    IN              shift and go to state 63
+    NOTEQUALTO      shift and go to state 50
+    FLOORDIVIDE     shift and go to state 59
+
+
+state 78
+
+    (26) expression -> expression NOTEQUALTO expression .
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+    (16) expression -> expression . GREATER expression
+    (17) expression -> expression . LESS expression
+    (18) expression -> expression . MOD expression
+    (19) expression -> expression . EXPONENT expression
+    (20) expression -> expression . GREATEQ expression
+    (21) expression -> expression . LESSEQ expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . EQUALS expression
+    (25) expression -> expression . IN expression
+    (26) expression -> expression . NOTEQUALTO expression
+    (27) expression -> expression . FLOORDIVIDE expression
+
+    GREATER         reduce using rule 26 (expression -> expression NOTEQUALTO expression .)
+    LESS            reduce using rule 26 (expression -> expression NOTEQUALTO expression .)
+    GREATEQ         reduce using rule 26 (expression -> expression NOTEQUALTO expression .)
+    LESSEQ          reduce using rule 26 (expression -> expression NOTEQUALTO expression .)
+    AND             reduce using rule 26 (expression -> expression NOTEQUALTO expression .)
+    OR              reduce using rule 26 (expression -> expression NOTEQUALTO expression .)
+    EQUALS          reduce using rule 26 (expression -> expression NOTEQUALTO expression .)
+    NOTEQUALTO      reduce using rule 26 (expression -> expression NOTEQUALTO expression .)
+    RPAREN          reduce using rule 26 (expression -> expression NOTEQUALTO expression .)
+    SEMI            reduce using rule 26 (expression -> expression NOTEQUALTO expression .)
+    COMMA           reduce using rule 26 (expression -> expression NOTEQUALTO expression .)
+    LPAREN          reduce using rule 26 (expression -> expression NOTEQUALTO expression .)
+    NUMBER          reduce using rule 26 (expression -> expression NOTEQUALTO expression .)
+    TRUE            reduce using rule 26 (expression -> expression NOTEQUALTO expression .)
+    FALSE           reduce using rule 26 (expression -> expression NOTEQUALTO expression .)
+    STR             reduce using rule 26 (expression -> expression NOTEQUALTO expression .)
+    VAR             reduce using rule 26 (expression -> expression NOTEQUALTO expression .)
+    LSQUARE         reduce using rule 26 (expression -> expression NOTEQUALTO expression .)
+    RSQUARE         reduce using rule 26 (expression -> expression NOTEQUALTO expression .)
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 54
+    TIMES           shift and go to state 61
+    DIVIDE          shift and go to state 66
+    MOD             shift and go to state 65
+    EXPONENT        shift and go to state 58
+    IN              shift and go to state 63
+    FLOORDIVIDE     shift and go to state 59
+
+  ! PLUS            [ reduce using rule 26 (expression -> expression NOTEQUALTO expression .) ]
+  ! MINUS           [ reduce using rule 26 (expression -> expression NOTEQUALTO expression .) ]
+  ! TIMES           [ reduce using rule 26 (expression -> expression NOTEQUALTO expression .) ]
+  ! DIVIDE          [ reduce using rule 26 (expression -> expression NOTEQUALTO expression .) ]
+  ! MOD             [ reduce using rule 26 (expression -> expression NOTEQUALTO expression .) ]
+  ! EXPONENT        [ reduce using rule 26 (expression -> expression NOTEQUALTO expression .) ]
+  ! IN              [ reduce using rule 26 (expression -> expression NOTEQUALTO expression .) ]
+  ! FLOORDIVIDE     [ reduce using rule 26 (expression -> expression NOTEQUALTO expression .) ]
+  ! GREATER         [ shift and go to state 55 ]
+  ! LESS            [ shift and go to state 57 ]
+  ! GREATEQ         [ shift and go to state 51 ]
+  ! LESSEQ          [ shift and go to state 64 ]
+  ! AND             [ shift and go to state 60 ]
+  ! OR              [ shift and go to state 52 ]
+  ! EQUALS          [ shift and go to state 56 ]
+  ! NOTEQUALTO      [ shift and go to state 50 ]
+
+
+state 79
+
+    (20) expression -> expression GREATEQ expression .
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+    (16) expression -> expression . GREATER expression
+    (17) expression -> expression . LESS expression
+    (18) expression -> expression . MOD expression
+    (19) expression -> expression . EXPONENT expression
+    (20) expression -> expression . GREATEQ expression
+    (21) expression -> expression . LESSEQ expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . EQUALS expression
+    (25) expression -> expression . IN expression
+    (26) expression -> expression . NOTEQUALTO expression
+    (27) expression -> expression . FLOORDIVIDE expression
+
+    GREATER         reduce using rule 20 (expression -> expression GREATEQ expression .)
+    LESS            reduce using rule 20 (expression -> expression GREATEQ expression .)
+    GREATEQ         reduce using rule 20 (expression -> expression GREATEQ expression .)
+    LESSEQ          reduce using rule 20 (expression -> expression GREATEQ expression .)
+    AND             reduce using rule 20 (expression -> expression GREATEQ expression .)
+    OR              reduce using rule 20 (expression -> expression GREATEQ expression .)
+    EQUALS          reduce using rule 20 (expression -> expression GREATEQ expression .)
+    NOTEQUALTO      reduce using rule 20 (expression -> expression GREATEQ expression .)
+    RPAREN          reduce using rule 20 (expression -> expression GREATEQ expression .)
+    SEMI            reduce using rule 20 (expression -> expression GREATEQ expression .)
+    COMMA           reduce using rule 20 (expression -> expression GREATEQ expression .)
+    LPAREN          reduce using rule 20 (expression -> expression GREATEQ expression .)
+    NUMBER          reduce using rule 20 (expression -> expression GREATEQ expression .)
+    TRUE            reduce using rule 20 (expression -> expression GREATEQ expression .)
+    FALSE           reduce using rule 20 (expression -> expression GREATEQ expression .)
+    STR             reduce using rule 20 (expression -> expression GREATEQ expression .)
+    VAR             reduce using rule 20 (expression -> expression GREATEQ expression .)
+    LSQUARE         reduce using rule 20 (expression -> expression GREATEQ expression .)
+    RSQUARE         reduce using rule 20 (expression -> expression GREATEQ expression .)
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 54
+    TIMES           shift and go to state 61
+    DIVIDE          shift and go to state 66
+    MOD             shift and go to state 65
+    EXPONENT        shift and go to state 58
+    IN              shift and go to state 63
+    FLOORDIVIDE     shift and go to state 59
+
+  ! PLUS            [ reduce using rule 20 (expression -> expression GREATEQ expression .) ]
+  ! MINUS           [ reduce using rule 20 (expression -> expression GREATEQ expression .) ]
+  ! TIMES           [ reduce using rule 20 (expression -> expression GREATEQ expression .) ]
+  ! DIVIDE          [ reduce using rule 20 (expression -> expression GREATEQ expression .) ]
+  ! MOD             [ reduce using rule 20 (expression -> expression GREATEQ expression .) ]
+  ! EXPONENT        [ reduce using rule 20 (expression -> expression GREATEQ expression .) ]
+  ! IN              [ reduce using rule 20 (expression -> expression GREATEQ expression .) ]
+  ! FLOORDIVIDE     [ reduce using rule 20 (expression -> expression GREATEQ expression .) ]
+  ! GREATER         [ shift and go to state 55 ]
+  ! LESS            [ shift and go to state 57 ]
+  ! GREATEQ         [ shift and go to state 51 ]
+  ! LESSEQ          [ shift and go to state 64 ]
+  ! AND             [ shift and go to state 60 ]
+  ! OR              [ shift and go to state 52 ]
+  ! EQUALS          [ shift and go to state 56 ]
+  ! NOTEQUALTO      [ shift and go to state 50 ]
+
+
+state 80
+
+    (23) expression -> expression OR expression .
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+    (16) expression -> expression . GREATER expression
+    (17) expression -> expression . LESS expression
+    (18) expression -> expression . MOD expression
+    (19) expression -> expression . EXPONENT expression
+    (20) expression -> expression . GREATEQ expression
+    (21) expression -> expression . LESSEQ expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . EQUALS expression
+    (25) expression -> expression . IN expression
+    (26) expression -> expression . NOTEQUALTO expression
+    (27) expression -> expression . FLOORDIVIDE expression
+
+    OR              reduce using rule 23 (expression -> expression OR expression .)
+    RPAREN          reduce using rule 23 (expression -> expression OR expression .)
+    SEMI            reduce using rule 23 (expression -> expression OR expression .)
+    COMMA           reduce using rule 23 (expression -> expression OR expression .)
+    LPAREN          reduce using rule 23 (expression -> expression OR expression .)
+    NUMBER          reduce using rule 23 (expression -> expression OR expression .)
+    TRUE            reduce using rule 23 (expression -> expression OR expression .)
+    FALSE           reduce using rule 23 (expression -> expression OR expression .)
+    STR             reduce using rule 23 (expression -> expression OR expression .)
+    VAR             reduce using rule 23 (expression -> expression OR expression .)
+    LSQUARE         reduce using rule 23 (expression -> expression OR expression .)
+    RSQUARE         reduce using rule 23 (expression -> expression OR expression .)
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 54
+    TIMES           shift and go to state 61
+    DIVIDE          shift and go to state 66
+    GREATER         shift and go to state 55
+    LESS            shift and go to state 57
+    MOD             shift and go to state 65
+    EXPONENT        shift and go to state 58
+    GREATEQ         shift and go to state 51
+    LESSEQ          shift and go to state 64
+    AND             shift and go to state 60
+    EQUALS          shift and go to state 56
+    IN              shift and go to state 63
+    NOTEQUALTO      shift and go to state 50
+    FLOORDIVIDE     shift and go to state 59
+
+  ! PLUS            [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! MINUS           [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! TIMES           [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! DIVIDE          [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! GREATER         [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! LESS            [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! MOD             [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! EXPONENT        [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! GREATEQ         [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! LESSEQ          [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! AND             [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! EQUALS          [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! IN              [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! NOTEQUALTO      [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! FLOORDIVIDE     [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! OR              [ shift and go to state 52 ]
+
+
+state 81
+
+    (10) print_smt -> PRINT LPAREN expression RPAREN SEMI .
+
+    LBRACE          reduce using rule 10 (print_smt -> PRINT LPAREN expression RPAREN SEMI .)
+    PRINT           reduce using rule 10 (print_smt -> PRINT LPAREN expression RPAREN SEMI .)
+    VAR             reduce using rule 10 (print_smt -> PRINT LPAREN expression RPAREN SEMI .)
+    TRUE            reduce using rule 10 (print_smt -> PRINT LPAREN expression RPAREN SEMI .)
+    FALSE           reduce using rule 10 (print_smt -> PRINT LPAREN expression RPAREN SEMI .)
+    IF              reduce using rule 10 (print_smt -> PRINT LPAREN expression RPAREN SEMI .)
+    WHILE           reduce using rule 10 (print_smt -> PRINT LPAREN expression RPAREN SEMI .)
+    RBRACE          reduce using rule 10 (print_smt -> PRINT LPAREN expression RPAREN SEMI .)
+
+
+state 82
+
+    (13) expression -> expression MINUS expression .
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+    (16) expression -> expression . GREATER expression
+    (17) expression -> expression . LESS expression
+    (18) expression -> expression . MOD expression
+    (19) expression -> expression . EXPONENT expression
+    (20) expression -> expression . GREATEQ expression
+    (21) expression -> expression . LESSEQ expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . EQUALS expression
+    (25) expression -> expression . IN expression
+    (26) expression -> expression . NOTEQUALTO expression
+    (27) expression -> expression . FLOORDIVIDE expression
+
+    PLUS            reduce using rule 13 (expression -> expression MINUS expression .)
+    MINUS           reduce using rule 13 (expression -> expression MINUS expression .)
+    GREATER         reduce using rule 13 (expression -> expression MINUS expression .)
+    LESS            reduce using rule 13 (expression -> expression MINUS expression .)
+    GREATEQ         reduce using rule 13 (expression -> expression MINUS expression .)
+    LESSEQ          reduce using rule 13 (expression -> expression MINUS expression .)
+    AND             reduce using rule 13 (expression -> expression MINUS expression .)
+    OR              reduce using rule 13 (expression -> expression MINUS expression .)
+    EQUALS          reduce using rule 13 (expression -> expression MINUS expression .)
+    IN              reduce using rule 13 (expression -> expression MINUS expression .)
+    NOTEQUALTO      reduce using rule 13 (expression -> expression MINUS expression .)
+    RPAREN          reduce using rule 13 (expression -> expression MINUS expression .)
+    SEMI            reduce using rule 13 (expression -> expression MINUS expression .)
+    COMMA           reduce using rule 13 (expression -> expression MINUS expression .)
+    LPAREN          reduce using rule 13 (expression -> expression MINUS expression .)
+    NUMBER          reduce using rule 13 (expression -> expression MINUS expression .)
+    TRUE            reduce using rule 13 (expression -> expression MINUS expression .)
+    FALSE           reduce using rule 13 (expression -> expression MINUS expression .)
+    STR             reduce using rule 13 (expression -> expression MINUS expression .)
+    VAR             reduce using rule 13 (expression -> expression MINUS expression .)
+    LSQUARE         reduce using rule 13 (expression -> expression MINUS expression .)
+    RSQUARE         reduce using rule 13 (expression -> expression MINUS expression .)
+    TIMES           shift and go to state 61
+    DIVIDE          shift and go to state 66
+    MOD             shift and go to state 65
+    EXPONENT        shift and go to state 58
+    FLOORDIVIDE     shift and go to state 59
+
+  ! TIMES           [ reduce using rule 13 (expression -> expression MINUS expression .) ]
+  ! DIVIDE          [ reduce using rule 13 (expression -> expression MINUS expression .) ]
+  ! MOD             [ reduce using rule 13 (expression -> expression MINUS expression .) ]
+  ! EXPONENT        [ reduce using rule 13 (expression -> expression MINUS expression .) ]
+  ! FLOORDIVIDE     [ reduce using rule 13 (expression -> expression MINUS expression .) ]
+  ! PLUS            [ shift and go to state 62 ]
+  ! MINUS           [ shift and go to state 54 ]
+  ! GREATER         [ shift and go to state 55 ]
+  ! LESS            [ shift and go to state 57 ]
+  ! GREATEQ         [ shift and go to state 51 ]
+  ! LESSEQ          [ shift and go to state 64 ]
+  ! AND             [ shift and go to state 60 ]
+  ! OR              [ shift and go to state 52 ]
+  ! EQUALS          [ shift and go to state 56 ]
+  ! IN              [ shift and go to state 63 ]
+  ! NOTEQUALTO      [ shift and go to state 50 ]
+
+
+state 83
+
+    (16) expression -> expression GREATER expression .
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+    (16) expression -> expression . GREATER expression
+    (17) expression -> expression . LESS expression
+    (18) expression -> expression . MOD expression
+    (19) expression -> expression . EXPONENT expression
+    (20) expression -> expression . GREATEQ expression
+    (21) expression -> expression . LESSEQ expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . EQUALS expression
+    (25) expression -> expression . IN expression
+    (26) expression -> expression . NOTEQUALTO expression
+    (27) expression -> expression . FLOORDIVIDE expression
+
+    GREATER         reduce using rule 16 (expression -> expression GREATER expression .)
+    LESS            reduce using rule 16 (expression -> expression GREATER expression .)
+    GREATEQ         reduce using rule 16 (expression -> expression GREATER expression .)
+    LESSEQ          reduce using rule 16 (expression -> expression GREATER expression .)
+    AND             reduce using rule 16 (expression -> expression GREATER expression .)
+    OR              reduce using rule 16 (expression -> expression GREATER expression .)
+    EQUALS          reduce using rule 16 (expression -> expression GREATER expression .)
+    NOTEQUALTO      reduce using rule 16 (expression -> expression GREATER expression .)
+    RPAREN          reduce using rule 16 (expression -> expression GREATER expression .)
+    SEMI            reduce using rule 16 (expression -> expression GREATER expression .)
+    COMMA           reduce using rule 16 (expression -> expression GREATER expression .)
+    LPAREN          reduce using rule 16 (expression -> expression GREATER expression .)
+    NUMBER          reduce using rule 16 (expression -> expression GREATER expression .)
+    TRUE            reduce using rule 16 (expression -> expression GREATER expression .)
+    FALSE           reduce using rule 16 (expression -> expression GREATER expression .)
+    STR             reduce using rule 16 (expression -> expression GREATER expression .)
+    VAR             reduce using rule 16 (expression -> expression GREATER expression .)
+    LSQUARE         reduce using rule 16 (expression -> expression GREATER expression .)
+    RSQUARE         reduce using rule 16 (expression -> expression GREATER expression .)
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 54
+    TIMES           shift and go to state 61
+    DIVIDE          shift and go to state 66
+    MOD             shift and go to state 65
+    EXPONENT        shift and go to state 58
+    IN              shift and go to state 63
+    FLOORDIVIDE     shift and go to state 59
+
+  ! PLUS            [ reduce using rule 16 (expression -> expression GREATER expression .) ]
+  ! MINUS           [ reduce using rule 16 (expression -> expression GREATER expression .) ]
+  ! TIMES           [ reduce using rule 16 (expression -> expression GREATER expression .) ]
+  ! DIVIDE          [ reduce using rule 16 (expression -> expression GREATER expression .) ]
+  ! MOD             [ reduce using rule 16 (expression -> expression GREATER expression .) ]
+  ! EXPONENT        [ reduce using rule 16 (expression -> expression GREATER expression .) ]
+  ! IN              [ reduce using rule 16 (expression -> expression GREATER expression .) ]
+  ! FLOORDIVIDE     [ reduce using rule 16 (expression -> expression GREATER expression .) ]
+  ! GREATER         [ shift and go to state 55 ]
+  ! LESS            [ shift and go to state 57 ]
+  ! GREATEQ         [ shift and go to state 51 ]
+  ! LESSEQ          [ shift and go to state 64 ]
+  ! AND             [ shift and go to state 60 ]
+  ! OR              [ shift and go to state 52 ]
+  ! EQUALS          [ shift and go to state 56 ]
+  ! NOTEQUALTO      [ shift and go to state 50 ]
+
+
+state 84
+
+    (24) expression -> expression EQUALS expression .
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+    (16) expression -> expression . GREATER expression
+    (17) expression -> expression . LESS expression
+    (18) expression -> expression . MOD expression
+    (19) expression -> expression . EXPONENT expression
+    (20) expression -> expression . GREATEQ expression
+    (21) expression -> expression . LESSEQ expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . EQUALS expression
+    (25) expression -> expression . IN expression
+    (26) expression -> expression . NOTEQUALTO expression
+    (27) expression -> expression . FLOORDIVIDE expression
+
+    GREATER         reduce using rule 24 (expression -> expression EQUALS expression .)
+    LESS            reduce using rule 24 (expression -> expression EQUALS expression .)
+    GREATEQ         reduce using rule 24 (expression -> expression EQUALS expression .)
+    LESSEQ          reduce using rule 24 (expression -> expression EQUALS expression .)
+    AND             reduce using rule 24 (expression -> expression EQUALS expression .)
+    OR              reduce using rule 24 (expression -> expression EQUALS expression .)
+    EQUALS          reduce using rule 24 (expression -> expression EQUALS expression .)
+    NOTEQUALTO      reduce using rule 24 (expression -> expression EQUALS expression .)
+    RPAREN          reduce using rule 24 (expression -> expression EQUALS expression .)
+    SEMI            reduce using rule 24 (expression -> expression EQUALS expression .)
+    COMMA           reduce using rule 24 (expression -> expression EQUALS expression .)
+    LPAREN          reduce using rule 24 (expression -> expression EQUALS expression .)
+    NUMBER          reduce using rule 24 (expression -> expression EQUALS expression .)
+    TRUE            reduce using rule 24 (expression -> expression EQUALS expression .)
+    FALSE           reduce using rule 24 (expression -> expression EQUALS expression .)
+    STR             reduce using rule 24 (expression -> expression EQUALS expression .)
+    VAR             reduce using rule 24 (expression -> expression EQUALS expression .)
+    LSQUARE         reduce using rule 24 (expression -> expression EQUALS expression .)
+    RSQUARE         reduce using rule 24 (expression -> expression EQUALS expression .)
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 54
+    TIMES           shift and go to state 61
+    DIVIDE          shift and go to state 66
+    MOD             shift and go to state 65
+    EXPONENT        shift and go to state 58
+    IN              shift and go to state 63
+    FLOORDIVIDE     shift and go to state 59
+
+  ! PLUS            [ reduce using rule 24 (expression -> expression EQUALS expression .) ]
+  ! MINUS           [ reduce using rule 24 (expression -> expression EQUALS expression .) ]
+  ! TIMES           [ reduce using rule 24 (expression -> expression EQUALS expression .) ]
+  ! DIVIDE          [ reduce using rule 24 (expression -> expression EQUALS expression .) ]
+  ! MOD             [ reduce using rule 24 (expression -> expression EQUALS expression .) ]
+  ! EXPONENT        [ reduce using rule 24 (expression -> expression EQUALS expression .) ]
+  ! IN              [ reduce using rule 24 (expression -> expression EQUALS expression .) ]
+  ! FLOORDIVIDE     [ reduce using rule 24 (expression -> expression EQUALS expression .) ]
+  ! GREATER         [ shift and go to state 55 ]
+  ! LESS            [ shift and go to state 57 ]
+  ! GREATEQ         [ shift and go to state 51 ]
+  ! LESSEQ          [ shift and go to state 64 ]
+  ! AND             [ shift and go to state 60 ]
+  ! OR              [ shift and go to state 52 ]
+  ! EQUALS          [ shift and go to state 56 ]
+  ! NOTEQUALTO      [ shift and go to state 50 ]
+
+
+state 85
+
+    (17) expression -> expression LESS expression .
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+    (16) expression -> expression . GREATER expression
+    (17) expression -> expression . LESS expression
+    (18) expression -> expression . MOD expression
+    (19) expression -> expression . EXPONENT expression
+    (20) expression -> expression . GREATEQ expression
+    (21) expression -> expression . LESSEQ expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . EQUALS expression
+    (25) expression -> expression . IN expression
+    (26) expression -> expression . NOTEQUALTO expression
+    (27) expression -> expression . FLOORDIVIDE expression
+
+    GREATER         reduce using rule 17 (expression -> expression LESS expression .)
+    LESS            reduce using rule 17 (expression -> expression LESS expression .)
+    GREATEQ         reduce using rule 17 (expression -> expression LESS expression .)
+    LESSEQ          reduce using rule 17 (expression -> expression LESS expression .)
+    AND             reduce using rule 17 (expression -> expression LESS expression .)
+    OR              reduce using rule 17 (expression -> expression LESS expression .)
+    EQUALS          reduce using rule 17 (expression -> expression LESS expression .)
+    NOTEQUALTO      reduce using rule 17 (expression -> expression LESS expression .)
+    RPAREN          reduce using rule 17 (expression -> expression LESS expression .)
+    SEMI            reduce using rule 17 (expression -> expression LESS expression .)
+    COMMA           reduce using rule 17 (expression -> expression LESS expression .)
+    LPAREN          reduce using rule 17 (expression -> expression LESS expression .)
+    NUMBER          reduce using rule 17 (expression -> expression LESS expression .)
+    TRUE            reduce using rule 17 (expression -> expression LESS expression .)
+    FALSE           reduce using rule 17 (expression -> expression LESS expression .)
+    STR             reduce using rule 17 (expression -> expression LESS expression .)
+    VAR             reduce using rule 17 (expression -> expression LESS expression .)
+    LSQUARE         reduce using rule 17 (expression -> expression LESS expression .)
+    RSQUARE         reduce using rule 17 (expression -> expression LESS expression .)
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 54
+    TIMES           shift and go to state 61
+    DIVIDE          shift and go to state 66
+    MOD             shift and go to state 65
+    EXPONENT        shift and go to state 58
+    IN              shift and go to state 63
+    FLOORDIVIDE     shift and go to state 59
+
+  ! PLUS            [ reduce using rule 17 (expression -> expression LESS expression .) ]
+  ! MINUS           [ reduce using rule 17 (expression -> expression LESS expression .) ]
+  ! TIMES           [ reduce using rule 17 (expression -> expression LESS expression .) ]
+  ! DIVIDE          [ reduce using rule 17 (expression -> expression LESS expression .) ]
+  ! MOD             [ reduce using rule 17 (expression -> expression LESS expression .) ]
+  ! EXPONENT        [ reduce using rule 17 (expression -> expression LESS expression .) ]
+  ! IN              [ reduce using rule 17 (expression -> expression LESS expression .) ]
+  ! FLOORDIVIDE     [ reduce using rule 17 (expression -> expression LESS expression .) ]
+  ! GREATER         [ shift and go to state 55 ]
+  ! LESS            [ shift and go to state 57 ]
+  ! GREATEQ         [ shift and go to state 51 ]
+  ! LESSEQ          [ shift and go to state 64 ]
+  ! AND             [ shift and go to state 60 ]
+  ! OR              [ shift and go to state 52 ]
+  ! EQUALS          [ shift and go to state 56 ]
+  ! NOTEQUALTO      [ shift and go to state 50 ]
+
+
+state 86
+
+    (19) expression -> expression EXPONENT expression .
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+    (16) expression -> expression . GREATER expression
+    (17) expression -> expression . LESS expression
+    (18) expression -> expression . MOD expression
+    (19) expression -> expression . EXPONENT expression
+    (20) expression -> expression . GREATEQ expression
+    (21) expression -> expression . LESSEQ expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . EQUALS expression
+    (25) expression -> expression . IN expression
+    (26) expression -> expression . NOTEQUALTO expression
+    (27) expression -> expression . FLOORDIVIDE expression
+
+    PLUS            reduce using rule 19 (expression -> expression EXPONENT expression .)
+    MINUS           reduce using rule 19 (expression -> expression EXPONENT expression .)
+    TIMES           reduce using rule 19 (expression -> expression EXPONENT expression .)
+    DIVIDE          reduce using rule 19 (expression -> expression EXPONENT expression .)
+    GREATER         reduce using rule 19 (expression -> expression EXPONENT expression .)
+    LESS            reduce using rule 19 (expression -> expression EXPONENT expression .)
+    MOD             reduce using rule 19 (expression -> expression EXPONENT expression .)
+    GREATEQ         reduce using rule 19 (expression -> expression EXPONENT expression .)
+    LESSEQ          reduce using rule 19 (expression -> expression EXPONENT expression .)
+    AND             reduce using rule 19 (expression -> expression EXPONENT expression .)
+    OR              reduce using rule 19 (expression -> expression EXPONENT expression .)
+    EQUALS          reduce using rule 19 (expression -> expression EXPONENT expression .)
+    IN              reduce using rule 19 (expression -> expression EXPONENT expression .)
+    NOTEQUALTO      reduce using rule 19 (expression -> expression EXPONENT expression .)
+    FLOORDIVIDE     reduce using rule 19 (expression -> expression EXPONENT expression .)
+    RPAREN          reduce using rule 19 (expression -> expression EXPONENT expression .)
+    SEMI            reduce using rule 19 (expression -> expression EXPONENT expression .)
+    COMMA           reduce using rule 19 (expression -> expression EXPONENT expression .)
+    LPAREN          reduce using rule 19 (expression -> expression EXPONENT expression .)
+    NUMBER          reduce using rule 19 (expression -> expression EXPONENT expression .)
+    TRUE            reduce using rule 19 (expression -> expression EXPONENT expression .)
+    FALSE           reduce using rule 19 (expression -> expression EXPONENT expression .)
+    STR             reduce using rule 19 (expression -> expression EXPONENT expression .)
+    VAR             reduce using rule 19 (expression -> expression EXPONENT expression .)
+    LSQUARE         reduce using rule 19 (expression -> expression EXPONENT expression .)
+    RSQUARE         reduce using rule 19 (expression -> expression EXPONENT expression .)
+    EXPONENT        shift and go to state 58
+
+  ! EXPONENT        [ reduce using rule 19 (expression -> expression EXPONENT expression .) ]
+  ! PLUS            [ shift and go to state 62 ]
+  ! MINUS           [ shift and go to state 54 ]
+  ! TIMES           [ shift and go to state 61 ]
+  ! DIVIDE          [ shift and go to state 66 ]
+  ! GREATER         [ shift and go to state 55 ]
+  ! LESS            [ shift and go to state 57 ]
+  ! MOD             [ shift and go to state 65 ]
+  ! GREATEQ         [ shift and go to state 51 ]
+  ! LESSEQ          [ shift and go to state 64 ]
+  ! AND             [ shift and go to state 60 ]
+  ! OR              [ shift and go to state 52 ]
+  ! EQUALS          [ shift and go to state 56 ]
+  ! IN              [ shift and go to state 63 ]
+  ! NOTEQUALTO      [ shift and go to state 50 ]
+  ! FLOORDIVIDE     [ shift and go to state 59 ]
+
+
+state 87
+
+    (27) expression -> expression FLOORDIVIDE expression .
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+    (16) expression -> expression . GREATER expression
+    (17) expression -> expression . LESS expression
+    (18) expression -> expression . MOD expression
+    (19) expression -> expression . EXPONENT expression
+    (20) expression -> expression . GREATEQ expression
+    (21) expression -> expression . LESSEQ expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . EQUALS expression
+    (25) expression -> expression . IN expression
+    (26) expression -> expression . NOTEQUALTO expression
+    (27) expression -> expression . FLOORDIVIDE expression
+
+    PLUS            reduce using rule 27 (expression -> expression FLOORDIVIDE expression .)
+    MINUS           reduce using rule 27 (expression -> expression FLOORDIVIDE expression .)
+    GREATER         reduce using rule 27 (expression -> expression FLOORDIVIDE expression .)
+    LESS            reduce using rule 27 (expression -> expression FLOORDIVIDE expression .)
+    MOD             reduce using rule 27 (expression -> expression FLOORDIVIDE expression .)
+    GREATEQ         reduce using rule 27 (expression -> expression FLOORDIVIDE expression .)
+    LESSEQ          reduce using rule 27 (expression -> expression FLOORDIVIDE expression .)
+    AND             reduce using rule 27 (expression -> expression FLOORDIVIDE expression .)
+    OR              reduce using rule 27 (expression -> expression FLOORDIVIDE expression .)
+    EQUALS          reduce using rule 27 (expression -> expression FLOORDIVIDE expression .)
+    IN              reduce using rule 27 (expression -> expression FLOORDIVIDE expression .)
+    NOTEQUALTO      reduce using rule 27 (expression -> expression FLOORDIVIDE expression .)
+    FLOORDIVIDE     reduce using rule 27 (expression -> expression FLOORDIVIDE expression .)
+    RPAREN          reduce using rule 27 (expression -> expression FLOORDIVIDE expression .)
+    SEMI            reduce using rule 27 (expression -> expression FLOORDIVIDE expression .)
+    COMMA           reduce using rule 27 (expression -> expression FLOORDIVIDE expression .)
+    LPAREN          reduce using rule 27 (expression -> expression FLOORDIVIDE expression .)
+    NUMBER          reduce using rule 27 (expression -> expression FLOORDIVIDE expression .)
+    TRUE            reduce using rule 27 (expression -> expression FLOORDIVIDE expression .)
+    FALSE           reduce using rule 27 (expression -> expression FLOORDIVIDE expression .)
+    STR             reduce using rule 27 (expression -> expression FLOORDIVIDE expression .)
+    VAR             reduce using rule 27 (expression -> expression FLOORDIVIDE expression .)
+    LSQUARE         reduce using rule 27 (expression -> expression FLOORDIVIDE expression .)
+    RSQUARE         reduce using rule 27 (expression -> expression FLOORDIVIDE expression .)
+    TIMES           shift and go to state 61
+    DIVIDE          shift and go to state 66
+    EXPONENT        shift and go to state 58
+
+  ! TIMES           [ reduce using rule 27 (expression -> expression FLOORDIVIDE expression .) ]
+  ! DIVIDE          [ reduce using rule 27 (expression -> expression FLOORDIVIDE expression .) ]
+  ! EXPONENT        [ reduce using rule 27 (expression -> expression FLOORDIVIDE expression .) ]
+  ! PLUS            [ shift and go to state 62 ]
+  ! MINUS           [ shift and go to state 54 ]
+  ! GREATER         [ shift and go to state 55 ]
+  ! LESS            [ shift and go to state 57 ]
+  ! MOD             [ shift and go to state 65 ]
+  ! GREATEQ         [ shift and go to state 51 ]
+  ! LESSEQ          [ shift and go to state 64 ]
+  ! AND             [ shift and go to state 60 ]
+  ! OR              [ shift and go to state 52 ]
+  ! EQUALS          [ shift and go to state 56 ]
+  ! IN              [ shift and go to state 63 ]
+  ! NOTEQUALTO      [ shift and go to state 50 ]
+  ! FLOORDIVIDE     [ shift and go to state 59 ]
+
+
+state 88
+
+    (22) expression -> expression AND expression .
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+    (16) expression -> expression . GREATER expression
+    (17) expression -> expression . LESS expression
+    (18) expression -> expression . MOD expression
+    (19) expression -> expression . EXPONENT expression
+    (20) expression -> expression . GREATEQ expression
+    (21) expression -> expression . LESSEQ expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . EQUALS expression
+    (25) expression -> expression . IN expression
+    (26) expression -> expression . NOTEQUALTO expression
+    (27) expression -> expression . FLOORDIVIDE expression
+
+    AND             reduce using rule 22 (expression -> expression AND expression .)
+    OR              reduce using rule 22 (expression -> expression AND expression .)
+    RPAREN          reduce using rule 22 (expression -> expression AND expression .)
+    SEMI            reduce using rule 22 (expression -> expression AND expression .)
+    COMMA           reduce using rule 22 (expression -> expression AND expression .)
+    LPAREN          reduce using rule 22 (expression -> expression AND expression .)
+    NUMBER          reduce using rule 22 (expression -> expression AND expression .)
+    TRUE            reduce using rule 22 (expression -> expression AND expression .)
+    FALSE           reduce using rule 22 (expression -> expression AND expression .)
+    STR             reduce using rule 22 (expression -> expression AND expression .)
+    VAR             reduce using rule 22 (expression -> expression AND expression .)
+    LSQUARE         reduce using rule 22 (expression -> expression AND expression .)
+    RSQUARE         reduce using rule 22 (expression -> expression AND expression .)
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 54
+    TIMES           shift and go to state 61
+    DIVIDE          shift and go to state 66
+    GREATER         shift and go to state 55
+    LESS            shift and go to state 57
+    MOD             shift and go to state 65
+    EXPONENT        shift and go to state 58
+    GREATEQ         shift and go to state 51
+    LESSEQ          shift and go to state 64
+    EQUALS          shift and go to state 56
+    IN              shift and go to state 63
+    NOTEQUALTO      shift and go to state 50
+    FLOORDIVIDE     shift and go to state 59
+
+  ! PLUS            [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! MINUS           [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! TIMES           [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! DIVIDE          [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! GREATER         [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! LESS            [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! MOD             [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! EXPONENT        [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! GREATEQ         [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! LESSEQ          [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! EQUALS          [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! IN              [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! NOTEQUALTO      [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! FLOORDIVIDE     [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! AND             [ shift and go to state 60 ]
+  ! OR              [ shift and go to state 52 ]
+
+
+state 89
+
+    (14) expression -> expression TIMES expression .
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+    (16) expression -> expression . GREATER expression
+    (17) expression -> expression . LESS expression
+    (18) expression -> expression . MOD expression
+    (19) expression -> expression . EXPONENT expression
+    (20) expression -> expression . GREATEQ expression
+    (21) expression -> expression . LESSEQ expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . EQUALS expression
+    (25) expression -> expression . IN expression
+    (26) expression -> expression . NOTEQUALTO expression
+    (27) expression -> expression . FLOORDIVIDE expression
+
+    PLUS            reduce using rule 14 (expression -> expression TIMES expression .)
+    MINUS           reduce using rule 14 (expression -> expression TIMES expression .)
+    TIMES           reduce using rule 14 (expression -> expression TIMES expression .)
+    DIVIDE          reduce using rule 14 (expression -> expression TIMES expression .)
+    GREATER         reduce using rule 14 (expression -> expression TIMES expression .)
+    LESS            reduce using rule 14 (expression -> expression TIMES expression .)
+    MOD             reduce using rule 14 (expression -> expression TIMES expression .)
+    GREATEQ         reduce using rule 14 (expression -> expression TIMES expression .)
+    LESSEQ          reduce using rule 14 (expression -> expression TIMES expression .)
+    AND             reduce using rule 14 (expression -> expression TIMES expression .)
+    OR              reduce using rule 14 (expression -> expression TIMES expression .)
+    EQUALS          reduce using rule 14 (expression -> expression TIMES expression .)
+    IN              reduce using rule 14 (expression -> expression TIMES expression .)
+    NOTEQUALTO      reduce using rule 14 (expression -> expression TIMES expression .)
+    FLOORDIVIDE     reduce using rule 14 (expression -> expression TIMES expression .)
+    RPAREN          reduce using rule 14 (expression -> expression TIMES expression .)
+    SEMI            reduce using rule 14 (expression -> expression TIMES expression .)
+    COMMA           reduce using rule 14 (expression -> expression TIMES expression .)
+    LPAREN          reduce using rule 14 (expression -> expression TIMES expression .)
+    NUMBER          reduce using rule 14 (expression -> expression TIMES expression .)
+    TRUE            reduce using rule 14 (expression -> expression TIMES expression .)
+    FALSE           reduce using rule 14 (expression -> expression TIMES expression .)
+    STR             reduce using rule 14 (expression -> expression TIMES expression .)
+    VAR             reduce using rule 14 (expression -> expression TIMES expression .)
+    LSQUARE         reduce using rule 14 (expression -> expression TIMES expression .)
+    RSQUARE         reduce using rule 14 (expression -> expression TIMES expression .)
+    EXPONENT        shift and go to state 58
+
+  ! EXPONENT        [ reduce using rule 14 (expression -> expression TIMES expression .) ]
+  ! PLUS            [ shift and go to state 62 ]
+  ! MINUS           [ shift and go to state 54 ]
+  ! TIMES           [ shift and go to state 61 ]
+  ! DIVIDE          [ shift and go to state 66 ]
+  ! GREATER         [ shift and go to state 55 ]
+  ! LESS            [ shift and go to state 57 ]
+  ! MOD             [ shift and go to state 65 ]
+  ! GREATEQ         [ shift and go to state 51 ]
+  ! LESSEQ          [ shift and go to state 64 ]
+  ! AND             [ shift and go to state 60 ]
+  ! OR              [ shift and go to state 52 ]
+  ! EQUALS          [ shift and go to state 56 ]
+  ! IN              [ shift and go to state 63 ]
+  ! NOTEQUALTO      [ shift and go to state 50 ]
+  ! FLOORDIVIDE     [ shift and go to state 59 ]
+
+
+state 90
+
+    (12) expression -> expression PLUS expression .
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+    (16) expression -> expression . GREATER expression
+    (17) expression -> expression . LESS expression
+    (18) expression -> expression . MOD expression
+    (19) expression -> expression . EXPONENT expression
+    (20) expression -> expression . GREATEQ expression
+    (21) expression -> expression . LESSEQ expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . EQUALS expression
+    (25) expression -> expression . IN expression
+    (26) expression -> expression . NOTEQUALTO expression
+    (27) expression -> expression . FLOORDIVIDE expression
+
+    PLUS            reduce using rule 12 (expression -> expression PLUS expression .)
+    MINUS           reduce using rule 12 (expression -> expression PLUS expression .)
+    GREATER         reduce using rule 12 (expression -> expression PLUS expression .)
+    LESS            reduce using rule 12 (expression -> expression PLUS expression .)
+    GREATEQ         reduce using rule 12 (expression -> expression PLUS expression .)
+    LESSEQ          reduce using rule 12 (expression -> expression PLUS expression .)
+    AND             reduce using rule 12 (expression -> expression PLUS expression .)
+    OR              reduce using rule 12 (expression -> expression PLUS expression .)
+    EQUALS          reduce using rule 12 (expression -> expression PLUS expression .)
+    IN              reduce using rule 12 (expression -> expression PLUS expression .)
+    NOTEQUALTO      reduce using rule 12 (expression -> expression PLUS expression .)
+    RPAREN          reduce using rule 12 (expression -> expression PLUS expression .)
+    SEMI            reduce using rule 12 (expression -> expression PLUS expression .)
+    COMMA           reduce using rule 12 (expression -> expression PLUS expression .)
+    LPAREN          reduce using rule 12 (expression -> expression PLUS expression .)
+    NUMBER          reduce using rule 12 (expression -> expression PLUS expression .)
+    TRUE            reduce using rule 12 (expression -> expression PLUS expression .)
+    FALSE           reduce using rule 12 (expression -> expression PLUS expression .)
+    STR             reduce using rule 12 (expression -> expression PLUS expression .)
+    VAR             reduce using rule 12 (expression -> expression PLUS expression .)
+    LSQUARE         reduce using rule 12 (expression -> expression PLUS expression .)
+    RSQUARE         reduce using rule 12 (expression -> expression PLUS expression .)
+    TIMES           shift and go to state 61
+    DIVIDE          shift and go to state 66
+    MOD             shift and go to state 65
+    EXPONENT        shift and go to state 58
+    FLOORDIVIDE     shift and go to state 59
+
+  ! TIMES           [ reduce using rule 12 (expression -> expression PLUS expression .) ]
+  ! DIVIDE          [ reduce using rule 12 (expression -> expression PLUS expression .) ]
+  ! MOD             [ reduce using rule 12 (expression -> expression PLUS expression .) ]
+  ! EXPONENT        [ reduce using rule 12 (expression -> expression PLUS expression .) ]
+  ! FLOORDIVIDE     [ reduce using rule 12 (expression -> expression PLUS expression .) ]
+  ! PLUS            [ shift and go to state 62 ]
+  ! MINUS           [ shift and go to state 54 ]
+  ! GREATER         [ shift and go to state 55 ]
+  ! LESS            [ shift and go to state 57 ]
+  ! GREATEQ         [ shift and go to state 51 ]
+  ! LESSEQ          [ shift and go to state 64 ]
+  ! AND             [ shift and go to state 60 ]
+  ! OR              [ shift and go to state 52 ]
+  ! EQUALS          [ shift and go to state 56 ]
+  ! IN              [ shift and go to state 63 ]
+  ! NOTEQUALTO      [ shift and go to state 50 ]
+
+
+state 91
+
+    (25) expression -> expression IN expression .
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+    (16) expression -> expression . GREATER expression
+    (17) expression -> expression . LESS expression
+    (18) expression -> expression . MOD expression
+    (19) expression -> expression . EXPONENT expression
+    (20) expression -> expression . GREATEQ expression
+    (21) expression -> expression . LESSEQ expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . EQUALS expression
+    (25) expression -> expression . IN expression
+    (26) expression -> expression . NOTEQUALTO expression
+    (27) expression -> expression . FLOORDIVIDE expression
+
+    GREATER         reduce using rule 25 (expression -> expression IN expression .)
+    LESS            reduce using rule 25 (expression -> expression IN expression .)
+    GREATEQ         reduce using rule 25 (expression -> expression IN expression .)
+    LESSEQ          reduce using rule 25 (expression -> expression IN expression .)
+    AND             reduce using rule 25 (expression -> expression IN expression .)
+    OR              reduce using rule 25 (expression -> expression IN expression .)
+    EQUALS          reduce using rule 25 (expression -> expression IN expression .)
+    IN              reduce using rule 25 (expression -> expression IN expression .)
+    NOTEQUALTO      reduce using rule 25 (expression -> expression IN expression .)
+    RPAREN          reduce using rule 25 (expression -> expression IN expression .)
+    SEMI            reduce using rule 25 (expression -> expression IN expression .)
+    COMMA           reduce using rule 25 (expression -> expression IN expression .)
+    LPAREN          reduce using rule 25 (expression -> expression IN expression .)
+    NUMBER          reduce using rule 25 (expression -> expression IN expression .)
+    TRUE            reduce using rule 25 (expression -> expression IN expression .)
+    FALSE           reduce using rule 25 (expression -> expression IN expression .)
+    STR             reduce using rule 25 (expression -> expression IN expression .)
+    VAR             reduce using rule 25 (expression -> expression IN expression .)
+    LSQUARE         reduce using rule 25 (expression -> expression IN expression .)
+    RSQUARE         reduce using rule 25 (expression -> expression IN expression .)
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 54
+    TIMES           shift and go to state 61
+    DIVIDE          shift and go to state 66
+    MOD             shift and go to state 65
+    EXPONENT        shift and go to state 58
+    FLOORDIVIDE     shift and go to state 59
+
+  ! PLUS            [ reduce using rule 25 (expression -> expression IN expression .) ]
+  ! MINUS           [ reduce using rule 25 (expression -> expression IN expression .) ]
+  ! TIMES           [ reduce using rule 25 (expression -> expression IN expression .) ]
+  ! DIVIDE          [ reduce using rule 25 (expression -> expression IN expression .) ]
+  ! MOD             [ reduce using rule 25 (expression -> expression IN expression .) ]
+  ! EXPONENT        [ reduce using rule 25 (expression -> expression IN expression .) ]
+  ! FLOORDIVIDE     [ reduce using rule 25 (expression -> expression IN expression .) ]
+  ! GREATER         [ shift and go to state 55 ]
+  ! LESS            [ shift and go to state 57 ]
+  ! GREATEQ         [ shift and go to state 51 ]
+  ! LESSEQ          [ shift and go to state 64 ]
+  ! AND             [ shift and go to state 60 ]
+  ! OR              [ shift and go to state 52 ]
+  ! EQUALS          [ shift and go to state 56 ]
+  ! IN              [ shift and go to state 63 ]
+  ! NOTEQUALTO      [ shift and go to state 50 ]
+
+
+state 92
+
+    (21) expression -> expression LESSEQ expression .
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+    (16) expression -> expression . GREATER expression
+    (17) expression -> expression . LESS expression
+    (18) expression -> expression . MOD expression
+    (19) expression -> expression . EXPONENT expression
+    (20) expression -> expression . GREATEQ expression
+    (21) expression -> expression . LESSEQ expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . EQUALS expression
+    (25) expression -> expression . IN expression
+    (26) expression -> expression . NOTEQUALTO expression
+    (27) expression -> expression . FLOORDIVIDE expression
+
+    GREATER         reduce using rule 21 (expression -> expression LESSEQ expression .)
+    LESS            reduce using rule 21 (expression -> expression LESSEQ expression .)
+    GREATEQ         reduce using rule 21 (expression -> expression LESSEQ expression .)
+    LESSEQ          reduce using rule 21 (expression -> expression LESSEQ expression .)
+    AND             reduce using rule 21 (expression -> expression LESSEQ expression .)
+    OR              reduce using rule 21 (expression -> expression LESSEQ expression .)
+    EQUALS          reduce using rule 21 (expression -> expression LESSEQ expression .)
+    NOTEQUALTO      reduce using rule 21 (expression -> expression LESSEQ expression .)
+    RPAREN          reduce using rule 21 (expression -> expression LESSEQ expression .)
+    SEMI            reduce using rule 21 (expression -> expression LESSEQ expression .)
+    COMMA           reduce using rule 21 (expression -> expression LESSEQ expression .)
+    LPAREN          reduce using rule 21 (expression -> expression LESSEQ expression .)
+    NUMBER          reduce using rule 21 (expression -> expression LESSEQ expression .)
+    TRUE            reduce using rule 21 (expression -> expression LESSEQ expression .)
+    FALSE           reduce using rule 21 (expression -> expression LESSEQ expression .)
+    STR             reduce using rule 21 (expression -> expression LESSEQ expression .)
+    VAR             reduce using rule 21 (expression -> expression LESSEQ expression .)
+    LSQUARE         reduce using rule 21 (expression -> expression LESSEQ expression .)
+    RSQUARE         reduce using rule 21 (expression -> expression LESSEQ expression .)
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 54
+    TIMES           shift and go to state 61
+    DIVIDE          shift and go to state 66
+    MOD             shift and go to state 65
+    EXPONENT        shift and go to state 58
+    IN              shift and go to state 63
+    FLOORDIVIDE     shift and go to state 59
+
+  ! PLUS            [ reduce using rule 21 (expression -> expression LESSEQ expression .) ]
+  ! MINUS           [ reduce using rule 21 (expression -> expression LESSEQ expression .) ]
+  ! TIMES           [ reduce using rule 21 (expression -> expression LESSEQ expression .) ]
+  ! DIVIDE          [ reduce using rule 21 (expression -> expression LESSEQ expression .) ]
+  ! MOD             [ reduce using rule 21 (expression -> expression LESSEQ expression .) ]
+  ! EXPONENT        [ reduce using rule 21 (expression -> expression LESSEQ expression .) ]
+  ! IN              [ reduce using rule 21 (expression -> expression LESSEQ expression .) ]
+  ! FLOORDIVIDE     [ reduce using rule 21 (expression -> expression LESSEQ expression .) ]
+  ! GREATER         [ shift and go to state 55 ]
+  ! LESS            [ shift and go to state 57 ]
+  ! GREATEQ         [ shift and go to state 51 ]
+  ! LESSEQ          [ shift and go to state 64 ]
+  ! AND             [ shift and go to state 60 ]
+  ! OR              [ shift and go to state 52 ]
+  ! EQUALS          [ shift and go to state 56 ]
+  ! NOTEQUALTO      [ shift and go to state 50 ]
+
+
+state 93
+
+    (18) expression -> expression MOD expression .
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+    (16) expression -> expression . GREATER expression
+    (17) expression -> expression . LESS expression
+    (18) expression -> expression . MOD expression
+    (19) expression -> expression . EXPONENT expression
+    (20) expression -> expression . GREATEQ expression
+    (21) expression -> expression . LESSEQ expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . EQUALS expression
+    (25) expression -> expression . IN expression
+    (26) expression -> expression . NOTEQUALTO expression
+    (27) expression -> expression . FLOORDIVIDE expression
+
+    PLUS            reduce using rule 18 (expression -> expression MOD expression .)
+    MINUS           reduce using rule 18 (expression -> expression MOD expression .)
+    GREATER         reduce using rule 18 (expression -> expression MOD expression .)
+    LESS            reduce using rule 18 (expression -> expression MOD expression .)
+    MOD             reduce using rule 18 (expression -> expression MOD expression .)
+    GREATEQ         reduce using rule 18 (expression -> expression MOD expression .)
+    LESSEQ          reduce using rule 18 (expression -> expression MOD expression .)
+    AND             reduce using rule 18 (expression -> expression MOD expression .)
+    OR              reduce using rule 18 (expression -> expression MOD expression .)
+    EQUALS          reduce using rule 18 (expression -> expression MOD expression .)
+    IN              reduce using rule 18 (expression -> expression MOD expression .)
+    NOTEQUALTO      reduce using rule 18 (expression -> expression MOD expression .)
+    RPAREN          reduce using rule 18 (expression -> expression MOD expression .)
+    SEMI            reduce using rule 18 (expression -> expression MOD expression .)
+    COMMA           reduce using rule 18 (expression -> expression MOD expression .)
+    LPAREN          reduce using rule 18 (expression -> expression MOD expression .)
+    NUMBER          reduce using rule 18 (expression -> expression MOD expression .)
+    TRUE            reduce using rule 18 (expression -> expression MOD expression .)
+    FALSE           reduce using rule 18 (expression -> expression MOD expression .)
+    STR             reduce using rule 18 (expression -> expression MOD expression .)
+    VAR             reduce using rule 18 (expression -> expression MOD expression .)
+    LSQUARE         reduce using rule 18 (expression -> expression MOD expression .)
+    RSQUARE         reduce using rule 18 (expression -> expression MOD expression .)
+    TIMES           shift and go to state 61
+    DIVIDE          shift and go to state 66
+    EXPONENT        shift and go to state 58
+    FLOORDIVIDE     shift and go to state 59
+
+  ! TIMES           [ reduce using rule 18 (expression -> expression MOD expression .) ]
+  ! DIVIDE          [ reduce using rule 18 (expression -> expression MOD expression .) ]
+  ! EXPONENT        [ reduce using rule 18 (expression -> expression MOD expression .) ]
+  ! FLOORDIVIDE     [ reduce using rule 18 (expression -> expression MOD expression .) ]
+  ! PLUS            [ shift and go to state 62 ]
+  ! MINUS           [ shift and go to state 54 ]
+  ! GREATER         [ shift and go to state 55 ]
+  ! LESS            [ shift and go to state 57 ]
+  ! MOD             [ shift and go to state 65 ]
+  ! GREATEQ         [ shift and go to state 51 ]
+  ! LESSEQ          [ shift and go to state 64 ]
+  ! AND             [ shift and go to state 60 ]
+  ! OR              [ shift and go to state 52 ]
+  ! EQUALS          [ shift and go to state 56 ]
+  ! IN              [ shift and go to state 63 ]
+  ! NOTEQUALTO      [ shift and go to state 50 ]
+
+
+state 94
+
+    (15) expression -> expression DIVIDE expression .
+    (12) expression -> expression . PLUS expression
+    (13) expression -> expression . MINUS expression
+    (14) expression -> expression . TIMES expression
+    (15) expression -> expression . DIVIDE expression
+    (16) expression -> expression . GREATER expression
+    (17) expression -> expression . LESS expression
+    (18) expression -> expression . MOD expression
+    (19) expression -> expression . EXPONENT expression
+    (20) expression -> expression . GREATEQ expression
+    (21) expression -> expression . LESSEQ expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . EQUALS expression
+    (25) expression -> expression . IN expression
+    (26) expression -> expression . NOTEQUALTO expression
+    (27) expression -> expression . FLOORDIVIDE expression
+
+    PLUS            reduce using rule 15 (expression -> expression DIVIDE expression .)
+    MINUS           reduce using rule 15 (expression -> expression DIVIDE expression .)
+    TIMES           reduce using rule 15 (expression -> expression DIVIDE expression .)
+    DIVIDE          reduce using rule 15 (expression -> expression DIVIDE expression .)
+    GREATER         reduce using rule 15 (expression -> expression DIVIDE expression .)
+    LESS            reduce using rule 15 (expression -> expression DIVIDE expression .)
+    MOD             reduce using rule 15 (expression -> expression DIVIDE expression .)
+    GREATEQ         reduce using rule 15 (expression -> expression DIVIDE expression .)
+    LESSEQ          reduce using rule 15 (expression -> expression DIVIDE expression .)
+    AND             reduce using rule 15 (expression -> expression DIVIDE expression .)
+    OR              reduce using rule 15 (expression -> expression DIVIDE expression .)
+    EQUALS          reduce using rule 15 (expression -> expression DIVIDE expression .)
+    IN              reduce using rule 15 (expression -> expression DIVIDE expression .)
+    NOTEQUALTO      reduce using rule 15 (expression -> expression DIVIDE expression .)
+    FLOORDIVIDE     reduce using rule 15 (expression -> expression DIVIDE expression .)
+    RPAREN          reduce using rule 15 (expression -> expression DIVIDE expression .)
+    SEMI            reduce using rule 15 (expression -> expression DIVIDE expression .)
+    COMMA           reduce using rule 15 (expression -> expression DIVIDE expression .)
+    LPAREN          reduce using rule 15 (expression -> expression DIVIDE expression .)
+    NUMBER          reduce using rule 15 (expression -> expression DIVIDE expression .)
+    TRUE            reduce using rule 15 (expression -> expression DIVIDE expression .)
+    FALSE           reduce using rule 15 (expression -> expression DIVIDE expression .)
+    STR             reduce using rule 15 (expression -> expression DIVIDE expression .)
+    VAR             reduce using rule 15 (expression -> expression DIVIDE expression .)
+    LSQUARE         reduce using rule 15 (expression -> expression DIVIDE expression .)
+    RSQUARE         reduce using rule 15 (expression -> expression DIVIDE expression .)
+    EXPONENT        shift and go to state 58
+
+  ! EXPONENT        [ reduce using rule 15 (expression -> expression DIVIDE expression .) ]
+  ! PLUS            [ shift and go to state 62 ]
+  ! MINUS           [ shift and go to state 54 ]
+  ! TIMES           [ shift and go to state 61 ]
+  ! DIVIDE          [ shift and go to state 66 ]
+  ! GREATER         [ shift and go to state 55 ]
+  ! LESS            [ shift and go to state 57 ]
+  ! MOD             [ shift and go to state 65 ]
+  ! GREATEQ         [ shift and go to state 51 ]
+  ! LESSEQ          [ shift and go to state 64 ]
+  ! AND             [ shift and go to state 60 ]
+  ! OR              [ shift and go to state 52 ]
+  ! EQUALS          [ shift and go to state 56 ]
+  ! IN              [ shift and go to state 63 ]
+  ! NOTEQUALTO      [ shift and go to state 50 ]
+  ! FLOORDIVIDE     [ shift and go to state 59 ]
+
+
+state 95
+
+    (35) expression -> LPAREN expression RPAREN .
+
+    PLUS            reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    TIMES           reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    GREATER         reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    LESS            reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    MOD             reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    EXPONENT        reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    GREATEQ         reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    LESSEQ          reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    AND             reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    OR              reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    EQUALS          reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    IN              reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    NOTEQUALTO      reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    FLOORDIVIDE     reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    SEMI            reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    COMMA           reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    LPAREN          reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    NUMBER          reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    TRUE            reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    FALSE           reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    STR             reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    VAR             reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    LSQUARE         reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+    RSQUARE         reduce using rule 35 (expression -> LPAREN expression RPAREN .)
+
+
+state 96
+
+    (53) whilesmt -> WHILE LPAREN expression RPAREN block .
+
+    LBRACE          reduce using rule 53 (whilesmt -> WHILE LPAREN expression RPAREN block .)
+    PRINT           reduce using rule 53 (whilesmt -> WHILE LPAREN expression RPAREN block .)
+    VAR             reduce using rule 53 (whilesmt -> WHILE LPAREN expression RPAREN block .)
+    TRUE            reduce using rule 53 (whilesmt -> WHILE LPAREN expression RPAREN block .)
+    FALSE           reduce using rule 53 (whilesmt -> WHILE LPAREN expression RPAREN block .)
+    IF              reduce using rule 53 (whilesmt -> WHILE LPAREN expression RPAREN block .)
+    WHILE           reduce using rule 53 (whilesmt -> WHILE LPAREN expression RPAREN block .)
+    RBRACE          reduce using rule 53 (whilesmt -> WHILE LPAREN expression RPAREN block .)
+
+
+state 97
+
+    (50) ifelsesmt -> IF LPAREN expression RPAREN block . ELSE block
+    (49) ifsmt -> IF LPAREN expression RPAREN block .
+
+    ELSE            shift and go to state 101
+    LBRACE          reduce using rule 49 (ifsmt -> IF LPAREN expression RPAREN block .)
+    PRINT           reduce using rule 49 (ifsmt -> IF LPAREN expression RPAREN block .)
+    VAR             reduce using rule 49 (ifsmt -> IF LPAREN expression RPAREN block .)
+    TRUE            reduce using rule 49 (ifsmt -> IF LPAREN expression RPAREN block .)
+    FALSE           reduce using rule 49 (ifsmt -> IF LPAREN expression RPAREN block .)
+    IF              reduce using rule 49 (ifsmt -> IF LPAREN expression RPAREN block .)
+    WHILE           reduce using rule 49 (ifsmt -> IF LPAREN expression RPAREN block .)
+    RBRACE          reduce using rule 49 (ifsmt -> IF LPAREN expression RPAREN block .)
+
+
+state 98
+
+    (37) list -> element COMMA list .
+
+    RSQUARE         reduce using rule 37 (list -> element COMMA list .)
+
+
+state 99
+
+    (47) listeval -> VAR LSQUARE expression RSQUARE .
+
+    RSQUARE         reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    PLUS            reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    MINUS           reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    TIMES           reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    DIVIDE          reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    GREATER         reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    LESS            reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    MOD             reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    EXPONENT        reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    GREATEQ         reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    LESSEQ          reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    AND             reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    OR              reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    EQUALS          reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    IN              reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    NOTEQUALTO      reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    FLOORDIVIDE     reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    RPAREN          reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    SEMI            reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    COMMA           reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    LPAREN          reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    NUMBER          reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    TRUE            reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    FALSE           reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    STR             reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    VAR             reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+    LSQUARE         reduce using rule 47 (listeval -> VAR LSQUARE expression RSQUARE .)
+
+
+state 100
+
+    (41) index -> array LSQUARE expression RSQUARE .
+
+    PLUS            reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    MINUS           reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    TIMES           reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    DIVIDE          reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    GREATER         reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    LESS            reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    MOD             reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    EXPONENT        reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    GREATEQ         reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    LESSEQ          reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    AND             reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    OR              reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    EQUALS          reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    IN              reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    NOTEQUALTO      reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    FLOORDIVIDE     reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    RPAREN          reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    SEMI            reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    COMMA           reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    LPAREN          reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    NUMBER          reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    TRUE            reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    FALSE           reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    STR             reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    VAR             reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    LSQUARE         reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+    RSQUARE         reduce using rule 41 (index -> array LSQUARE expression RSQUARE .)
+
+
+state 101
+
+    (50) ifelsesmt -> IF LPAREN expression RPAREN block ELSE . block
+    (1) block -> . LBRACE inblock RBRACE
+    (2) block -> . LBRACE RBRACE
+
+    LBRACE          shift and go to state 1
+
+    block                          shift and go to state 102
+
+state 102
+
+    (50) ifelsesmt -> IF LPAREN expression RPAREN block ELSE block .
+
+    LBRACE          reduce using rule 50 (ifelsesmt -> IF LPAREN expression RPAREN block ELSE block .)
+    PRINT           reduce using rule 50 (ifelsesmt -> IF LPAREN expression RPAREN block ELSE block .)
+    VAR             reduce using rule 50 (ifelsesmt -> IF LPAREN expression RPAREN block ELSE block .)
+    TRUE            reduce using rule 50 (ifelsesmt -> IF LPAREN expression RPAREN block ELSE block .)
+    FALSE           reduce using rule 50 (ifelsesmt -> IF LPAREN expression RPAREN block ELSE block .)
+    IF              reduce using rule 50 (ifelsesmt -> IF LPAREN expression RPAREN block ELSE block .)
+    WHILE           reduce using rule 50 (ifelsesmt -> IF LPAREN expression RPAREN block ELSE block .)
+    RBRACE          reduce using rule 50 (ifelsesmt -> IF LPAREN expression RPAREN block ELSE block .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for LSQUARE in state 39 resolved as shift

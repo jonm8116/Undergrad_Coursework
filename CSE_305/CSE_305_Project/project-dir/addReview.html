@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html ng-app="reviewapp">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zen Travels</title>
+  <link rel="stylesheet" href="css/bulma.css">
+  <link rel="stylesheet" href="css/ionicons/css/ionicons.css">
+  <link rel="stylesheet" href="css/ionicons/css/ionicons.min.css">
+  <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="review.js"></script>
+  <style type="text/css">
+  /*   RIGHT SIDE WHITE SPACE   */
+
+  #wrapper-1{
+    height: 100%;
+    background-color: #8D99AE;
+    margin: 0;
+    position: relative;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding-top: 5%;
+    padding-left: 37%;
+  }
+
+  #navbar-top{
+    background-color: #8D99AE;
+  }
+  .hero-foot{
+    text-align: center;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+  div::-webkit-scrollbar {
+    display: none;
+  }
+
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+  }
+  #main-review{
+    height: 100%;
+    width: 40%;
+    background-color: hsl(348, 100%, 61%);
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-bottom: 50px;
+    border-radius: 10px;
+    overflow-y: hidden;
+  }
+  html, body{
+    height: 100%;
+  }
+  #sign-in-text{
+    background-color: #8D99AE;
+    text-align: center;
+    padding-top: 4%;
+    font-size: 20pt;
+    color: white;
+  }
+  #reviewForm{
+    padding-bottom: 80%;
+    padding-top: 3%;
+  }
+  form{
+    overflow-y: hidden;
+  }
+  </style>
+</head>
+<body>
+  <!--   NAVBAR GOES BELOW    -->
+  <nav id="top-navbar" class="navbar is-dark">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="index.html">
+        <i class="icon ion-model-s"></i>
+      </a>
+      <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div id="navbarExampleTransparentExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="index.html">
+          Home
+        </a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="">
+            Trips
+          </a>
+          <div class="navbar-dropdown is-boxed">
+            <a class="navbar-item" href="flight.html">
+              Flights
+            </a>
+            <a class="navbar-item" href="cruises.html">
+              Cruises
+            </a>
+            <a class="navbar-item" href="cars.html">
+              Car rentals
+            </a>
+          </div>
+        </div>
+        <a class="navbar-item" href="userProfile.html">
+          User
+        </a>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <p class="control">
+              <a class="bd-tw-button button" href="./signup.html">
+                <span class="icon">
+                  <i class="icon ion-log-in"></i>
+                </span>
+                <span id="sign-in-out-button">
+                  Sign in
+                </span>
+              </a>
+            </p>
+            <p class="control">
+              <a class="button is-primary" href="">
+                <span class="icon">
+                  <i class="icon ion-edit"></i>
+                </span>
+                <span id="userprofile">Create account</span>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!--   NAVBAR GOES ABOVE    -->
+
+  <!--  SIGN IN TEXT  -->
+  <div id="sign-in-text">
+    <span class="icon has-text-success">
+      <i style="font-size: 2.5em;" class="icon ion-android-bicycle"></i>
+    </span>
+    <h1>Submit your Review!</h1>
+  </div>
+
+  <!--  SIGN IN TEXT ABOVE -->
+  <!--    SIGN IN DIV COMPONENT    -->
+  <div id="wrapper-1" class="is-fluid" ng-controller="reviewController">
+    <form name="reviewform" class="control" ng-submit="submitReview()" > <!-- ng-submit="submitUser()" -->
+      <div id="main-review">
+
+        <!-- Rating -->
+
+        <div class="field">
+          <label class="label">Rating</label>
+          <div class="control">
+            <input class="input" type="text" ng-model="reviews.Rating" name="Rating" placeholder="Please rate out of 5">
+          </div>
+        </div>
+
+        <!-- Review -->
+
+        <div class="field">
+          <label class="label">Review</label>
+          <textarea id="reviewForm" type="Review" class="input is-danger" ng-model="reviews.DetailedReview" name="Review" placeholder="Type your Review here!">
+          </textarea>
+        </div>
+
+        <div class="field">
+          <button type="submit" id="submitButton" class="button is-link">Submit</button>
+        </div>
+      </div>
+    </form>
+    </div>
+  </body>
+  </html>

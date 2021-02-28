@@ -1,0 +1,9 @@
+npm install querystring
+npm install fs
+npm install path
+npm install express 
+npm install body-parser
+npm install mongodb
+npm install handlebars
+npm install nodemailer
+npm install jsonwebtoken

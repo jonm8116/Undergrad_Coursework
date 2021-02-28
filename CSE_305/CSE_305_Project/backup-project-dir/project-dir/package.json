@@ -1,0 +1,19 @@
+{
+  "name": "cse305-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "serverApp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/cse305project/cse305-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/cse305project/cse305-project#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}

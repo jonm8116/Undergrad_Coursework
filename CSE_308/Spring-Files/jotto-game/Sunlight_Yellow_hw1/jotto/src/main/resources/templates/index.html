@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="UTF-8">
+      <title>Jotto - The Boring Game</title>
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.css">
+      <script src="http://localhost:8080/gamejs"></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js'></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/js/foundation.js'></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/js/plugins/foundation.core.js'></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/js/plugins/foundation.reveal.js'></script>
+      <script src = "https://unpkg.com/axios/dist/axios.min.js"></script>
+   </head>
+   <style>
+
+   body {
+      background: #FCFCFC;
+   }
+
+   .main_wrapper{
+      width:60%;
+      margin-left:auto;
+      margin-right:auto;
+   }
+
+   .char_button{
+      margin:3px;
+      border-radius:4px;
+   }
+
+   #guess_history, #comp_guess_history{
+      height:188px;
+      overflow-y:scroll;
+      background-color:black;
+      color:white;
+      padding:10px;
+      border-radius:3px 3px 0px 0px;
+      border-width:1px;
+      border-style:solid;
+      border-color:darkslategray;
+   }
+
+   #comp_guess_history {
+      border-radius:0px 0px 3px 3px;
+   }
+
+   .guess_history_p{
+      margin:2px;
+      font-size:12px;
+   }
+   .guess_history_b{
+      margin:2px;
+      font-size:12px;
+   }
+   .title{
+      font-size:13px;
+   }
+   .info{
+      text-align:right;
+      font-size:14px;
+   }
+   </style>
+   <body>
+      <div class='main_wrapper'>
+         <br/>
+         <div class='row'>
+            <div class='small-3 columns'>
+                  Jotto | The Boring Game
+            </div>
+            <div class='small-9 columns' style=''>
+               <button style='float:right;' class='button tiny expanded radius secondary' value='http://localhost:8080/'  onclick='go_to(this)'>Logout</button>
+               <button style='float:right; left:-10px' class='button tiny expanded radius secondary' value='menu.html?'  onclick='go_to_profile()'>Profile</button>
+            </div>
+         </div>
+
+         <div id='game_end' style='display:none'>
+            <div id='user_won' style='display:none'>
+               <div class='row'>
+                  <div class='small-12 columns'>
+                     <button class='button small radius success expand'>Congratulations! You guessed it!</button>
+                  </div>
+               </div>
+               <div class='row'>
+                  <div class='small-6 columns'>
+                     <div class="panel radius">
+                        <h6 style='font-size:14px; font-weight:bold'>🤖 Jotto Bot: </h6>
+                        <p>OMG, 😱 <span id="username-tag-1">Artvegas</span>! You must be a genius 😤...who ever built me probably went to sbu for their compsci degree 😭
+                        </p>
+                     </div>
+                  </div>
+                  <div class='small-6 columns'>
+                     <input type="text" id='secret_word_show' disabled style='text-align:center; font-size:20px; padding:25px 25px 25px 15px' value='Secret word: Example' required>
+                     <button class='button small primary expand radius' onclick='start_new_game()'>New start game</button>
+                  </div>
+               </div>
+            </div>
+            <div id='user_lost' style='display:none'>
+               <div class='row'>
+                  <div class='small-12 columns'>
+                     <button class='button small radius alert expand'>You lost...maybe next time!</button>
+                  </div>
+               </div>
+               <div class='row'>
+                  <div class='small-6 columns'>
+                     <div class="panel radius">
+                        <h6 style='font-size:14px; font-weight:bold'>🤖 Jotto Bot: </h6>
+                        <p>Haha <span id="username-tag-2">Artvegas</span>! 😷 You must go to sbu - not the bright! I am just joking 😜, maybe next time I will go easier on you 😚
+                        </p>
+                     </div>
+                  </div>
+                  <div class='small-6 columns'>
+                     <input type="text" id='secret_word_show' disabled style='text-align:center; font-size:20px; padding:25px 25px 25px 15px' value='Secret word: Example'>
+                     <button class='button small primary expand radius' onclick='get_secret_word()'>Start new game</button>
+                  </div>
+               </div>
+            </div>
+
+            <div id='game_history_end'>
+            </div>
+         </div>
+
+         <div id='pre_game_wrapper' style='display:block'>
+            <div class='row'>
+               <div class='small-12 columns' id='main_error' style='display:none'>
+                  <button class='button small alert expand radius' onclick='get_secret_word()'></button>
+               </div>
+               <div class='small-6 columns'>
+                  <div class="panel radius">
+                     <h6 style='font-size:14px; font-weight:bold'>🤖 Jotto Bot: </h6>
+                     <p>Hello, <span id="username-tag-3">Artvegas</span>! Before we can start the game, enter a secret word for me to guess 🕵
+                     </p>
+                  </div>
+               </div>
+               <div class='small-6 columns'>
+                  <input type="text" id='secret_word' placeholder="Enter a secret word" name="uname" style='font-size:20px; padding:25px 25px 25px 15px; text-transform:uppercase' required>
+                  <button class='button small secondary expand radius' onclick='get_secret_word()'>Start Game</button>
+               </div>
+            </div>
+         </div>
+
+         <div id='game_wrapper' style='display:none'>
+            <div class='row'>
+               <div id='letterboard_wrapper' class='small-12 columns'>
+                  <p style='font-size:14px'>Letterboard &nbsp; ⌨</p>
+               </div>
+            </div>
+            <br>
+            <div class='row'>
+               <div class='small-6 columns'>
+                  <div class='row'>
+                     <div class='small-12 columns'>
+                        <p style='font-size:14px;'>Guess &nbsp; 🕵</p>
+                        <input id='guess_input' placeholder='Enter guess here' style='text-transform:uppercase' type='text'>
+                     </div>
+                  </div>
+                  <div class='row'>
+                     <div id='game_history_during'>
+                        <div class='small-12 columns'>
+                           <p style='font-size:14px; color:lightslategray'>Guess History</p>
+                           <div id='guess_history'>
+                              <p class='guess_history_b'>console started...</p>
+                              <p class='guess_history_b'>loaded game...</p>
+                              <p class='guess_history_b'>Welcome to the Jotto Game - Jotto Bot</p>
+                           </div>
+                        </div>
+                        <div class='small-12 columns'>
+                           <div id='comp_guess_history'>
+                              <p class='guess_history_b'>console started...</p>
+                              <p class='guess_history_b'>Computer Guess console...</p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class='small-6 columns'>
+                  <div class='row'>
+                     <div class='small-12 columns'>
+                        <p style='font-size:14px;'>Game Settings &nbsp; ⚙</p>
+                        <div class='row collapse' style='margin:4px;'>
+                           <div class='small-2 columns title'>
+                              Name
+                           </div>
+                           <div class='small-10 columns info'>
+                              <span id='user_name'>Playing as Guest</span>
+                           </div>
+                        </div>
+                        <div class='row collapse' style='margin:4px;'>
+                           <div class='small-2 columns title'>
+                              # Letters
+                           </div>
+                           <div class='small-10 columns info'>
+                              5
+                           </div>
+                        </div>
+                        <div class='row collapse' style='margin:4px;'>
+                           <div class='small-2 columns title'>
+                              Difficulty
+                           </div>
+                           <div class='small-10 columns info'>
+                              Easy
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <br/>
+                  <div class='row'>
+                     <div class='small-12 columns'>
+                           <div class="panel radius">
+                                 <h6 style='font-size:14px; font-weight:bold'>🤖 Jotto Bot: </h6>
+                                 <p style='font-size:14px'> Your objective is to guess the secret word! 🕵️‍♀️</p>
+                           </div>
+                     </div>
+                     <div class='small-12 columns'>
+                           <div class="panel radius">
+                                 <h6 style='font-size:14px; font-weight:bold'>🤖 Jotto Bot: </h6>
+                                 <p style='font-size:14px'>Start out by guessing any word. Guesses must be real and must not contain the same letter twice. 😤</p>
+                           </div>
+                     </div>
+                     <div class='small-12 columns'>
+                           <div class="panel radius">
+                                 <h6 style='font-size:14px; font-weight:bold'>🤖 Jotto Bot: </h6>
+                                 <p style='font-size:14px'>📈 When you guess a valid word, a number will be returned to you that is the number of letters that are the same between that guess and the secret word.</p>
+                           </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+      </div>
+   </body>
+
+   <script>
+	// function no_repeated_letters(){
+	// 		var guess_input = document.getElementById('guess_input');
+	// 		var list_of_letters = [];
+	// 		var guess_string = guess_input.value;
+	// 		for (var i = 0; i < guess_string.length(); i++){
+	// 			if (list_of_letters.includes(guess_string.charAt(i).toUpperCase())){
+	// 				return false;
+	// 			}
+	// 			else{
+	// 				list_of_letters.push(guess_string.charAt(i).toUpperCase());
+	// 			}
+	// 		}
+	// 		return true;
+	// }
+   //
+	// function return_correct_letters(word){
+	// 	var guess_input = document.getElementById('guess_input');
+	// 	var guess_string = guess_input.text;
+	// 	var new_word = word.toUpperCase();
+	// 	var count = 0;
+	// 	for (var i = 0; i < guess_string.length(); i++){
+	// 			var current_char = guess_string.charAt(i).toUpperCase();
+	// 			if (new_word.contains(current_char+""))
+	// 				count ++;
+	// 	}
+	// 	return count;
+	// }
+
+      $('#guess_input').keydown(function (event) {
+       var keypressed = event.keyCode || event.which;
+       if (keypressed == 13) {
+           check_guess();
+       }
+      });
+
+      create_letterboard();
+     // copy_game_history();
+     document.getElementById("username-tag-1").innerHTML = document.cookie.split("=")[2];
+     document.getElementById("username-tag-2").innerHTML = document.cookie.split("=")[2];
+     document.getElementById("username-tag-3").innerHTML = document.cookie.split("=")[2];
+
+   </script>
+
+</html>
